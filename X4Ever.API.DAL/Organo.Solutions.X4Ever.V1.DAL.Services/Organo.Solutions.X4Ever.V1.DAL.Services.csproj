@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B24F0369-4A64-4BD7-AA43-6B3644B89271}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Organo.Solutions.X4Ever.V1.DAL.Services</RootNamespace>
+    <AssemblyName>Organo.Solutions.X4Ever.V1.DAL.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationServices.cs" />
+    <Compile Include="ApplicationSettingServices.cs" />
+    <Compile Include="CountryServices.cs" />
+    <Compile Include="DependencyResolver.cs" />
+    <Compile Include="IApplicationCountryServices.cs" />
+    <Compile Include="IApplicationServices.cs" />
+    <Compile Include="IApplicationSettingServices.cs" />
+    <Compile Include="ICountryServices.cs" />
+    <Compile Include="IDefaultServices.cs" />
+    <Compile Include="ILanguageServices.cs" />
+    <Compile Include="IMealPlanServices.cs" />
+    <Compile Include="IMediaCategoryServices.cs" />
+    <Compile Include="IMediaContentServices.cs" />
+    <Compile Include="IMediaTypeServices.cs" />
+    <Compile Include="IMenuServices.cs" />
+    <Compile Include="IMilestonePercentageServices.cs" />
+    <Compile Include="IMilestoneServices.cs" />
+    <Compile Include="INewsServices.cs" />
+    <Compile Include="IOpenNotificationUserServices.cs" />
+    <Compile Include="IPasswordHistoryServices.cs" />
+    <Compile Include="IProvinceServices.cs" />
+    <Compile Include="ITestimonialServices.cs" />
+    <Compile Include="IUserMetaPivotServices.cs" />
+    <Compile Include="IUserMetaServices.cs" />
+    <Compile Include="IPasswordRequestServices.cs" />
+    <Compile Include="IUserMilestoneServices.cs" />
+    <Compile Include="IUserNotificationServices.cs" />
+    <Compile Include="IUserPivotServices.cs" />
+    <Compile Include="IUserPushTokenServices.cs" />
+    <Compile Include="IUserServices.cs" />
+    <Compile Include="IUserSettingServices.cs" />
+    <Compile Include="IUserTokensServices.cs" />
+    <Compile Include="IUserTrackerPivotServices.cs" />
+    <Compile Include="IUserTrackerRealtimeServices.cs" />
+    <Compile Include="IUserTrackerReportServices.cs" />
+    <Compile Include="IUserTrackerServices.cs" />
+    <Compile Include="IWebUserMetaRealtimeServices.cs" />
+    <Compile Include="IWeightVolumeServices.cs" />
+    <Compile Include="IYoutubeVideoServices.cs" />
+    <Compile Include="LanguageServices.cs" />
+    <Compile Include="MealPlanServices.cs" />
+    <Compile Include="MediaCategoryServices.cs" />
+    <Compile Include="MediaContentServices.cs" />
+    <Compile Include="MediaTypeServices.cs" />
+    <Compile Include="MenuServices.cs" />
+    <Compile Include="MilestonePercentageServices.cs" />
+    <Compile Include="MilestoneServices.cs" />
+    <Compile Include="NewsServices.cs" />
+    <Compile Include="OpenNotificationUserServices.cs" />
+    <Compile Include="PasswordHistoryServices.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinceServices.cs" />
+    <Compile Include="TestimonialServices.cs" />
+    <Compile Include="UserMetaPivotServices.cs" />
+    <Compile Include="UserMetaServices.cs" />
+    <Compile Include="PasswordRequestServices.cs" />
+    <Compile Include="UserMilestoneServices.cs" />
+    <Compile Include="UserNotificationServices.cs" />
+    <Compile Include="UserPivotServices.cs" />
+    <Compile Include="UserPushTokenServices.cs" />
+    <Compile Include="UserServices.cs" />
+    <Compile Include="UserSettingServices.cs" />
+    <Compile Include="UserTokensServices.cs" />
+    <Compile Include="UserTrackerPivotServices.cs" />
+    <Compile Include="UserTrackerRealtimeServices.cs" />
+    <Compile Include="UserTrackerReportServices.cs" />
+    <Compile Include="UserTrackerServices.cs" />
+    <Compile Include="WebUserMetaRealtimeServices.cs" />
+    <Compile Include="WeightVolumeServices.cs" />
+    <Compile Include="YoutubeVideoServices.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Organo.Solutions.X4Ever.V1.DAL.Helper\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj">
+      <Project>{99e97e1e-f3d6-4e3e-8f0a-97d03245a26b}</Project>
+      <Name>Organo.Solutions.X4Ever.V1.DAL.Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Organo.Solutions.X4Ever.V1.DAL.Model\Organo.Solutions.X4Ever.V1.DAL.Model.csproj">
+      <Project>{07c19544-9ae7-43c5-aae3-ce2ea4e5fe5a}</Project>
+      <Name>Organo.Solutions.X4Ever.V1.DAL.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Organo.Solutions.X4Ever.V1.DAL.Repository\Organo.Solutions.X4Ever.V1.DAL.Repository.csproj">
+      <Project>{e513f1df-32fa-484c-9886-4fc9af090531}</Project>
+      <Name>Organo.Solutions.X4Ever.V1.DAL.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Organo.Solutions.X4Ever.V1.DAL.Resolver\Organo.Solutions.X4Ever.V1.DAL.Resolver.csproj">
+      <Project>{98ecee7e-e2c9-4f12-b6a7-3992fba183f7}</Project>
+      <Name>Organo.Solutions.X4Ever.V1.DAL.Resolver</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

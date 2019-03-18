@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07C19544-9AE7-43C5-AAE3-CE2EA4E5FE5A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Organo.Solutions.X4Ever.V1.DAL.Model</RootNamespace>
+    <AssemblyName>Organo.Solutions.X4Ever.V1.DAL.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application.cs" />
+    <Compile Include="ApplicationCountry.cs" />
+    <Compile Include="ApplicationMenu.cs" />
+    <Compile Include="ApplicationSetting.cs" />
+    <Compile Include="EnumerationTypes\PlatformType.cs" />
+    <Compile Include="IUserTrackerReportV1Map.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="Country.cs" />
+    <Compile Include="ApplicationLanguage.cs" />
+    <Compile Include="CountryLanguage.cs" />
+    <Compile Include="CountryProvince.cs" />
+    <Compile Include="ForgotPasswordRequest.cs" />
+    <Compile Include="IBase32Properties.cs" />
+    <Compile Include="IBaseProperties.cs" />
+    <Compile Include="IBase64Properties.cs" />
+    <Compile Include="ICountryProvince.cs" />
+    <Compile Include="IValidation.cs" />
+    <Compile Include="Language.cs" />
+    <Compile Include="LoginCredential.cs" />
+    <Compile Include="MealPlan.cs" />
+    <Compile Include="MealPlanOption.cs" />
+    <Compile Include="MealPlanOptionGrid.cs" />
+    <Compile Include="MealPlanOptionList.cs" />
+    <Compile Include="MediaCategory.cs" />
+    <Compile Include="MediaContentDetail.cs" />
+    <Compile Include="MediaContent.cs" />
+    <Compile Include="MediaType.cs" />
+    <Compile Include="MetaPivot.cs" />
+    <Compile Include="Milestone.cs" />
+    <Compile Include="MilestonePercentage.cs" />
+    <Compile Include="News.cs" />
+    <Compile Include="Notification_UserTracker.cs" />
+    <Compile Include="OpenNotificationUser.cs" />
+    <Compile Include="OpenNotificationUserOnly.cs" />
+    <Compile Include="OpenNotificationUserRegistration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Province.cs" />
+    <Compile Include="Statics\NotificationType.cs" />
+    <Compile Include="Statics\TrackerConstants.cs" />
+    <Compile Include="Testimonial.cs" />
+    <Compile Include="TrackerPivot.cs" />
+    <Compile Include="UserAuthentication.cs" />
+    <Compile Include="UserGlobal.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserMetaHistory.cs" />
+    <Compile Include="UserMetaGlobal.cs" />
+    <Compile Include="UserMeta.cs" />
+    <Compile Include="UserMetaPivot.cs" />
+    <Compile Include="UserMilestone.cs" />
+    <Compile Include="UserMilestoneExtended.cs" />
+    <Compile Include="UserNotification.cs" />
+    <Compile Include="UserNotificationType.cs" />
+    <Compile Include="UserNotificationView.cs" />
+    <Compile Include="UserPasswordHistory.cs" />
+    <Compile Include="UserPivot.cs" />
+    <Compile Include="UserPushToken.cs" />
+    <Compile Include="UserPushTokenRegister.cs" />
+    <Compile Include="UserSetting.cs" />
+    <Compile Include="UserToken.cs" />
+    <Compile Include="UserTrackerDetailReport.cs" />
+    <Compile Include="UserTrackerGlobal.cs" />
+    <Compile Include="UserTracker.cs" />
+    <Compile Include="UserTrackerMap.cs" />
+    <Compile Include="UserTrackerMedia.cs" />
+    <Compile Include="UserTrackerPivot.cs" />
+    <Compile Include="UserTrackerRealtime.cs" />
+    <Compile Include="UserTrackerReport_V1.cs" />
+    <Compile Include="ValidationErrors.cs" />
+    <Compile Include="WebUserMetaPivot.cs" />
+    <Compile Include="WebUserTrackerViewPivot.cs" />
+    <Compile Include="WeightVolume.cs" />
+    <Compile Include="YoutubeConfiguration.cs" />
+    <Compile Include="YoutubeVideoCollection.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

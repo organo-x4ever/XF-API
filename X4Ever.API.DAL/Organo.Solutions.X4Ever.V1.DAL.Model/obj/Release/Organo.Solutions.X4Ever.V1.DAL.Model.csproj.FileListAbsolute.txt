@@ -1,0 +1,21 @@
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.csproj.CoreCompileInputs.cache
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.csproj.CoreCompileInputs.cache
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.csproj.CoreCompileInputs.cache
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.csproj.CoreCompileInputs.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Model.csprojAssemblyReference.cache

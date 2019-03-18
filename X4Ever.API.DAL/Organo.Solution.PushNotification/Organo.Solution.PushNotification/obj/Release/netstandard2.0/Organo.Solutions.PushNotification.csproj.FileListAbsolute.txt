@@ -1,0 +1,9 @@
+C:\XF-API\X4Ever.API.DAL\Organo.Solution.PushNotification\bin\Release\netstandard2.0\Organo.Solutions.PushNotification.deps.json
+C:\XF-API\X4Ever.API.DAL\Organo.Solution.PushNotification\bin\Release\netstandard2.0\Organo.Solutions.PushNotification.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solution.PushNotification\bin\Release\netstandard2.0\Organo.Solutions.PushNotification.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solution.PushNotification\obj\Release\netstandard2.0\Organo.Solutions.PushNotification.csproj.CoreCompileInputs.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solution.PushNotification\obj\Release\netstandard2.0\Organo.Solutions.PushNotification.AssemblyInfoInputs.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solution.PushNotification\obj\Release\netstandard2.0\Organo.Solutions.PushNotification.AssemblyInfo.cs
+C:\XF-API\X4Ever.API.DAL\Organo.Solution.PushNotification\obj\Release\netstandard2.0\Organo.Solutions.PushNotification.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solution.PushNotification\obj\Release\netstandard2.0\Organo.Solutions.PushNotification.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solution.PushNotification\obj\Release\netstandard2.0\Organo.Solutions.PushNotification.csprojAssemblyReference.cache

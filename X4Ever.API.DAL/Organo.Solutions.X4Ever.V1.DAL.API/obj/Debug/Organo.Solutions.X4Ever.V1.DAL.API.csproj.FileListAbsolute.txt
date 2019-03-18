@@ -1,0 +1,209 @@
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\csc.exe
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\csc.exe.config
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\csc.rsp
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\csi.exe
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\csi.rsp
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\System.AppContext.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\System.Collections.Immutable.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\System.IO.FileSystem.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\System.Reflection.Metadata.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\vbc.exe
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\vbc.exe.config
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\vbc.rsp
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\VBCSCompiler.exe
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\roslyn\VBCSCompiler.exe.config
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll.config
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Antlr3.Runtime.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AttributeRouting.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AttributeRouting.Web.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AttributeRouting.Web.Http.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AttributeRouting.Web.Http.WebHost.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\EntityFramework.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\EntityFramework.SqlServer.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.AspNet.Identity.Core.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Owin.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Owin.Security.Cookies.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Owin.Security.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Owin.Security.OAuth.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Practices.ServiceLocation.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Practices.Unity.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Web.Infrastructure.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Newtonsoft.Json.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Resolver.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Services.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Owin.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Net.Http.Formatting.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Cors.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Helpers.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Http.Cors.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Http.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Http.Owin.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Http.WebHost.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Mvc.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Optimization.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Razor.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.WebPages.Deployment.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.WebPages.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.WebPages.Razor.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Unity.Mvc5.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Unity.WebApi.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\WebActivator.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\WebGrease.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\NLog.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\CryptSharp.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll.config
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.dll.config
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Resolver.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Services.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Antlr3.Runtime.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AttributeRouting.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AttributeRouting.Web.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AttributeRouting.Web.Http.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AttributeRouting.Web.Http.WebHost.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\EntityFramework.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\EntityFramework.SqlServer.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.AspNet.Identity.Core.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Owin.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Owin.Security.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Owin.Security.Cookies.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Owin.Security.OAuth.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Practices.ServiceLocation.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Practices.ServiceLocation.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Practices.Unity.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Newtonsoft.Json.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Net.Http.Formatting.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Helpers.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Http.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Http.Cors.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Http.Owin.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Http.WebHost.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Mvc.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Optimization.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.Razor.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.WebPages.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.WebPages.Deployment.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.Web.WebPages.Razor.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\WebActivator.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\NLog.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\CryptSharp.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\CryptSharp.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CoreCompileInputs.cache
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csprojResolveAssemblyReference.cache
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll.config
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Newtonsoft.Json.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Resolver.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Services.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\NLog.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\CryptSharp.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll.config
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.dll.config
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Resolver.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Services.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csprojAssemblyReference.cache
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CoreCompileInputs.cache
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CopyComplete
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll.config
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Newtonsoft.Json.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Resolver.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Services.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\NLog.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\CryptSharp.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll.config
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.dll.config
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Resolver.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Services.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csprojAssemblyReference.cache
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CoreCompileInputs.cache
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CopyComplete
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csprojAssemblyReference.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CoreCompileInputs.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll.config
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Newtonsoft.Json.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.PushNotification.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Resolver.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Services.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Apple.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Core.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\NLog.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\CryptSharp.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.PushNotification.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll.config
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.dll.config
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Resolver.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Services.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Newtonsoft.Json.xml
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Apple.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Core.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CopyComplete
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.API.pdb

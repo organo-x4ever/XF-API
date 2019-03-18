@@ -1,0 +1,13 @@
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\bin\Release\Organo.Solutions.PushNotification.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\bin\Release\Organo.Solutions.PushNotification.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\bin\Release\Newtonsoft.Json.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\bin\Release\PushSharp.Apple.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\bin\Release\PushSharp.Core.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\bin\Release\PushSharp.Apple.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\bin\Release\PushSharp.Core.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\bin\Release\Newtonsoft.Json.xml
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\obj\Release\Organo.Solutions.PushNotification.csprojAssemblyReference.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\obj\Release\Organo.Solutions.PushNotification.csproj.CoreCompileInputs.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\obj\Release\Organo.Solutions.PushNotification.csproj.CopyComplete
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\obj\Release\Organo.Solutions.PushNotification.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.PushNotification\obj\Release\Organo.Solutions.PushNotification.pdb

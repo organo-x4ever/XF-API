@@ -1,0 +1,74 @@
+[
+  {
+    "outputFileName": "realtime/realtime_weight_tracking.min.js",
+    "inputFiles": [
+      "realtime/realtime_weight_tracking.js"
+    ]
+  },
+  {
+    "outputFileName": "view/auth_push_notification.min.js",
+    "inputFiles": [
+      "view/auth_push_notification.js"
+    ]
+  },
+  {
+    "outputFileName": "view/basics.min.js",
+    "inputFiles": [
+      "view/basics.js"
+    ]
+  },
+  {
+    "outputFileName": "view/cookie.min.js",
+    "inputFiles": [
+      "view/cookie.js"
+    ]
+  },
+  {
+    "outputFileName": "view/index.min.js",
+    "inputFiles": [
+      "view/index.js"
+    ]
+  },
+  {
+    "outputFileName": "view/logout.min.js",
+    "inputFiles": [
+      "view/logout.js"
+    ]
+  },
+  {
+    "outputFileName": "view/tracker_report_daterange.min.js",
+    "inputFiles": [
+      "view/tracker_report_daterange.js"
+    ]
+  },
+  {
+    "outputFileName": "view/users.min.js",
+    "inputFiles": [
+      "view/users.js"
+    ]
+  },
+  {
+    "outputFileName": "view/body/body_index.min.js",
+    "inputFiles": [
+      "view/body/body_index.js"
+    ]
+  },
+  {
+    "outputFileName": "realtime/web_user_realtime_weight_tracking.min.js",
+    "inputFiles": [
+      "realtime/web_user_realtime_weight_tracking.js"
+    ]
+  },
+  {
+    "outputFileName": "view/web_user_meta_pivot.min.js",
+    "inputFiles": [
+      "view/web_user_meta_pivot.js"
+    ]
+  },
+  {
+    "outputFileName": "realtime/app_realtime_weight_tracking.min.js",
+    "inputFiles": [
+      "realtime/app_realtime_weight_tracking.js"
+    ]
+  }
+]

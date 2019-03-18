@@ -1,0 +1,6 @@
+{
+  "refreshwaitseconds": 60,
+  "webuserrefreshwaitseconds": 600,
+  "minDate": "2018-10-15",
+  "fetchRecordOnLoad": true
+}

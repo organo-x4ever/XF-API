@@ -1,0 +1,88 @@
+﻿StringBuilder sb = new StringBuilder();
+                        sb.Append("<div style=\"width:100%\">");
+                        sb.Append("<table style=\"width:100%\">");
+                        sb.Append("<tr><td>");
+                        sb.Append(
+                            "<div id=\":13m\" class=\"a3s aXjCH m15ee8e348f0f0fa1\"><img src=\"https://ci6.googleusercontent.com/proxy/Yk3Iqkc773Pe77Kvb4SM70uf7VQ6G2tOy58oXS3hutiy-aATp7BtwwY14o1HvtvXIuDz8zIIDPpABX87kZGbGC7LUV20BZjsihUoygpal7JBtoZYXt155mAXl8te52Ml5-Y=s0-d-e1-ft#http://www.emea.x4ever.club/wp-content/uploads/2017/09/email-header-logo.jpg\" class=\"CToWUd a6T\" tabindex=\"0\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 552px; top: 116px;\"><div id=\":2uh\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div><br><br>");
+                        sb.Append("</td></tr>");
+                        sb.Append("<tr><td>");
+                        sb.AppendFormat("Hi {0},", user.UserFirstName);
+                        sb.Append("</td></tr>");
+                        sb.Append("<tr><td><p>");
+                        sb.Append(
+                            "Now that you’ve embarked on your weight loss journey, it’s time to let us know how you’re doing! ");
+                        sb.Append("</p></td></tr>");
+                        sb.Append("<tr><td><p>");
+                        sb.Append(
+                            "Head to your X Challenge Profile Page and let us know how much weight you’ve lost this week. Also, don’t forget to join the conversation on the X4Ever Community Page and find others who are on the same journey as you.");
+                        sb.Append("</p></td></tr>");
+                        //sb.Append("<tr><td><p>");
+                        //sb.AppendFormat("<a href=\"\">ACCOUNT</a>");
+                        //sb.Append("</p></td></tr>");
+                        sb.Append("<tr><td><p>");
+                        sb.Append("Keep up the great work! ");
+                        sb.Append("</p></td></tr>");
+                        if (confirmation)
+                        {
+                            sb.Append("<tr><td><p>");
+                            sb.Append("To confirm your e-mail address <a href=\"" + link + activationCode +
+                                      "\">click here</a>");
+                            sb.Append("</p></td></tr>");
+                        }
+
+                        sb.Append("<tr><td><b>");
+                        sb.Append("-X Challenge Support Team");
+                        sb.Append("</b><p>&nbsp;</p></td></tr>");
+                        sb.Append("</table>");
+                        return if (content != null) new Message().SendMail(user.UserEmail, "", "",
+                            "How much weight have you lost this week?", sb.ToString(), true);
+
+
+
+
+
+
+
+
+
+
+
+
+							StringBuilder sb = new StringBuilder();
+                        sb.Append("<div style=\"width:100%\">");
+                        sb.Append("<table style=\"width:100%\">");
+                        sb.Append("<tr><td>");
+                        sb.Append(
+                            "<div id=\":13m\" class=\"a3s aXjCH m15ee8e348f0f0fa1\"><img src=\"https://ci6.googleusercontent.com/proxy/Yk3Iqkc773Pe77Kvb4SM70uf7VQ6G2tOy58oXS3hutiy-aATp7BtwwY14o1HvtvXIuDz8zIIDPpABX87kZGbGC7LUV20BZjsihUoygpal7JBtoZYXt155mAXl8te52Ml5-Y=s0-d-e1-ft#http://www.emea.x4ever.club/wp-content/uploads/2017/09/email-header-logo.jpg\" class=\"CToWUd a6T\" tabindex=\"0\"><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 552px; top: 116px;\"><div id=\":2uh\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\" role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"><div class=\"aSK J-J5-Ji aYr\"></div></div></div><br><br>");
+                        sb.Append("</td></tr>");
+                        sb.Append("<tr><td>");
+                        sb.AppendFormat("Hi {0},", user.UserFirstName);
+                        sb.Append("</td></tr>");
+                        sb.Append("<tr><td><p>");
+                        sb.Append(
+                            "Now that you’ve embarked on your weight loss journey, it’s time to let us know how you’re doing! ");
+                        sb.Append("</p></td></tr>");
+                        sb.Append("<tr><td><p>");
+                        sb.Append(
+                            "Head to your X Challenge Profile Page and let us know how much weight you’ve lost this week. Also, don’t forget to join the conversation on the X4Ever Community Page and find others who are on the same journey as you.");
+                        sb.Append("</p></td></tr>");
+                        //sb.Append("<tr><td><p>");
+                        //sb.AppendFormat("<a href=\"\">ACCOUNT</a>");
+                        //sb.Append("</p></td></tr>");
+                        sb.Append("<tr><td><p>");
+                        sb.Append("Keep up the great work! ");
+                        sb.Append("</p></td></tr>");
+                        if (confirmation)
+                        {
+                            sb.Append("<tr><td><p>");
+                            sb.Append("To confirm your e-mail address <a href=\"" + link + activationCode +
+                                      "\">click here</a>");
+                            sb.Append("</p></td></tr>");
+                        }
+
+                        sb.Append("<tr><td><b>");
+                        sb.Append("-X Challenge Support Team");
+                        sb.Append("</b><p>&nbsp;</p></td></tr>");
+                        sb.Append("</table>");
+                        return if (content != null) new Message().SendMail(user.UserEmail, "", "",
+                            "How much weight have you lost this week?", sb.ToString(), true);

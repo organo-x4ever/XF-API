@@ -1,0 +1,1 @@
+﻿<%@ Application CodeBehind="Global.asax.cs" Inherits="Organo.Solutions.X4Ever.V1.DAL.API.Global" Language="C#" %>

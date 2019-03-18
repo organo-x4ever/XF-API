@@ -1,0 +1,28 @@
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\CryptSharp.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\CryptSharp.pdb
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\CryptSharp.xml
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj.CoreCompileInputs.cache
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XamarinMobile\Organo.Solutions.XChallenge.Apple\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj.CoreCompileInputs.cache
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj.CopyComplete
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XamarinMobile\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj.CoreCompileInputs.cache
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj.CopyComplete
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\EntityFramework.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj.CoreCompileInputs.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj.CopyComplete
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csprojAssemblyReference.cache

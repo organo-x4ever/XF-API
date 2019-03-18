@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $('button[type=submit]').click(function () {
+
+                var data = {};
+                data.UserKey = '123';
+                data.UserLogin = 'gurpreet';
+                data.UserPassword = '12345';
+                data.UserFirstName = 'Gurpreet';
+                data.UserLastName = 'Deol';
+                data.UserEmail = 'gdeol.cf9e@organogold.com';
+                data.UserType = '';
+                data.UserRegistered = '2017-11-17T11:13:01';
+                data.UserActivationKey = '22fed845-3a3b-4b7a-a41d-016ac721899a';
+                data.UserStatus = 'MessageEmailVerificationPending';
+
+                console.log(data);
+                var url = 'http://localhost:51498/api/actions/register';
+                jQuery.support.cors = true;
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    success: function (rData) {
+                        console.log(rData);
+                    },
+                    error: function (x, y, z) {
+                        console.log(x);
+                        console.log(y);
+                        console.log(z);
+                    }
+                });
+
+                //$.ajax({
+                //    url: 'http://localhost:51498/api/actions/register',
+                //    type: 'POST',
+                //    data: {
+                //        data
+                //    },
+                //    success: function (data) {
+                //        console.log(data);
+                //    },
+                //    error: function (x, y, z) {
+                //        console.log(x);
+                //        console.log(y);
+                //        console.log(z);
+                //    }
+                //});
+            });
+        });
+    </script>
+</head>
+<body>
+    <button type="button">Submit</button>
+</body>
+</html>

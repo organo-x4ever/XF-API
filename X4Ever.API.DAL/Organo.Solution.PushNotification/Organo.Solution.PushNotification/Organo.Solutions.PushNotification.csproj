@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Organo.Solutions.PushNotification</AssemblyName>
+    <RootNamespace>Organo.Solutions.PushNotification</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PushSharp" Version="4.0.10" />
+  </ItemGroup>
+
+</Project>

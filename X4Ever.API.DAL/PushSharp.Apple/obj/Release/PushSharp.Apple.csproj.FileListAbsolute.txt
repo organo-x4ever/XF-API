@@ -1,0 +1,11 @@
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\bin\Release\PushSharp.Apple.dll
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\bin\Release\PushSharp.Apple.pdb
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\bin\Release\Newtonsoft.Json.dll
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\bin\Release\PushSharp.Core.dll
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\bin\Release\PushSharp.Core.pdb
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\bin\Release\Newtonsoft.Json.xml
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\obj\Release\PushSharp.Apple.csprojAssemblyReference.cache
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\obj\Release\PushSharp.Apple.csproj.CoreCompileInputs.cache
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\obj\Release\PushSharp.Apple.csproj.CopyComplete
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\obj\Release\PushSharp.Apple.dll
+C:\XF-API\X4Ever.API.DAL\PushSharp.Apple\obj\Release\PushSharp.Apple.pdb
