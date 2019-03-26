@@ -43,17 +43,25 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("post")]
         public async Task<IHttpActionResult> Post(UserPushToken userPushToken)
         {
-            if (!ModelState.IsValid)
+            var validationErrors = new ValidationErrors();
+            try
             {
-                return BadRequest("Invalid Request");
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Invalid Request");
+                }
+
+                userPushToken.DeviceApplication = ApplicationKey;
+                userPushToken.DevicePlatform = Platform.ToString();
+                var response = _userPushTokenServices.Insert(ref validationErrors, base.UserID, userPushToken);
+                if (response)
+                    return Ok(HttpConstants.SUCCESS);
+            }
+            catch
+            {
+                //
             }
 
-            userPushToken.DeviceApplication = ApplicationKey;
-            userPushToken.DevicePlatform = Platform.ToString();
-            var validationErrors = new ValidationErrors();
-            var response = _userPushTokenServices.Insert(ref validationErrors, base.UserID, userPushToken);
-            if (response)
-                return Ok(HttpConstants.SUCCESS);
             return Ok(validationErrors.Show());
         }
 

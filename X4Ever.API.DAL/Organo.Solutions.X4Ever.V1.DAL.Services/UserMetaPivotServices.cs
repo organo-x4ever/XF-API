@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Organo.Solutions.X4Ever.V1.DAL.Helper;
 using Organo.Solutions.X4Ever.V1.DAL.Model;
 using Organo.Solutions.X4Ever.V1.DAL.Repository;
 
@@ -12,11 +13,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserTokensServices _tokensServices;
+        private readonly IConverter _converter;
 
         public UserMetaPivotServices(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _tokensServices = new UserTokensServices(unitOfWork);
+            _converter = new Converter();
         }
 
         public bool Delete(ref ValidationErrors validationErrors, List<UserMeta> entity)
@@ -74,10 +77,10 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             return await GetMetaAsync(tokenDetail.UserID);
         }
         
-        public async Task<MetaPivot> GetMetaAsync(long ID)
+        public async Task<MetaPivot> GetMetaAsync(long userId)
         {
-            var metaList = await _unitOfWork.UserMetaRepository.GetManyAsync(ut => ut.UserID == ID);
-            return metaList.GroupBy(ut => new
+            var metaList = await _unitOfWork.UserMetaRepository.GetManyAsync(ut => ut.UserID == userId);
+            var meta = metaList.GroupBy(ut => new
                 {ut.UserID}).Select(
                 ut => new MetaPivot
                 {
@@ -100,6 +103,45 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                            ?.MetaValue ?? "",
                     ModifyDate = metaList.OrderByDescending(m => m.ModifyDate).FirstOrDefault().ModifyDate
                 }).FirstOrDefault();
+
+            return meta;
+        }
+
+        public async Task<MetaPivot> GetMetaAsync(long userId, string weightVolumeType)
+        {
+            var metaList = await _unitOfWork.UserMetaRepository.GetManyAsync(ut => ut.UserID == userId);
+            var meta = metaList.GroupBy(ut => new
+                {ut.UserID}).Select(
+                ut => new MetaPivot
+                {
+                    UserId = ut.Key.UserID,
+                    WeightVolumeType = ut.Where(u => u.MetaKey.ToLower() == "weightvolumetype")?.FirstOrDefault()
+                                           ?.MetaValue ?? "",
+                    State = ut.Where(u => u.MetaKey.ToLower() == "state")?.FirstOrDefault()?.MetaValue ?? "",
+                    Address = ut.Where(u => u.MetaKey.ToLower() == "address")?.FirstOrDefault()?.MetaValue ?? "",
+                    Age = ut.Where(u => u.MetaKey.ToLower() == "age")?.FirstOrDefault()?.MetaValue ?? "",
+                    City = ut.Where(u => u.MetaKey.ToLower() == "city")?.FirstOrDefault()?.MetaValue ?? "",
+                    Country = ut.Where(u => u.MetaKey.ToLower() == "country")?.FirstOrDefault()?.MetaValue ?? "",
+                    Gender = ut.Where(u => u.MetaKey.ToLower() == "gender")?.FirstOrDefault()?.MetaValue ?? "",
+                    PostalCode = ut.Where(u => u.MetaKey.ToLower() == "postalcode")?.FirstOrDefault()?.MetaValue ??
+                                 "",
+                    ProfilePhoto =
+                        ut.Where(u => u.MetaKey.ToLower() == "profilephoto")?.FirstOrDefault()?.MetaValue ?? "",
+                    WeightLossGoal = ut.Where(u => u.MetaKey.ToLower() == "weightlossgoal")?.FirstOrDefault()
+                                         ?.MetaValue ?? "",
+                    WeightLossGoalUI = ut.Where(u => u.MetaKey.ToLower() == "weightlossgoal_ui")?.FirstOrDefault()
+                                           ?.MetaValue ?? "",
+                    ModifyDate = metaList.OrderByDescending(m => m.ModifyDate).FirstOrDefault().ModifyDate
+                }).FirstOrDefault();
+
+            if (meta != null && weightVolumeType.ToLower().Contains("lb"))
+            {
+                meta.WeightLossGoal = meta.WeightLossGoalUI.Trim().Length == 0
+                    ? _converter.ConvertKilogramToPound(meta.WeightLossGoal)
+                    : meta.WeightLossGoalUI;
+            }
+
+            return meta;
         }
 
         public bool Insert(ref ValidationErrors validationErrors, long userId, UserMeta entity)

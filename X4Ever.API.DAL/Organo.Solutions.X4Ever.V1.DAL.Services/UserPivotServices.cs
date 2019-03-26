@@ -129,9 +129,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 var userSetting = await _userSettingServices.GetAsync(s => s.UserID == userData.ID);
                 user.LanguageCode = userSetting?.LanguageCode ?? "en-US";
 
-                user.MetaPivot = await _userMetaPivotServices.GetMetaAsync(user.ID);
+                user.MetaPivot = await _userMetaPivotServices.GetMetaAsync(user.ID, userSetting?.WeightVolumeType);
                 user.TrackerPivot =
-                    (await _userTrackerPivotServices.GetTrackersAsync(user.ID, userSetting.WeightVolumeType)).OrderBy(
+                    (await _userTrackerPivotServices.GetTrackersAsync(user.ID, userSetting?.WeightVolumeType)).OrderBy(
                         t => t.RevisionNumber);
 
                 double.TryParse(user.MetaPivot?.WeightLossGoal, out double yourGoal);

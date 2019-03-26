@@ -14,6 +14,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         MetaPivot GetMeta(long userId);
         Task<MetaPivot> GetMetaAsync(string token);
         Task<MetaPivot> GetMetaAsync(long userId);
+        Task<MetaPivot> GetMetaAsync(long userId, string weightVolumeType);
 
         //Task<IEnumerable<UserMeta>> GetByUserAndAttributeAsync(string token, string attributeName);
         bool Insert(ref ValidationErrors validationErrors, string token, UserMeta entity);

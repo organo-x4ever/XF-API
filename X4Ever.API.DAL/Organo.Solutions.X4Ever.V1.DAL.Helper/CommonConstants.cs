@@ -19,5 +19,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         public static string Message => "message";
         public static string DATE_FORMAT_MMM_d_yyyy => "{0:MMM d, yyyy}";
         public static double KG_LB_CONVERT_VALUE => 2.20462262185;
+        public static double KG_LB_CONVERT_VALUE_1 => 0.45359237;
     }
 }
