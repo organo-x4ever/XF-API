@@ -58,9 +58,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                return BadRequest(exception.Message);
+                //return BadRequest(exception.Message);
             }
 
             return Ok("Success");
@@ -68,22 +68,29 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
         private async Task WriteText(StreamWriter sw, List<Log> logs)
         {
-            foreach (var log in logs)
+            try
             {
-                var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-                await sw.WriteLineAsync(dateString + " | EXCEPTION | LOG");
-                await sw.WriteLineAsync("Application: " + log.Application);
-                await sw.WriteLineAsync("Device: " + log.Device);
-                await sw.WriteLineAsync("Platform: " + log.Platform);
-                await sw.WriteLineAsync("Idiom: " + log.Idiom);
-                await sw.WriteLineAsync("Identity: " + log.Identity);
-                await sw.WriteLineAsync("IPAddress: " + log.IPAddress);
-                await sw.WriteLineAsync("RequestUri: " + log.RequestUri?.AbsoluteUri);
-                await sw.WriteLineAsync("Token: " + log.Token);
-                await sw.WriteLineAsync("Message: " + log.Title);
-                await sw.WriteLineAsync("Detail: " + log.Message);
-                await sw.WriteLineAsync("Date: " + log.Date);
-                await sw.WriteLineAsync(Environment.NewLine);
+                foreach (var log in logs)
+                {
+                    var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                    await sw.WriteLineAsync(dateString + " | EXCEPTION | LOG");
+                    await sw.WriteLineAsync("Application: " + log.Application);
+                    await sw.WriteLineAsync("Device: " + log.Device);
+                    await sw.WriteLineAsync("Platform: " + log.Platform);
+                    await sw.WriteLineAsync("Idiom: " + log.Idiom);
+                    await sw.WriteLineAsync("Identity: " + log.Identity);
+                    await sw.WriteLineAsync("IPAddress: " + log.IPAddress);
+                    await sw.WriteLineAsync("RequestUri: " + log.RequestUri?.AbsoluteUri);
+                    await sw.WriteLineAsync("Token: " + log.Token);
+                    await sw.WriteLineAsync("Message: " + log.Title);
+                    await sw.WriteLineAsync("Detail: " + log.Message);
+                    await sw.WriteLineAsync("Date: " + log.Date);
+                    await sw.WriteLineAsync(Environment.NewLine);
+                }
+            }
+            catch
+            {
+                //
             }
         }
 
@@ -117,9 +124,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                return BadRequest(exception.Message);
+                //return BadRequest(exception.Message);
             }
 
             return Ok("Success");

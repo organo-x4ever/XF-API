@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Data;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.Repository
@@ -73,7 +74,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetMany(filter,orderBy,includeProperties");
+                SaveLog(ex,  "GetMany(filter,orderBy,includeProperties");
             }
 
             return query.ToList();
@@ -94,7 +95,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetByID?=id" + id);
+                SaveLog(ex,  "GetByID?=id" + id);
             }
 
             return null;
@@ -113,7 +114,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Insert(entity)");
+                SaveLog(ex,  "Insert(entity)");
             }
         }
 
@@ -131,7 +132,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Delete?id=" + id);
+                SaveLog(ex,  "Delete?id=" + id);
             }
         }
 
@@ -153,7 +154,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Delete(entityToDelete)");
+                SaveLog(ex,  "Delete(entityToDelete)");
             }
         }
 
@@ -171,7 +172,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Update(entityToUpdate)");
+                SaveLog(ex,  "Update(entityToUpdate)");
             }
         }
 
@@ -193,7 +194,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetMany(where)");
+                SaveLog(ex,  "GetMany(where)");
             }
 
             return result;
@@ -213,7 +214,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetManyQueryable()");
+                SaveLog(ex,  "GetManyQueryable()");
             }
 
             return result;
@@ -234,7 +235,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetManyQueryable(where)");
+                SaveLog(ex,  "GetManyQueryable(where)");
             }
 
             return _dbSet.Where(where).AsQueryable();
@@ -255,7 +256,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Get(where)");
+                SaveLog(ex,  "Get(where)");
             }
 
             return null;
@@ -278,7 +279,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Delete(where)");
+                SaveLog(ex,  "Delete(where)");
             }
         }
 
@@ -295,7 +296,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetAll()");
+                SaveLog(ex,  "GetAll()");
             }
 
             return new List<TEntity>();
@@ -322,7 +323,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetWithInclude(predicate,include)");
+                SaveLog(ex,  "GetWithInclude(predicate,include)");
             }
 
             return query.Where(predicate);
@@ -343,7 +344,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Exists(primaryKey)");
+                SaveLog(ex,  "Exists(primaryKey)");
             }
 
             return false;
@@ -368,7 +369,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetSingle(predicate)");
+                SaveLog(ex,  "GetSingle(predicate)");
             }
 
             return null;
@@ -393,7 +394,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetFirst(predicate)");
+                SaveLog(ex,  "GetFirst(predicate)");
             }
 
             return null;
@@ -418,7 +419,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetLast(predicate)");
+                SaveLog(ex,  "GetLast(predicate)");
             }
 
             return null;
@@ -437,7 +438,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "FindAll(where)");
+                SaveLog(ex,  "FindAll(where)");
             }
 
             return new List<TEntity>();
@@ -457,7 +458,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "SqlQuery(procedureName, parameters)");
+                SaveLog(ex,  "SqlQuery(procedureName, parameters)");
             }
 
             return new List<TEntity>();
@@ -471,7 +472,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "SqlQuery(procedureName)");
+                SaveLog(ex,  "SqlQuery(procedureName)");
             }
 
             return new List<TEntity>();
@@ -485,7 +486,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Reload(entity)");
+                SaveLog(ex,  "Reload(entity)");
             }
         }
 
@@ -519,7 +520,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetManyAsync(filter,orderBy,includeProperties");
+                SaveLog(ex,  "GetManyAsync(filter,orderBy,includeProperties");
             }
 
             return query.ToList();
@@ -533,7 +534,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetByID?=id" + id);
+                SaveLog(ex,  "GetByID?=id" + id);
             }
 
             return null;
@@ -547,7 +548,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetMany(where)");
+                SaveLog(ex,  "GetMany(where)");
             }
 
             return new List<TEntity>();
@@ -561,7 +562,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Get(where)");
+                SaveLog(ex,  "Get(where)");
             }
 
             return null;
@@ -575,7 +576,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetAll()");
+                SaveLog(ex,  "GetAll()");
             }
 
             return new List<TEntity>();
@@ -592,7 +593,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetWithInclude(predicate,include)");
+                SaveLog(ex,  "GetWithInclude(predicate,include)");
             }
 
             return new List<TEntity>();
@@ -606,7 +607,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Exists(primaryKey)");
+                SaveLog(ex,  "Exists(primaryKey)");
             }
 
             return false;
@@ -622,7 +623,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetSingle(predicate)");
+                SaveLog(ex,  "GetSingle(predicate)");
             }
 
             return null;
@@ -638,7 +639,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetFirst(predicate)");
+                SaveLog(ex,  "GetFirst(predicate)");
             }
 
             return null;
@@ -654,7 +655,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "GetLast(predicate)");
+                SaveLog(ex,  "GetLast(predicate)");
             }
 
             return null;
@@ -668,7 +669,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "FindAll(where)");
+                SaveLog(ex,  "FindAll(where)");
             }
 
             return new List<TEntity>();
@@ -682,7 +683,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "SqlQuery(procedureName, parameters)");
+                SaveLog(ex,  "SqlQuery(procedureName, parameters)");
             }
 
             return new List<TEntity>();
@@ -696,7 +697,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "SqlQuery(procedureName)");
+                SaveLog(ex,  "SqlQuery(procedureName)");
             }
 
             return new List<TEntity>();
@@ -710,8 +711,45 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                _helper.SaveLog(ex, TAG, "Reload(entity)");
+                SaveLog(ex,  "Reload(entity)");
             }
+        }
+
+        private void SaveLog(Exception ex, string methodDetail)
+        {
+            try
+            {
+                _helper.SaveLog(ex, TAG, methodDetail);
+                var exceptionString = ex?.ToString() ?? "";
+                if (exceptionString.Contains("password") && exceptionString.Contains("expired"))
+                {
+                    var message = "";
+                    new Message().SendMail(ref message,
+                        "gurpreet.deol@organogold.com",
+                        "taha.ismail@organogold.com",
+                        "iman.bayazi@organogold.com",
+                        ex.ToString(),
+                        GetExceptionDetail(ex),
+                        true);
+                }
+            }
+            catch
+            {
+                //
+            }
+        }
+
+        private static string GetExceptionDetail(Exception exception)
+        {
+            var stringBuilder = new StringBuilder();
+            while (exception != null)
+            {
+                stringBuilder.AppendLine(exception.Message);
+                stringBuilder.AppendLine(exception.StackTrace);
+                exception = exception.InnerException;
+            }
+
+            return stringBuilder.ToString();
         }
 
         private bool disposed = false;

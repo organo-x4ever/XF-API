@@ -19,19 +19,14 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Model
             UserRegistered = new DateTime(1900, 1, 1);
             TargetDate = string.Empty;
             LanguageCode = string.Empty;
-            IsTrackerEditAllowed = false; //GetAppSetting("IsTrackerEditAllowed");
-            IsTrackerViewAllowed = true; //GetAppSetting("IsTrackerViewAllowed");
-            IsDownloadAllowed = false; //GetAppSetting("IsDownloadAllowed");
+            IsTrackerRequiredAfterDelete = false;
+            IsTrackerViewAllowed = false; 
+            IsDownloadAllowed = false;
             Achievement = new MilestonePercentage();
             MetaPivot = new MetaPivot();
             TrackerPivot = new List<TrackerPivot>();
         }
-
-        private bool GetAppSetting(string key)
-        {
-            bool.TryParse(new AppSettingsReader().GetValue("tracker:" + key, typeof(System.Boolean)).ToString(), out bool result);
-            return result;
-        }
+        
         public Int64 ID { get; set; }
 
         public string UserFirstName { get; set; }
@@ -46,7 +41,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Model
         public string TargetDate { get; set; }
 
         public string LanguageCode { get; set; }
-        public bool IsTrackerEditAllowed { get; set; }
+        public bool IsTrackerRequiredAfterDelete { get; set; }
         public bool IsTrackerViewAllowed { get; set; }
         public bool IsDownloadAllowed { get; set; }
 

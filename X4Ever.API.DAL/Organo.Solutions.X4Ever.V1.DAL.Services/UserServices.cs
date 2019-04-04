@@ -77,7 +77,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 {
                     user.UserPassword = _helper.ConvertToSHA512(password);
                     _unitOfWork.UserRepository.Update(user);
-                    await _unitOfWork.CommitAsync();
+                    _unitOfWork.Commit();
                     return user.ID;
                 }
 
@@ -85,7 +85,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 {
                     user.UserPassword = _helper.ConvertToSHA512(password);
                     _unitOfWork.UserRepository.Update(user);
-                    await _unitOfWork.CommitAsync();
+                    _unitOfWork.Commit();
                     return user.ID;
                 }
             }

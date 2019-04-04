@@ -17,7 +17,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
         public DbSet<UserMeta> UserMetas { get; set; }
         public DbSet<UserMetaHistory> UserMetaHistories { get; set; }
         public DbSet<UserPasswordHistory> UserSearchKeys { get; set; }
-        public DbSet<UserTracker> WeightLossDatas { get; set; }
+        public DbSet<UserTracker> UserTrackers { get; set; }
+        public DbSet<UserTrackerDeleted> UserTrackerDeleted { get; set; }
         public DbSet<Milestone> Milestones { get; set; }
         public DbSet<UserMilestone> UserMilestones { get; set; }
         public DbSet<MediaCategory> MediaCategories { get; set; }

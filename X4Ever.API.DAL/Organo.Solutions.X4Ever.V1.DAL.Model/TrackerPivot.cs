@@ -20,6 +20,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Model
             AboutJourney = string.Empty;
             ModifyDate = DateTime.Now;
             RevisionNumber = string.Empty;
+
+            IsDeleteAllowed = false;
+            IsEditAllowed = false;
         }
 
         public Int64 UserId { get; set; }
@@ -32,5 +35,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Model
         public string AboutJourney { get; set; }
         public DateTime ModifyDate { get; set; }
         public string RevisionNumber { get; set; }
+        public bool IsDeleteAllowed { get; set; }
+        public bool IsEditAllowed { get; set; }
     }
 }

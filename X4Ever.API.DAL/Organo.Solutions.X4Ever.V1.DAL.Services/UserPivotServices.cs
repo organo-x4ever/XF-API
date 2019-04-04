@@ -31,7 +31,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             _milestonePercentageServices = new MilestonePercentageServices(unitOfWork);
             _userSettingServices = new UserSettingServices(unitOfWork);
         }
-        
+
         public long Authenticate(string userName, string password)
         {
             var user = _unitOfWork.UserRepository.Get(u => u.UserLogin.ToLower().Trim() == userName.ToLower().Trim());
@@ -114,9 +114,16 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     UserFirstName = userData.UserFirstName,
                     UserEmail = userData.UserEmail,
                     UserLastName = userData.UserLastName,
-                    UserRegistered = userData.UserRegistered
+                    UserRegistered = userData.UserRegistered,
+                    IsTrackerViewAllowed = (bool) _helper.GetAppSetting(CommonConstants.TrackerViewAllowed,
+                        typeof(bool)),
+                    IsDownloadAllowed = (bool) _helper.GetAppSetting(CommonConstants.TrackerDownloadAllowed,
+                        typeof(bool)),
+                    IsTrackerRequiredAfterDelete = (bool) _helper.GetAppSetting(CommonConstants.IsRequireDeleted,
+                        typeof(bool))
                 };
 
+                double.TryParse(_helper.GetAppSetting(CommonConstants.WeightSubmitIntervalDays), out double weightSubmitIntervalDays);
                 var userMilestones =
                     await _userMilestoneServices.GetAsync(um => um.UserID == user.ID && um.IsPercentage);
 
@@ -127,11 +134,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     user.Achievement.ID = user.Achievement.MilestonePercentageId;
 
                 var userSetting = await _userSettingServices.GetAsync(s => s.UserID == userData.ID);
-                user.LanguageCode = userSetting?.LanguageCode ?? "en-US";
+                user.LanguageCode = userSetting?.LanguageCode ?? CommonConstants.EnglishUS;
 
                 user.MetaPivot = await _userMetaPivotServices.GetMetaAsync(user.ID, userSetting?.WeightVolumeType);
                 user.TrackerPivot =
-                    (await _userTrackerPivotServices.GetTrackersAsync(user.ID, userSetting?.WeightVolumeType)).OrderBy(
+                    (await _userTrackerPivotServices.GetTrackersAsync(user.ID, userSetting?.WeightVolumeType,weightSubmitIntervalDays)).OrderBy(
                         t => t.RevisionNumber);
 
                 double.TryParse(user.MetaPivot?.WeightLossGoal, out double yourGoal);
@@ -140,7 +147,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     user.UserRegistered.AddDays(noOfDays)); // "Sunday, March 9, 2008"
 
                 bool matched = false;
-                var strEmail = _helper.GetAppSetting("excludingSubmitCurrentWeight");
+                var strEmail = _helper.GetAppSetting(CommonConstants.ExcludingSubmitCurrentWeight);
                 if (!string.IsNullOrEmpty(strEmail))
                 {
                     var strEmails = strEmail.Split(';');
@@ -156,39 +163,41 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 else
                 {
                     var lastTracker = user.TrackerPivot.OrderBy(t => t.ModifyDate).LastOrDefault();
-                    double.TryParse(new Helper.Helper().GetAppSetting("WeightSubmitIntervalDays"),
-                        out double interval);
-                    DateTime.TryParse(lastTracker?.ModifyDate.AddDays(interval).ToShortDateString(),
+                    DateTime.TryParse(
+                        lastTracker?.ModifyDate
+                            .AddDays(weightSubmitIntervalDays).ToShortDateString(),
                         out DateTime submitDate);
                     user.IsWeightSubmissionRequired = DateTime.Compare(submitDate, DateTime.Today) != 1;
                 }
             }
+
             return user;
         }
-        
+
         public UserAuthentication GetUser(string token)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
             return GetUser(tokenDetail?.UserID ?? 0);
         }
+
         public UserAuthentication GetUser(long id)
         {
             var user = (from u in _unitOfWork.UserRepository.GetMany(u => u.ID == id)
-                           select new UserAuthentication()
-                           {
-                               ID = u.ID,
-                               UserLogin = u.UserLogin,
-                               UserFirstName = u.UserFirstName,
-                               UserEmail = u.UserEmail,
-                               UserLastName = u.UserLastName,
-                               UserRegistered = u.UserRegistered,
-                               UserApplication = u.UserApplication,
-                           })?.FirstOrDefault();
+                select new UserAuthentication()
+                {
+                    ID = u.ID,
+                    UserLogin = u.UserLogin,
+                    UserFirstName = u.UserFirstName,
+                    UserEmail = u.UserEmail,
+                    UserLastName = u.UserLastName,
+                    UserRegistered = u.UserRegistered,
+                    UserApplication = u.UserApplication,
+                })?.FirstOrDefault();
             if (user != null)
             {
                 var settings = _unitOfWork.UserSettingRepository.GetFirst(s => s.UserID == id);
-                user.LanguageCode = settings?.LanguageCode ?? "en-US";
-                user.WeightVolumeType = settings?.WeightVolumeType ?? "kg";
+                user.LanguageCode = settings?.LanguageCode ?? CommonConstants.EnglishUS;
+                user.WeightVolumeType = settings?.WeightVolumeType ?? CommonConstants.kilogram;
                 var meta = _userMetaPivotServices.GetMeta(user.ID);
                 user.IsMetaExists = meta != null;
                 user.IsAddressExists = meta?.Address?.Trim().Length > 0;
@@ -198,7 +207,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
             return user;
         }
-        
+
         public async Task<UserAuthentication> GetUserAsync(string token)
         {
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
@@ -221,8 +230,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             if (user != null)
             {
                 var settings = await _unitOfWork.UserSettingRepository.GetFirstAsync(s => s.UserID == id);
-                user.LanguageCode = settings?.LanguageCode ?? "en-US";
-                user.WeightVolumeType = settings?.WeightVolumeType ?? "kg";
+                user.LanguageCode = settings?.LanguageCode ?? CommonConstants.EnglishUS;
+                user.WeightVolumeType = settings?.WeightVolumeType ?? CommonConstants.kilogram;
                 var meta = await _userMetaPivotServices.GetMetaAsync(user.ID);
                 user.IsMetaExists = meta != null;
                 user.IsAddressExists = meta?.Address?.Trim().Length > 0;
@@ -241,7 +250,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
         public bool Update(ref ValidationErrors validationErrors, long id, User entity)
         {
-            var user= _unitOfWork.UserRepository.Get(u => u.ID == id);
+            var user = _unitOfWork.UserRepository.Get(u => u.ID == id);
             if (!(user is null))
             {
                 user.UserFirstName = entity.UserFirstName;
@@ -270,7 +279,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         {
             if (!string.IsNullOrEmpty(application))
             {
-                var user= _unitOfWork.UserRepository.Get(u => u.ID == id);
+                var user = _unitOfWork.UserRepository.Get(u => u.ID == id);
                 if (!(user is null))
                 {
                     user.UserApplication = application;
@@ -281,6 +290,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
             return false;
         }
+
         private bool SavePasswordHistory(Int64 userId, string encryptedPassword)
         {
             var date = DateTime.Now;
@@ -346,8 +356,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     validationErrors.Add("MessageUsernameRequired");
                 else
                 {
-                    int userLengthMin = (Int16) _helper.GetAppSetting("usernameLengthMin", typeof(Int16));
-                    int userLengthMax = (Int16) _helper.GetAppSetting("usernameLengthMax", typeof(Int16));
+                    int userLengthMin = (Int16) _helper.GetAppSetting(CommonConstants.UsernameLengthMin, typeof(Int16));
+                    int userLengthMax = (Int16) _helper.GetAppSetting(CommonConstants.UsernameLengthMax, typeof(Int16));
                     if (user.UserLogin.Trim().Length < userLengthMin || user.UserLogin.Trim().Length > userLengthMax)
                         validationErrors.Add("MessageUsernameLength");
                     else if (_unitOfWork.UserRepository.GetAll().Any(u =>
@@ -359,8 +369,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     validationErrors.Add("MessagePasswordRequired");
                 else
                 {
-                    int passLengthMin = (Int16) _helper.GetAppSetting("passwordLengthMin", typeof(Int16));
-                    int passLengthMax = (Int16) _helper.GetAppSetting("passwordLengthMax", typeof(Int16));
+                    int passLengthMin = (Int16) _helper.GetAppSetting(CommonConstants.PasswordLengthMin, typeof(Int16));
+                    int passLengthMax = (Int16) _helper.GetAppSetting(CommonConstants.PasswordLengthMax, typeof(Int16));
                     if (user.UserPassword.Trim().Length < passLengthMin ||
                         user.UserPassword.Trim().Length > passLengthMax)
                         validationErrors.Add("MessagePasswordLength");

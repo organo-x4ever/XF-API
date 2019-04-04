@@ -1,4 +1,5 @@
 ﻿
+using System.Globalization;
 using Microsoft.AspNet.Identity;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
@@ -51,29 +52,22 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [POST("login")]
         public HttpResponseMessage Login()
         {
-            if (System.Threading.Thread.CurrentPrincipal != null &&
-                System.Threading.Thread.CurrentPrincipal.Identity.IsAuthenticated)
-            {
-                var basicAuthenticationIdentity =
-                    System.Threading.Thread.CurrentPrincipal.Identity as BasicAuthenticationIdentity;
-                if (basicAuthenticationIdentity != null)
-                {
-                    var watch = System.Diagnostics.Stopwatch.StartNew();
-                    var userId = basicAuthenticationIdentity.UserId;
-                    var token = _tokenServices.GenerateToken(userId);
+            if (System.Threading.Thread.CurrentPrincipal == null ||
+                !System.Threading.Thread.CurrentPrincipal.Identity.IsAuthenticated)
+                return UnAuthorized(HttpConstants.UNAUTHORIZED);
 
-                    var response = Request.CreateResponse(HttpStatusCode.OK);
-                    response.Headers.Add(HttpConstants.TOKEN, token.AuthToken);
-                    response.Headers.Add(HttpConstants.TOKEN_EXPIRY, token.ExpiresOn.ToString());
-                    response.Headers.Add(HttpConstants.ACCESS_CONTROL_EXPOSE_HEADERS,
-                        HttpConstants.TOKEN_COMMA_TOKEN_EXPIRY);
-                    var elapsedMs = watch.ElapsedMilliseconds;
-                    response.Headers.Add(HttpConstants.EXECUTION_TIME, elapsedMs.ToString());
-                    return response;
-                }
-            }
+            if (!(System.Threading.Thread.CurrentPrincipal.Identity is BasicAuthenticationIdentity
+                basicAuthenticationIdentity))
+                return UnAuthorized(HttpConstants.UNAUTHORIZED);
 
-            return UnAuthorized(HttpConstants.UNAUTHORIZED);
+            var token = _tokenServices.GenerateToken(basicAuthenticationIdentity?.UserId ?? 0);
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Headers.Add(HttpConstants.TOKEN, token.AuthToken);
+            response.Headers.Add(HttpConstants.TOKEN_EXPIRY,
+                token.ExpiresOn.ToString(CultureInfo.CurrentCulture));
+            response.Headers.Add(HttpConstants.ACCESS_CONTROL_EXPOSE_HEADERS,
+                HttpConstants.TOKEN_COMMA_TOKEN_EXPIRY);
+            return response;
         }
 
         /// <summary>
@@ -203,7 +197,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
             return UnAuthorized(HttpConstants.UNAUTHORIZED);
         }
-
+        
         /// <summary>
         /// Returns auth token for the validated user.
         /// </summary>

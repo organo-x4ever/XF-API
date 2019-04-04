@@ -27,6 +27,7 @@ C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Resolver.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Resolver.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Resolver.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Resolver.csprojAssemblyReference.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Resolver.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Resolver.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Resolver.dll

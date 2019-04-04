@@ -182,5 +182,20 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
             return new UserTracker();
         }
+
+
+        // POST: api/UserTrackers
+        [POST("posttrackerdelete")]
+        [Route("posttrackerdelete")]
+        [ResponseType(typeof(bool))]
+        public async Task<IHttpActionResult> PostUserTrackerDelete(string revisionNumber)
+        {
+            if (int.TryParse(revisionNumber, out int rn) && await _userTrackerPivotServices.Delete(this.UserID, rn))
+            {
+                return Ok(HttpConstants.SUCCESS);
+            }
+            else
+                return Ok(HttpConstants.INVALID);
+        }
     }
 }

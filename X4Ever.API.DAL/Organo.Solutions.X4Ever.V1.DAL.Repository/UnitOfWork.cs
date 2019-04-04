@@ -1,4 +1,5 @@
-﻿using System.Transactions;
+﻿using System.Data.Entity;
+using System.Transactions;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.Repository
 {
@@ -70,6 +71,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
         private IGenericRepository<UserTrackerPivot> _userTrackerPivotRepository;
         private IGenericRepository<WebUserMetaPivot> _webUserMetaPivotRepository;
         private IGenericRepository<WebUserTrackerViewPivot> _webUserTrackerViewPivotRepository;
+
+        private IGenericRepository<UserTrackerDeleted> _userTrackerDeletedRepository;
 
         public IGenericRepository<User> UserRepository =>
             _userRepository ?? (_userRepository = new GenericRepository<User>(_context));
@@ -239,37 +242,50 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             _webUserTrackerViewPivotRepository ?? (_webUserTrackerViewPivotRepository =
                 new GenericRepository<WebUserTrackerViewPivot>(_context));
 
+        public IGenericRepository<UserTrackerDeleted> UserTrackerDeletedRepository =>
+            _userTrackerDeletedRepository ?? (_userTrackerDeletedRepository =
+                new GenericRepository<UserTrackerDeleted>(_context));
+
         public bool Commit()
         {
-            using (var transactionScope = new TransactionScope())
+            try
             {
-                try
+                using (var transactionScope = new TransactionScope())
                 {
-                    using (var dbContextTransaction = _context.Database.BeginTransaction())
+                    try
                     {
-                        try
+                        using (var dbContextTransaction = _context.Database.BeginTransaction())
                         {
-                            _context.SaveChanges();
-                            dbContextTransaction.Commit();
-                            transactionScope.Complete();
-                            return true;
-                        }
-                        catch (DbEntityValidationException e)
-                        {
-                            dbContextTransaction.Rollback();
-                            foreach (var eve in e.EntityValidationErrors)
+                            try
                             {
-                                _helper.SaveLog(eve);
+                                _context.SaveChanges();
+                                dbContextTransaction.Commit();
+                                dbContextTransaction.Dispose();
+                                transactionScope.Complete();
+                                return true;
+                            }
+                            catch (DbEntityValidationException e)
+                            {
+                                dbContextTransaction.Rollback();
+                                dbContextTransaction.Dispose();
+                                foreach (var eve in e.EntityValidationErrors)
+                                {
+                                    _helper.SaveLog(eve);
+                                }
                             }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    _helper.SaveLog(ex, "UnitOfWork", "Commit()");
-                }
+                    catch (Exception ex)
+                    {
+                        _helper.SaveLog(ex, "UnitOfWork", "Commit()");
+                    }
 
-                transactionScope.Complete();
+                    transactionScope.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                _helper.SaveLog(ex, "UnitOfWork", "Commit(), using TransactionScope");
             }
 
             return false;
@@ -277,35 +293,42 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
 
         public async Task<bool> CommitAsync()
         {
-            using (var transactionScope = new TransactionScope())
+            try
             {
-                try
+                using (var transactionScope = new TransactionScope())
                 {
-                    using (var dbContextTransaction = _context.Database.BeginTransaction())
+                    try
                     {
-                        try
+                        using (var dbContextTransaction = _context.Database.BeginTransaction())
                         {
-                            await _context.SaveChangesAsync();
-                            dbContextTransaction.Commit();
-                            transactionScope.Complete();
-                            return true;
-                        }
-                        catch (DbEntityValidationException e)
-                        {
-                            dbContextTransaction.Rollback();
-                            foreach (var eve in e.EntityValidationErrors)
+                            try
                             {
-                                await _helper.SaveLogAsync(eve);
+                                await _context.SaveChangesAsync();
+                                dbContextTransaction.Commit();
+                                transactionScope.Complete();
+                                return true;
+                            }
+                            catch (DbEntityValidationException e)
+                            {
+                                dbContextTransaction.Rollback();
+                                foreach (var eve in e.EntityValidationErrors)
+                                {
+                                    await _helper.SaveLogAsync(eve);
+                                }
                             }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    await _helper.SaveLogAsync(ex, "UnitOfWork", "Commit()");
-                }
+                    catch (Exception ex)
+                    {
+                        _helper.SaveLog(ex, "UnitOfWork", "Commit()");
+                    }
 
-                transactionScope.Complete();
+                    transactionScope.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                await _helper.SaveLogAsync(ex, "UnitOfWork", "Commit(), using TransactionScope");
             }
 
             return false;

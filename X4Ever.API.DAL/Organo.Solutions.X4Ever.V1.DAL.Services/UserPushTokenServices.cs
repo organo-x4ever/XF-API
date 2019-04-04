@@ -102,14 +102,19 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         public bool Insert(ref ValidationErrors validationErrors, string token, UserPushToken entity)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            if (entity != null)
-                entity.UserID = (tokenDetail?.UserID ?? 0);
-            return Insert(ref validationErrors, entity);
+            if (entity == null || tokenDetail == null)
+                return false;
+            return Insert(ref validationErrors, tokenDetail?.UserID ?? 0, entity);
         }
-        
+
         public bool Insert(ref ValidationErrors validationErrors, long userId, UserPushToken entity)
         {
-            throw new NotImplementedException();
+            if (entity != null)
+            {
+                entity.UserID = userId;
+            }
+
+            return Insert(ref validationErrors, entity);
         }
         public bool Insert(ref ValidationErrors validationErrors, string token, UserPushTokenRegister entity)
         {

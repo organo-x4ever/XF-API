@@ -100,6 +100,7 @@
     <Compile Include="UserPushTokenRegister.cs" />
     <Compile Include="UserSetting.cs" />
     <Compile Include="UserToken.cs" />
+    <Compile Include="UserTrackerDeleted.cs" />
     <Compile Include="UserTrackerDetailReport.cs" />
     <Compile Include="UserTrackerGlobal.cs" />
     <Compile Include="UserTracker.cs" />

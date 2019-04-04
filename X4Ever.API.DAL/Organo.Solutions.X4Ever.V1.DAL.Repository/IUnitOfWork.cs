@@ -12,6 +12,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
         IGenericRepository<UserMetaHistory> UserMetaHistoryRepository { get; }
         IGenericRepository<UserToken> UserTokenRepository { get; }
         IGenericRepository<UserTracker> UserTrackerRepository { get; }
+        IGenericRepository<UserTrackerDeleted> UserTrackerDeletedRepository { get; }
         IGenericRepository<UserPasswordRequest> PasswordRequestRepository { get; }
         IGenericRepository<UserPasswordHistory> UserPasswordHistoryRepository { get; }
         IGenericRepository<Milestone> MilestoneRepository { get; }

@@ -106,8 +106,21 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
             }
             catch
             {
-                return null;
+                if (returnType is double)
+                    return 0;
+                else if (returnType is bool)
+                    return false;
+                else if (returnType is Int64)
+                    return 0;
+                else if (returnType is Int16)
+                    return 0;
+                else if (returnType is int)
+                    return 0;
+                else if (returnType is string)
+                    return null;
             }
+
+            return null;
         }
 
         public string GetAppSetting(string key)

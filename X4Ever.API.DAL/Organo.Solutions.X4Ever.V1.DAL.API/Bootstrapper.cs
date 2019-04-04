@@ -30,7 +30,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API
             container.RegisterType<IUserPivotServices, UserPivotServices>()
                 .RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
 
-            //Not Mentioned in tutorial
+            // Not Mentioned in tutorial
             container.RegisterType<IUserTokensServices, UserTokensServices>()
                 .RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
 

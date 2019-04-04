@@ -7,6 +7,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
     public interface IUserTrackerPivotServices
     {
+        Task<bool> Delete(long userId, int revisionNumber);
         TrackerPivot GetLatestTracker(string token);
         Task<TrackerPivot> GetLatestTrackerAsync(string token);
         TrackerPivot GetLatestTracker(long userId);
@@ -16,6 +17,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         IEnumerable<TrackerPivot> GetTrackers(long userId);
         Task<IEnumerable<TrackerPivot>> GetTrackersAsync(long userId);
         Task<IEnumerable<TrackerPivot>> GetTrackersAsync(long userId, string weightVolumeType);
+        Task<IEnumerable<TrackerPivot>> GetTrackersAsync(long userId, string weightVolumeType, double intervalDays);
         Task<IEnumerable<UserTracker>> GetByAttributeAsync(string token, string attributeName);
         Task<IEnumerable<UserTracker>> GetByAttributeAsync(long userId, string attributeName);
         bool Insert(ref ValidationErrors validationErrors, string token, ICollection<UserTracker> entity);

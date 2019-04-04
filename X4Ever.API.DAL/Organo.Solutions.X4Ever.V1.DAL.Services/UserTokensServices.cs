@@ -53,36 +53,7 @@
 
             return tokendomain;
         }
-
-        public async Task<UserToken> GenerateTokenAsync(long userId)
-        {
-            var token = Guid.NewGuid().ToString().ToLower();
-            DateTime issuedOn = DateTime.Now;
-            DateTime expiredOn = this.TokenSessionTime();
-            var tokendomain = new UserToken
-            {
-                UserID = userId,
-                AuthToken = token,
-                IssuedOn = issuedOn,
-                ExpiresOn = expiredOn,
-                LastActiveOn = issuedOn
-            };
-
-            //if (await _unitOfWork.UserTokenRepository.GetAsync(t =>
-            //        t.AuthToken == tokendomain.AuthToken && t.UserID == tokendomain.UserID) == null)
-            //{
-            _unitOfWork.UserTokenRepository.Insert(tokendomain);
-            await _unitOfWork.CommitAsync();
-            //}
-            //else
-            //{
-            //    _unitOfWork.UserTokenRepository.Update(tokendomain);
-            //    await _unitOfWork.CommitAsync();
-            //}
-
-            return tokendomain;
-        }
-
+        
         public long Validate(string tokenId)
         {
             var token = _unitOfWork.UserTokenRepository.Get(t => t.AuthToken == tokenId.ToLower());
@@ -128,24 +99,6 @@
             return false;
         }
 
-        public async Task<bool> ValidateTokenAsync(string tokenId)
-        {
-            var token = await _unitOfWork.UserTokenRepository.GetAsync(t => t.AuthToken == tokenId.ToLower());
-            if (token != null)
-            {
-                _unitOfWork.UserTokenRepository.Reload(token);
-                if (!(DateTime.Now > token?.ExpiresOn))
-                {
-                    token.LastActiveOn = DateTime.Now;
-                    token.ExpiresOn = this.TokenSessionTime();
-                    _unitOfWork.UserTokenRepository.Update(token);
-                    _unitOfWork.Commit();
-                    return true;
-                }
-            }
-
-            return false;
-        }
 
         /// <summary>
         /// Method to validate token against expiry and existence in database.

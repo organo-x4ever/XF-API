@@ -20,16 +20,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         UserToken GenerateToken(long userId);
 
         /// <summary>
-        /// Function to generate unique token with expiry against the provided userId. Also add a
-        /// record in database for generated token.
-        /// </summary>
-        /// <param name="userId">
-        /// </param>
-        /// <returns>
-        /// </returns>
-        Task<UserToken> GenerateTokenAsync(long userId);
-        
-        /// <summary>
         /// Function to validate token againt expiry and existance in database.
         /// </summary>
         /// <param name="tokenId">
@@ -46,15 +36,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         /// <returns>
         /// </returns>
         bool ValidateToken(string tokenId);
-
-        /// <summary>
-        /// Function to validate token againt expiry and existance in database.
-        /// </summary>
-        /// <param name="tokenId">
-        /// </param>
-        /// <returns>
-        /// </returns>
-        Task<bool> ValidateTokenAsync(string tokenId);
 
         /// <summary>
         /// Function to get token detail after validating.
