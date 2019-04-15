@@ -271,10 +271,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                        new DateTime(1900, 1, 1);
             return trackers.Select(tracker =>
             {
-                tracker.IsDeleteAllowed =
-                    ((IsDeleteAllowed && IsLastDeleteOnly)
+                tracker.IsDeleteAllowed = trackers.Count() > 1
+                    ? ((IsDeleteAllowed && IsLastDeleteOnly)
                         ? DateTime.Compare(date, tracker.ModifyDate) == 0
-                        : IsDeleteAllowed);
+                        : IsDeleteAllowed)
+                    : false;
                 return tracker;
             });
         }
@@ -352,10 +353,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                        new DateTime(1900, 1, 1);
             return trackers.Select(tracker =>
             {
-                tracker.IsDeleteAllowed =
-                    ((IsDeleteAllowed && IsLastDeleteOnly)
+                tracker.IsDeleteAllowed = trackers.Count() > 1
+                    ? ((IsDeleteAllowed && IsLastDeleteOnly)
                         ? DateTime.Compare(date, tracker.ModifyDate) == 0
-                        : IsDeleteAllowed);
+                        : IsDeleteAllowed)
+                    : false;
                 return tracker;
             });
         }
@@ -440,10 +442,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                        new DateTime(1900, 1, 1);
             return trackers.Select(tracker =>
             {
-                tracker.IsDeleteAllowed =
-                    ((IsDeleteAllowed && IsLastDeleteOnly)
+                tracker.IsDeleteAllowed = trackers.Count() > 1
+                    ? ((IsDeleteAllowed && IsLastDeleteOnly)
                         ? DateTime.Compare(date, tracker.ModifyDate) == 0
-                        : IsDeleteAllowed);
+                        : IsDeleteAllowed)
+                    : false;
                 return tracker;
             });
         }
@@ -547,7 +550,12 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 t.UserID == userId && t.RevisionNumber == (revisionNumber.ToString() ?? ""));
 
             if (!trackers.Any()) return false;
+            var trackerDate = trackers.FirstOrDefault()?.ModifyDate ?? new DateTime(1900, 1, 1);
+            var date = new DateTime(trackerDate.Year, trackerDate.Month, trackerDate.Day);
+            var userMilestones = await _unitOfWork.UserMilestoneRepository.GetManyAsync(t =>
+                t.UserID == userId && new DateTime(t.AchieveDate.Year, t.AchieveDate.Month, t.AchieveDate.Day) == date);
 
+            // Take backup of Tracker Detail
             foreach (var tracker in trackers)
             {
                 _unitOfWork.UserTrackerDeletedRepository.Insert(new UserTrackerDeleted()
@@ -563,9 +571,20 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             }
 
             _unitOfWork.Commit();
+
+            // Delete Tracker(s)
             foreach (var tracker in trackers)
             {
                 _unitOfWork.UserTrackerRepository.Delete(tracker);
+            }
+
+            if (userMilestones.Any())
+            {
+                _unitOfWork.Commit();
+                foreach (var userMilestone in userMilestones)
+                {
+                    _unitOfWork.UserMilestoneRepository.Delete(userMilestone);
+                }
             }
 
             return _unitOfWork.Commit();

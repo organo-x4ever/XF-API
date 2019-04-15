@@ -39,6 +39,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 menuList = _menuServices.GetByApplication(ApplicationKey).ToList();
             else
                 menuList = _menuServices.GetByApplication(ApplicationKey, platform).ToList();
+
+            if (this.UserID == 55)
+            {
+                int[] menuIDs = {7, 8};
+                menuList = menuList.Where(m => menuIDs.Contains(m.ID) == false).ToList();
+            }
+
             return Ok(menuList);
         }
     }

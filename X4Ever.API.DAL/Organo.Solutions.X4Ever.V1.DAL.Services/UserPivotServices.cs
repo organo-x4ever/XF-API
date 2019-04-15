@@ -19,11 +19,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         private readonly IMilestonePercentageServices _milestonePercentageServices;
         private readonly IUserTokensServices _tokensServices;
         private readonly IUserSettingServices _userSettingServices;
+        private readonly IConverter _converter;
 
         public UserPivotServices(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _helper = new Helper.Helper();
+            _converter=new Converter();
             _userMetaPivotServices = new UserMetaPivotServices(unitOfWork);
             _userTrackerPivotServices = new UserTrackerPivotServices(unitOfWork);
             _tokensServices = new UserTokensServices(unitOfWork);
@@ -115,12 +117,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     UserEmail = userData.UserEmail,
                     UserLastName = userData.UserLastName,
                     UserRegistered = userData.UserRegistered,
-                    IsTrackerViewAllowed = (bool) _helper.GetAppSetting(CommonConstants.TrackerViewAllowed,
-                        typeof(bool)),
-                    IsDownloadAllowed = (bool) _helper.GetAppSetting(CommonConstants.TrackerDownloadAllowed,
-                        typeof(bool)),
-                    IsTrackerRequiredAfterDelete = (bool) _helper.GetAppSetting(CommonConstants.IsRequireDeleted,
-                        typeof(bool))
+                    IsTrackerViewAllowed = (bool) (id == 55 ? false: _helper.GetAppSetting(CommonConstants.TrackerViewAllowed, typeof(bool))),
+                    IsDownloadAllowed = (bool) _helper.GetAppSetting(CommonConstants.TrackerDownloadAllowed, typeof(bool)),
+                    IsTrackerRequiredAfterDelete = (bool) _helper.GetAppSetting(CommonConstants.IsRequireDeleted, typeof(bool))
                 };
 
                 double.TryParse(_helper.GetAppSetting(CommonConstants.WeightSubmitIntervalDays), out double weightSubmitIntervalDays);
@@ -138,13 +137,15 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
                 user.MetaPivot = await _userMetaPivotServices.GetMetaAsync(user.ID, userSetting?.WeightVolumeType);
                 user.TrackerPivot =
-                    (await _userTrackerPivotServices.GetTrackersAsync(user.ID, userSetting?.WeightVolumeType,weightSubmitIntervalDays)).OrderBy(
-                        t => t.RevisionNumber);
+                    (await _userTrackerPivotServices.GetTrackersAsync(user.ID, userSetting?.WeightVolumeType,
+                        weightSubmitIntervalDays)).OrderBy(t => t.RevisionNumber);
 
                 double.TryParse(user.MetaPivot?.WeightLossGoal, out double yourGoal);
+                if (userSetting.WeightVolumeType.ToLower().Contains("kg"))
+                    yourGoal = _converter.ConvertKilogramToPound(yourGoal);
+
                 var noOfDays = (yourGoal / CommonConstants.TargetDateCalculation);
-                user.TargetDate = string.Format(CommonConstants.DATE_FORMAT_MMM_d_yyyy,
-                    user.UserRegistered.AddDays(noOfDays)); // "Sunday, March 9, 2008"
+                user.TargetDate = string.Format(CommonConstants.DATE_FORMAT_MMM_d_yyyy, user.UserRegistered.AddDays(noOfDays)); // "Sunday, March 9, 2008"
 
                 bool matched = false;
                 var strEmail = _helper.GetAppSetting(CommonConstants.ExcludingSubmitCurrentWeight);
@@ -152,10 +153,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 {
                     var strEmails = strEmail.Split(';');
                     foreach (var str in strEmails)
-                    {
                         if (user.UserEmail.Trim().ToLower() == str.Trim().ToLower())
                             matched = true;
-                    }
                 }
 
                 if (matched)
