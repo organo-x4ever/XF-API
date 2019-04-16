@@ -13,7 +13,7 @@ using Organo.Solutions.X4Ever.V1.DAL.API.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.PushNotifications.V3
-{
+{ 
     public class FirebasePushNotification : IDisposable
     {
         private readonly string SERVER_KEY;

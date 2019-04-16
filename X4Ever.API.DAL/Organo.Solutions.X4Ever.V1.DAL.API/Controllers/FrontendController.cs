@@ -255,7 +255,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
                 var users = await _openNotificationUserServices.GetUserOnlyAsync(emails, platforms);
                 var environment = _helper.GetAppSetting(NotificationConstant.ApiEnvironment);
-                if (environment != null && environment.ToLower().Contains("production"))
+                if (environment != null && environment.ToLower().Contains("production") && (platforms?.ToList().Any(p => p.ToLower() == "ios") ?? false))
                 {
                     _notification = new AppleNotification(
                         HttpContext.Current.Server.MapPath(

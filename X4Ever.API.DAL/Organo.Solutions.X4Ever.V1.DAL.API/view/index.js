@@ -21,7 +21,7 @@ $(function() {
 
     function authenticate() {
         showLoader();
-        var url = baseUrl + 'api/authenticate/login';
+        var url = baseUrl + 'api/AuthenticatePivot/login';
         var un = $('input[name=iusername]').val();
         var pw = $('input[name=ipassword]').val();
         if (validate()) {
@@ -46,7 +46,6 @@ $(function() {
                     hideLoader();
                 },
                 error: function(x, y, z) {
-                    //$(this).find('button[type=submit]').show();
                     hideLoader();
                 }
             });
