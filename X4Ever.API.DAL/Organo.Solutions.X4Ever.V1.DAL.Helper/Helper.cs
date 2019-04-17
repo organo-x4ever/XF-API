@@ -80,15 +80,15 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
             int i = 0;
             do
             {
-                int value = (int) input[i++];
+                int value = (int)input[i++];
                 sb.Append(itoa64[value & 0x3f]); // to uppercase
                 if (i < count)
-                    value = value | ((int) input[i] << 8);
+                    value = value | ((int)input[i] << 8);
                 sb.Append(itoa64[(value >> 6) & 0x3f]);
                 if (i++ >= count)
                     break;
                 if (i < count)
-                    value = value | ((int) input[i] << 16);
+                    value = value | ((int)input[i] << 16);
                 sb.Append(itoa64[(value >> 12) & 0x3f]);
                 if (i++ >= count)
                     break;
@@ -102,20 +102,26 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         {
             try
             {
-                return (dynamic) settingsReader.GetValue(key, returnType);
+                return (dynamic)settingsReader.GetValue(key, returnType);
             }
             catch
             {
+#pragma warning disable CS0184 // 'is' expression's given expression is never of the provided type
                 if (returnType is double)
                     return 0;
+#pragma warning disable CS0184 // 'is' expression's given expression is never of the provided type
                 else if (returnType is bool)
                     return false;
+#pragma warning disable CS0184 // 'is' expression's given expression is never of the provided type
                 else if (returnType is Int64)
                     return 0;
+#pragma warning disable CS0184 // 'is' expression's given expression is never of the provided type
                 else if (returnType is Int16)
                     return 0;
+#pragma warning disable CS0184 // 'is' expression's given expression is never of the provided type
                 else if (returnType is int)
                     return 0;
+#pragma warning disable CS0184 // 'is' expression's given expression is never of the provided type
                 else if (returnType is string)
                     return null;
             }
@@ -127,7 +133,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         {
             try
             {
-                return (string) settingsReader.GetValue(key, typeof(String));
+                return (string)settingsReader.GetValue(key, typeof(String));
             }
             catch
             {
@@ -337,16 +343,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                     using (StreamWriter sw = File.CreateText(path))
                     {
                         var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                        sw.WriteLineAsync(dateString + " | UOW ERROR | LOG");
-                        sw.WriteLineAsync(string.Format(
-                            "{0}: Error of type \"{1}\" in class \"{2}\" and method \"{3}\" has the following validation errors:",
-                            dateString, ex.GetType().Name, className, method));
+                        sw.WriteLine(dateString + " | UOW ERROR | LOG");
+                        sw.WriteLine($"{dateString}: Error of type {ex.GetType().Name} in class {className} and method {method} has the following validation errors:");
                         if (ex.InnerException != null)
                         {
-                            sw.WriteLineAsync(string.Format("- Error: \"{1}\"",
-                                ex.InnerException.Message));
-                            sw.WriteLineAsync("Date: " + DateTime.Now);
-                            sw.WriteLineAsync(Environment.NewLine);
+                            sw.WriteLine($"- Error: {ex.InnerException.Message}");
+                            sw.WriteLine($"Date: {DateTime.Now}");
+                            sw.WriteLine(Environment.NewLine);
                         }
                     }
                 }
@@ -357,21 +360,18 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                     using (StreamWriter sw = File.AppendText(path))
                     {
                         var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                        sw.WriteLineAsync(dateString + " | UOW ERROR | LOG");
-                        sw.WriteLineAsync(string.Format(
-                            "{0}: Error of type \"{1}\" in class \"{2}\" and method \"{3}\" has the following validation errors:",
-                            dateString, ex.GetType().Name, className, method));
+                        sw.WriteLine(dateString + " | UOW ERROR | LOG");
+                        sw.WriteLine($"{dateString}: Error of type {ex.GetType().Name} in class {className} and method {method} has the following validation errors:");
                         if (ex.InnerException != null)
                         {
-                            sw.WriteLineAsync(string.Format("- Error: \"{1}\"",
-                                ex.InnerException.Message));
-                            sw.WriteLineAsync("Date: " + DateTime.Now);
-                            sw.WriteLineAsync(Environment.NewLine);
+                            sw.WriteLine($"- Error: {ex.InnerException.Message}");
+                            sw.WriteLine($"Date: {DateTime.Now}");
+                            sw.WriteLine(Environment.NewLine);
                         }
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 //
             }
@@ -393,14 +393,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                     {
                         var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
                         await sw.WriteLineAsync(dateString + " | UOW ERROR | LOG");
-                        await sw.WriteLineAsync(string.Format(
-                            "{0}: Error of type \"{1}\" in class \"{2}\" and method \"{3}\" has the following validation errors:",
-                            dateString, ex.GetType().Name, className, method));
+                        await sw.WriteLineAsync($"{dateString}: Error of type {ex.GetType().Name} in class {className} and method {method} has the following validation errors:");
                         if (ex.InnerException != null)
                         {
-                            await sw.WriteLineAsync(string.Format("- Error: \"{1}\"",
-                                ex.InnerException.Message));
-                            await sw.WriteLineAsync("Date: " + DateTime.Now);
+                            await sw.WriteLineAsync($"- Error: {ex.InnerException.Message}");
+                            await sw.WriteLineAsync($"Date: {DateTime.Now}");
                             await sw.WriteLineAsync(Environment.NewLine);
                         }
                     }
@@ -413,20 +410,17 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                     {
                         var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
                         await sw.WriteLineAsync(dateString + " | UOW ERROR | LOG");
-                        await sw.WriteLineAsync(string.Format(
-                            "{0}: Error of type \"{1}\" in class \"{2}\" and method \"{3}\" has the following validation errors:",
-                            dateString, ex.GetType().Name, className, method));
+                        await sw.WriteLineAsync($"{dateString}: Error of type {ex.GetType().Name} in class {className} and method {method} has the following validation errors:");
                         if (ex.InnerException != null)
                         {
-                            await sw.WriteLineAsync(string.Format("- Error: \"{1}\"",
-                                ex.InnerException.Message));
-                            await sw.WriteLineAsync("Date: " + DateTime.Now);
+                            await sw.WriteLineAsync($"- Error: {ex.InnerException.Message}");
+                            await sw.WriteLineAsync($"Date: {DateTime.Now}");
                             await sw.WriteLineAsync(Environment.NewLine);
                         }
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 //
             }
@@ -447,16 +441,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                     using (StreamWriter sw = File.CreateText(path))
                     {
                         var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                        sw.WriteLineAsync(dateString + " | UOW ERROR | LOG");
-                        sw.WriteLineAsync(string.Format(
-                            "{0}: Entity of type \"{1}\" in state \"{2}\" has the following validation errors:",
-                            dateString, eve.Entry.Entity.GetType().Name, eve.Entry.State));
+                        sw.WriteLine(dateString + " | UOW ERROR | LOG");
+                        sw.WriteLine($"{dateString}: Entity of type {eve.Entry.Entity.GetType().Name} in state {eve.Entry.State} has the following validation errors:");
                         foreach (var ve in eve.ValidationErrors)
                         {
-                            sw.WriteLineAsync(string.Format("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage));
-                            sw.WriteLineAsync("Date: " + DateTime.Now);
-                            sw.WriteLineAsync(Environment.NewLine);
+                            sw.WriteLine($"- Property: {ve.PropertyName}, Error: {ve.ErrorMessage}");
+                            sw.WriteLine($"Date: {DateTime.Now}");
+                            sw.WriteLine(Environment.NewLine);
                         }
                     }
                 }
@@ -467,21 +458,18 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                     using (StreamWriter sw = File.AppendText(path))
                     {
                         var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                        sw.WriteLineAsync(dateString + " | UOW ERROR | LOG");
-                        sw.WriteLineAsync(string.Format(
-                            "{0}: Entity of type \"{1}\" in state \"{2}\" has the following validation errors:",
-                            dateString, eve.Entry.Entity.GetType().Name, eve.Entry.State));
+                        sw.WriteLine(dateString + " | UOW ERROR | LOG");
+                        sw.WriteLine($"{dateString}: Entity of type {eve.Entry.Entity.GetType().Name} in state {eve.Entry.State} has the following validation errors:");
                         foreach (var ve in eve.ValidationErrors)
                         {
-                            sw.WriteLineAsync(string.Format("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage));
-                            sw.WriteLineAsync("Date: " + DateTime.Now);
-                            sw.WriteLineAsync(Environment.NewLine);
+                            sw.WriteLine($"- Property: {ve.PropertyName}, Error: {ve.ErrorMessage}");
+                            sw.WriteLine($"Date: {DateTime.Now}");
+                            sw.WriteLine(Environment.NewLine);
                         }
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 //
             }

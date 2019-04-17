@@ -23,7 +23,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
 
         public static string FilterLogPath=>"filterLogs";
         public static string AuthenticationFilterCollect=>"authentication_filter:collect";
-        public static string AuthenticationFilterEmails=>"authentication_filter:emails";
+        public static string AuthenticationFilterEmails=>"authentication_filter:identity";
 
         public static string LastTrackerDeleteOnly => "tracker:IsLastDeleteOnly";
         public static string TrackerDeleteAllowed => "tracker:IsDeleteAllowed";

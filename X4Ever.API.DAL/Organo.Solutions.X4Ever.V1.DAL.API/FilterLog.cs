@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API
 {
-    public interface ILogGlobal
+    public interface IFilterLog
     {
         void Save(LogType logType,string[] values,string email);
     }
@@ -21,13 +21,12 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API
         Filter
     }
 
-    public struct LogGlobal:ILogGlobal
+    public readonly struct FilterLog : IFilterLog
     {
-        private IHelper _helper;
+        private IHelper _helper => new Helper.Helper();
         
         public async void Save(LogType logType,string[] values,string email) 
         {
-            _helper = new Helper.Helper();
             if((bool) _helper.GetAppSetting(CommonConstants.AuthenticationFilterCollect, typeof(bool))) {
                 var filterEmails = _helper.GetAppSetting( CommonConstants.AuthenticationFilterEmails);
                 var emails = filterEmails?.Split(';');

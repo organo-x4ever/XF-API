@@ -63,6 +63,8 @@ C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.csproj.CopyComplete
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.dll
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.csprojAssemblyReference.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Services.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Services.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
@@ -78,8 +80,6 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\bin\Release\Org
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.dll.config
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Resolver.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.csprojAssemblyReference.cache
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.pdb

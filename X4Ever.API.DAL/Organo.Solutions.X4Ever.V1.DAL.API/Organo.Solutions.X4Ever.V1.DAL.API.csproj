@@ -1152,7 +1152,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Global\Log.cs" />
     <Compile Include="Models\AppInfoModel.cs" />
     <Compile Include="Models\EmailDetail.cs" />
     <Compile Include="Models\ForgotPassword.cs" />

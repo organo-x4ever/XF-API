@@ -87,27 +87,27 @@ C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.csproj.CopyComplete
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll.config
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Newtonsoft.Json.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Services.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\EntityFramework.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\CryptSharp.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.csprojAssemblyReference.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.csproj.CoreCompileInputs.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll.config
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Resolver.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Microsoft.Practices.Unity.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Microsoft.Practices.ServiceLocation.dll
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Services.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.dll.config
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Resolver.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.csprojAssemblyReference.cache
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.csproj.CopyComplete
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\bin\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API.Security\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.Security.pdb

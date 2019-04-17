@@ -175,6 +175,8 @@ C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CopyComplete
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.dll
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csprojAssemblyReference.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll.config
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.pdb
@@ -202,8 +204,6 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Newtonsoft.Json.xml
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Apple.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Core.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csprojAssemblyReference.cache
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.pdb
