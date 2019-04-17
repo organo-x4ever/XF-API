@@ -41,11 +41,10 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             _tokenServices = tokenServices;
             _userPivotServices = userPivotServices;
             _helper = new Helper();
-            _filterLog = new FilterLog();
+            _filterLog = new FilterLog((bool)_helper.GetAppSetting(CommonConstants.AuthenticationFilterCollect, typeof(bool)));
         }
 
         #endregion Public Constructor
-
 
         /// <summary>
         /// Authenticates user and returns token with expiry.

@@ -3,6 +3,7 @@ using Organo.Solutions.X4Ever.V1.API.Security.Helpers;
 using Organo.Solutions.X4Ever.V1.DAL.API.Models;
 using Organo.Solutions.X4Ever.V1.DAL.API.Security.ActionFilters;
 using Organo.Solutions.X4Ever.V1.DAL.API.Statics;
+using Organo.Solutions.X4Ever.V1.DAL.Helper;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Model;
 using Organo.Solutions.X4Ever.V1.DAL.Services;
@@ -26,7 +27,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private readonly IUserTokensServices _userTokensServices;
         private readonly IUserPushTokenServices _userPushTokenServices;
         private readonly IUserNotificationServices _notificationServices;
-        private readonly Helper.IHelper _helper;
+        private readonly IHelper _helper;
         private ValidationErrors _validationErrors = new ValidationErrors();
         private readonly IEmailContent _emailContent;
         private readonly IFilterLog _filterLog;
@@ -45,7 +46,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             _helper = new Helper.Helper();
             _emailContent = emailContent;
             _notificationServices = notificationServices;
-            _filterLog = new FilterLog();
+            _filterLog = new FilterLog((bool)_helper.GetAppSetting(CommonConstants.AuthenticationFilterCollect, typeof(bool)));
         }
 
         [POST("authuser_v2")]

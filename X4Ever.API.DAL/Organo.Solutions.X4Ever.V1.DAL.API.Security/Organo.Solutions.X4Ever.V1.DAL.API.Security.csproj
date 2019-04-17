@@ -81,7 +81,9 @@
     <Compile Include="Filters\GenericAuthenticationFilter.cs" />
     <Compile Include="Helpers\FilterLog.cs" />
     <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Helpers\IFilterLog.cs" />
     <Compile Include="Helpers\JSONHelper.cs" />
+    <Compile Include="Helpers\LogType.cs" />
     <Compile Include="Helpers\NLogger.cs" />
     <Compile Include="Helpers\ServiceStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
