@@ -15,5 +15,5 @@
             var trace = GlobalConfiguration.Configuration.Services.GetTraceWriter();
             trace.Info(filterContext.Request, "Controller : " + filterContext.ControllerContext.ControllerDescriptor.ControllerType.FullName + Environment.NewLine + "Action : " + filterContext.ActionDescriptor.ActionName, "JSON", filterContext.ActionArguments);
         }
-    }
+    } 
 }

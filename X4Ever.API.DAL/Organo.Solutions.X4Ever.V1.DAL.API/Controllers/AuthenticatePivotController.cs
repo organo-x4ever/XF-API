@@ -1,6 +1,5 @@
 ﻿
 using System.Globalization;
-using Microsoft.AspNet.Identity;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -8,13 +7,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
     using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
     using AttributeRouting.Web.Http;
     using Organo.Solutions.X4Ever.V1.API.Security.Filters;
-    using Organo.Solutions.X4Ever.V1.DAL.API.Statics;
     using Organo.Solutions.X4Ever.V1.DAL.Model;
     using Organo.Solutions.X4Ever.V1.DAL.Services;
     using System.Net;
     using System.Net.Http;
     using System.Web.Http;
     using System.Web.Http.Cors;
+    using Organo.Solutions.X4Ever.V1.DAL.Helper;
 
     [ApiAuthenticationFilter]
     //[EnableCors(origins: "http://localhost:5100,http://localhost:63535", headers: "*", methods: "*")]
@@ -25,7 +24,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
         private readonly IUserTokensServices _tokenServices;
         private readonly IUserPivotServices _userPivotServices;
-        private readonly Helper.IHelper _helper;
+        private readonly IHelper _helper;
+        private readonly API.ILogGlobal _logGlobal;
 
         #endregion Private variable.
 
@@ -38,7 +38,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         {
             _tokenServices = tokenServices;
             _userPivotServices = userPivotServices;
-            _helper = new Helper.Helper();
+            _helper = new Helper();
+            _logGlobal = new LogGlobal();
         }
 
         #endregion Public Constructor
@@ -67,9 +68,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 token.ExpiresOn.ToString(CultureInfo.CurrentCulture));
             response.Headers.Add(HttpConstants.ACCESS_CONTROL_EXPOSE_HEADERS,
                 HttpConstants.TOKEN_COMMA_TOKEN_EXPIRY);
+
+            _logGlobal.Save(LogType.AuthenticatePivot, new string[] {"Token: "+token.AuthToken,"TokenExpiry: "+token.ExpiresOn.ToString(CultureInfo.CurrentCulture) },"");
             return response;
         }
-
+        
         /// <summary>
         /// Authenticates user and returns token with expiry.
         /// </summary>

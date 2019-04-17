@@ -18,4 +18,3 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\bin\Debug\Organo.S
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Model.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Model.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Model\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Model.csprojAssemblyReference.cache

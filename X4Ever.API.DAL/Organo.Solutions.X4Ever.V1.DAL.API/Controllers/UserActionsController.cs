@@ -244,6 +244,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             {
                 if (entity == null)
                     return Ok("MessageInvalidObject");
+                else if(string.IsNullOrEmpty(entity.UserApplication))
+                    return Ok("MessageUserApplicationRequired");
 
                 var user = new User()
                 {

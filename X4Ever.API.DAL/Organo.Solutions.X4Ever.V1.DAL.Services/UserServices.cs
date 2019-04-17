@@ -781,7 +781,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             var basicLastName = (bool) objValue[5];
             if (basic)
             {
-                if (user.UserLogin == null || user.UserLogin.Trim().Length == 0)
+                if (user.UserApplication==null || string.IsNullOrEmpty(user.UserApplication.Trim()))
+                    validationErrors.Add("MessageUserApplicationRequired");
+                if (user.UserLogin == null || string.IsNullOrEmpty(user.UserLogin))
                     validationErrors.Add("MessageUsernameRequired");
                 else
                 {
@@ -794,7 +796,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                         validationErrors.Add("MessageUsernameExists");
                 }
 
-                if (user.UserPassword == null || user.UserPassword.Trim().Length == 0)
+                if (user.UserPassword == null || string.IsNullOrEmpty(user.UserPassword))
                     validationErrors.Add("MessagePasswordRequired");
                 else
                 {

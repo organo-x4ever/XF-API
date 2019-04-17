@@ -4,20 +4,12 @@ using Organo.Solutions.X4Ever.V1.DAL.API.Security.ActionFilters;
 using Organo.Solutions.X4Ever.V1.DAL.API.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Model;
 using Organo.Solutions.X4Ever.V1.DAL.Services;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Web.Http.ModelBinding;
-using Newtonsoft.Json;
-using Organo.Solutions.X4Ever.V1.API.Security.Filters;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
-using Organo.Solutions.X4Ever.V1.DAL.Repository;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -36,6 +28,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private readonly Helper.IHelper _helper;
         private ValidationErrors _validationErrors = new ValidationErrors();
         private readonly IEmailContent _emailContent;
+        private readonly ILogGlobal _logGlobal;
 
         public UserPivotController(UserPivotServices userPivotServices, PasswordHistoryServices passwordHistoryServices,
             UserMetaPivotServices userMetaPivotServices, UserTokensServices userTokensServices,
@@ -51,6 +44,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             _helper = new Helper.Helper();
             _emailContent = emailContent;
             _notificationServices = notificationServices;
+            _logGlobal = new LogGlobal();
         }
 
         [POST("authuser_v2")]
@@ -58,16 +52,17 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         public async Task<HttpResponseMessage> PostAuthUser_V2()
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
-            var token = await _userTokensServices.GetDetailByTokenAsync(base.Token);
-            if (token == null)
-                return UnAuthorized();
-            var user = await _userPivotServices.GetUserAsync(base.UserID);
+            ////var token = await _userTokensServices.GetDetailByTokenAsync(Token);
+            ////if (token == null)
+            ////    return UnAuthorized();
+            var user = await _userPivotServices.GetUserAsync(UserID);
             if (user == null)
                 return UnAuthorized();
             watch.Stop();
+            _logGlobal.Save(LogType.UserPivot_AuthUser, new string[] {"Token: "+Token,"UserID: "+user?.ID,"FirstName: "+user?.UserFirstName,"LastName: "+user?.UserLastName,"Email: "+user?.UserEmail }, user?.UserEmail);
             var response = Request.CreateResponse(HttpStatusCode.OK, user);
             response.Headers.Add(HttpConstants.TOKEN, Token);
-            response.Headers.Add(HttpConstants.TOKEN_EXPIRY, token.ExpiresOn.ToString());
+            response.Headers.Add(HttpConstants.TOKEN_EXPIRY, _userTokensServices.TokenSessionTime().ToString());
             response.Headers.Add(HttpConstants.ACCESS_CONTROL_EXPOSE_HEADERS, HttpConstants.TOKEN_COMMA_TOKEN_EXPIRY);
             var elapsedMs = watch.ElapsedMilliseconds;
             response.Headers.Add(HttpConstants.EXECUTION_TIME, elapsedMs.ToString());
@@ -79,14 +74,15 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("getuser")]
         public async Task<IHttpActionResult> GetByTokenAsync()
         {
-            return Ok(await _userPivotServices.GetUserAsync(base.UserID));
+            return Ok(await _userPivotServices.GetUserAsync(UserID));
         }
 
         [GET("getfulluser")]
         [Route("getfulluser")]
         public async Task<IHttpActionResult> GetFullUserByToken()
         {
-            var user = await _userPivotServices.GetFullUserAsync(base.UserID);
+            var user = await _userPivotServices.GetFullUserAsync(UserID);
+            _logGlobal.Save(LogType.UserPivot, new string[] {"Token: "+Token,"UserID: "+user?.ID,"FirstName: "+user?.UserFirstName,"LastName: "+user?.UserLastName,"Email: "+user?.UserEmail }, user?.UserEmail);
             return Ok(user);
         }
 
@@ -105,7 +101,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 UserType = entity.UserType,
                 UserEmail = entity.UserEmail
             };
-            if (_userPivotServices.Update(ref _validationErrors, base.UserID, user))
+            if (_userPivotServices.Update(ref _validationErrors, UserID, user))
             {
                 return Ok(HttpConstants.SUCCESS);
             }
@@ -128,7 +124,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             else if (await _passwordHistoryServices.IsMatchAsync(detail.UserID, detail.Password))
                 return Ok("MessagePasswordExistsInHistory");
             _validationErrors = new ValidationErrors();
-            if (_userPivotServices.ChangePassword(ref _validationErrors, base.UserID, detail.CurrentPassword.Trim(),
+            if (_userPivotServices.ChangePassword(ref _validationErrors, UserID, detail.CurrentPassword.Trim(),
                 detail.Password.Trim()))
                 return Ok(HttpConstants.SUCCESS);
             return Ok("MessageInvalidProvidedInformation");

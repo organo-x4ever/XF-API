@@ -77,8 +77,6 @@ $(function() {
                     "columnDefs": [
                         {
                             "targets": [0],
-                            //"searchable": true,
-                            //"orderable": true,
                             "render": function(data, type, full, meta) {
                                 var html;
                                 html = data + ' ' + full.LastName;
@@ -93,16 +91,12 @@ $(function() {
                         },
                         {
                             "targets": [1],
-                            //"searchable": true,
-                            //"orderable": true,
                             "render": function(data, type, full, meta) {
                                 return full.CreateDate.split('T')[0] + ' ' + full.CreateDate.split('T')[1];
                             }
                         },
                         {
                             "targets": [3],
-                            //"searchable": true,
-                            //"orderable": true,
                             "render": function(data, type, full, meta) {
                                 return full.Address +
                                     '<br/>' +
@@ -115,16 +109,12 @@ $(function() {
                         },
                         {
                             "targets": [4],
-                            //"searchable": true,
-                            //"orderable": true,
                             "render": function(data, type, full, meta) {
                                 return data.split('T')[0] + '<br>' + data.split('T')[1];
                             }
                         },
                         {
                             "targets": [5],
-                            //"searchable": true,
-                            //"orderable": true,
                             "render": function(data, type, full, meta) {
                                 return '<b>Start: </b>' +
                                     data +
@@ -146,16 +136,12 @@ $(function() {
                         },
                         {
                             "targets": [6],
-                            //"searchable": true,
-                            //"orderable": true,
                             "render": function(data, type, full, meta) {
                                 return data !== null && data !== 'null' ? data : '';
                             }
                         },
                         {
                             "targets": [7],
-                            //"searchable": true,
-                            //"orderable": true,
                             "render": function(data, type, full, meta) {
                                 return (full.FrontPhoto !== null && full.FrontPhoto !== 'null'
                                         ? '<a href=' + baseUrl + full.FrontPhoto + ' target="_blank">Front Photo</a>'
@@ -171,8 +157,6 @@ $(function() {
                         },
                         {
                             "targets": [8],
-                            //"searchable": true,
-                            //"orderable": true,
                             "render": function(data, type, full, meta) {
                                 return data !== null && data !== 'null'
                                     ? '<a id=\"button-testimonial\" class="btn button-search center button-testimonial" data-text=' +

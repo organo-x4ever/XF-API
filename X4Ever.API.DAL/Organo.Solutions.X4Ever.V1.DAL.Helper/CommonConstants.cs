@@ -21,6 +21,10 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         public static double KG_LB_CONVERT_VALUE => 2.20462262185;
         public static double KG_LB_CONVERT_VALUE_1 => 0.45359237;
 
+        public static string FilterLogPath=>"filterLogs";
+        public static string AuthenticationFilterCollect=>"authentication_filter:collect";
+        public static string AuthenticationFilterEmails=>"authentication_filter:emails";
+
         public static string LastTrackerDeleteOnly => "tracker:IsLastDeleteOnly";
         public static string TrackerDeleteAllowed => "tracker:IsDeleteAllowed";
         public static string IsRequireDeleted => "tracker:IsWeightRequiredAfterTrackerDelete";
