@@ -16,6 +16,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         Task<UserAuthentication> GetUserAsync(long id);
         Task<UserPivot> GetFullUserAsync(string token);
         Task<UserPivot> GetFullUserAsync(long id);
+        List<UserGlobal> Get(bool showEmptyRecords = false);
+        Task<List<UserGlobal>> GetAsync(bool showEmptyRecords = false);
         bool Update(ref ValidationErrors validationErrors, string token, User entity);
         bool Update(ref ValidationErrors validationErrors, string token, string application);
         bool Update(ref ValidationErrors validationErrors, long id, User entity);

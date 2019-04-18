@@ -61,32 +61,34 @@ $(function() {
                     "searchable": true,
                     "pageLength": 25,
                     "lengthMenu": [[25, 50, 100, 500, 1000], [25, 50, 100, 500, 1000]],
-                    "order": [[0, "asc"]],
+                    "order": [[0, "desc"],[1, "asc"],[4, "asc"]],
                     columns: [
+                        { "data": "UserRegistered" },
                         { "data": "UserFirstName" },
                         { "data": "UserEmail" },
                         { "data": "UserLogin" },
                         { "data": "UserApplication" },
-                        { "data": "UserStatus" },
-                        { "data": "UserRegistered" },
+                        //{ "data": "UserStatus" },
                         { "data": "ID" }
                     ],
                     "columnDefs": [
                         {
-                            "targets": [0],
+                            "targets": [1],
                             "render": function(data, type, full, meta) {
                                 return data + ' ' + full.UserLastName;
                             }
                         },
                         {
-                            "targets": [5],
+                            "targets": [0],
                             "render": function(data, type, full, meta) {
                                 return full.UserRegistered.split('T')[0] + ' ' + full.UserRegistered.split('T')[1];
                             }
                         },
                         {
-                            "targets": [6],
-                            "render": function(data, type, full, meta) {
+                            "targets": [5],
+                            "visible": showEmpty === false,
+                            "orderable": false,
+                            "render": function (data, type, full, meta) {
                                 return '<button class=\'btn btn-sm bg-purple btn-show-meta\' type=\'button\'>Show Meta</button> <button class=\'btn btn-sm bg-olive btn-show-tracker\' type=\'button\'>Show Tracker</button>';
                             }
                         }
@@ -105,6 +107,11 @@ $(function() {
                     destroy: true
                 });
                 hideLoader();
+                
+                if(showEmpty)
+                    $('.hideForEmptyRecords').addClass('hidden');
+                else
+                    $('.hideForEmptyRecords').removeClass('hidden');
 
                 $('button[type=button].btn-show-meta').click(function() {
                     console.log('meta');
@@ -188,8 +195,9 @@ $(function() {
             headers: {
                 'Token': token
             },
-            success: function(userMeta) {
-                if (userMeta.ProfilePhoto !== null && userMeta.ProfilePhoto !== 'undefined')
+            success: function (userMeta) {
+                console.log('Meta',userMeta);
+                if (userMeta.ProfilePhoto !== null && userMeta.ProfilePhoto !== 'undefined' && userMeta.ProfilePhoto.trim().length > 0) {
                     $('div.meta-profile-photo').html('<a href=\'' +
                         baseUrl +
                         userMeta.ProfilePhoto +
@@ -197,8 +205,8 @@ $(function() {
                         baseUrl +
                         userMeta.ProfilePhoto +
                         '\' width=\'25px\' height=\'25px\'></img></a>');
-						else
-							$('div.meta-profile-photo').html('');
+                }
+                else $('div.meta-profile-photo').html('');
                 if (userMeta.Gender !== null && userMeta.Gender !== 'undefined')
                     $('div.meta-gender').html(userMeta.Gender);
                 $('div.meta-age').html(userMeta.Age);
@@ -236,15 +244,25 @@ $(function() {
                 'Token': token
             },
             success: function(userTrackers) {
+                console.log('Trackers',userTrackers);
                 var data = '';
                 var count = 1;
                 $.each(userTrackers,
-                    function() {
+                    function () {
+
+                        var date = this.ModifyDate;
+                        var dateOnly = '', timeOnly = '';
+                        var modifyDates = [];
+                        if (date !== null && date !== 'undefined') {
+                            modifyDates = date.split('T');
+                            dateOnly = modifyDates[0];
+                            timeOnly = modifyDates[1];
+                        }
 
                         data += '<p>';
                         data += '<div class="row">';
                         data += '<div></div>';
-                        data += '<div><h4>' + this.rev_number + '</h4></div>';
+                        data += '<div><h4>' + dateOnly + '</h4></div>';
                         data += '</div>';
                         data += '</p>';
                         data += '<div class="row">';
@@ -264,22 +282,18 @@ $(function() {
 
                         data += '<div class="row">';
                         data += '<div>Modify date</div>';
-                        var date = this.ModifyDate;
-                        if (date !== null && date !== 'undefined') {
-                            var modifyDates = date.split('T');
-                            if (modifyDates !== null)
-                                data += '<div>' + modifyDates[0] + ' ' + modifyDates[1] + '</div>';
-                            else
-                                data += '<div>' + date + '</div>';
-                        }
+                        if (modifyDates !== null)
+                            data += '<div>' + dateOnly + ' ' + timeOnly + '</div>';
+                        else
+                            data += '<div>' + date + '</div>';
                         data += '</div>';
 
                         data += '<div class="row">';
                         data += '<div>Photo</div>';
                         data += '<div class=\'div-photo\'>';
 
-                        var front = this.SideImage;
-                        if (front !== null && front !== 'null' && front.length !== 4)
+                        var front = this.FrontImage;
+                        if (front !== null && front !== 'null' && front.trim().length > 0 && front.length !== 4) {
                             data += '<a href=\'' +
                                 baseUrl +
                                 front +
@@ -287,9 +301,9 @@ $(function() {
                                 baseUrl +
                                 front +
                                 '\'></img></a>';
-                        data += ' ';
+                        } else data += ' ';
                         var side = this.SideImage;
-                        if (side !== null && side !== 'null' && side.length !== 4)
+                        if (side !== null && side !== 'null' && side.trim().length > 0 && side.length !== 4) {
                             data += '<a href=\'' +
                                 baseUrl +
                                 side +
@@ -297,6 +311,7 @@ $(function() {
                                 baseUrl +
                                 side +
                                 '\'></img></a>';
+                        } else data += ' ';
                         data += '</div>';
                         data += '</div>';
                         data += '<div class="row">';

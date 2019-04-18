@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Organo.Solutions.X4Ever.V1.DAL.Helper;
@@ -398,6 +399,44 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     validationErrors.Add("MessageUserTypeRequired");
 
             return validationErrors.Count() == 0;
+        }
+
+        public List<UserGlobal> Get(bool showEmptyRecords)
+        {
+            var applications = _unitOfWork.ApplicationRepository.GetMany();
+            return (from user in _unitOfWork.UserRepository.GetMany(u => showEmptyRecords ? string.IsNullOrEmpty(u.UserFirstName) : !string.IsNullOrEmpty(u.UserFirstName))
+                    select new UserGlobal
+                    {
+                        ID = user.ID,
+                        UserFirstName = user.UserFirstName,
+                        UserEmail = user.UserEmail,
+                        UserLogin = user.UserLogin,
+                        UserLastName = user.UserLastName,
+                        UserRegistered = user.UserRegistered,
+                        UserStatus = user.UserStatus,
+                        UserKey = user.UserKey,
+                        UserType = user.UserType,
+                        UserApplication = applications?.FirstOrDefault(a => user.UserApplication == a.ApplicationKey)?.ApplicationName ?? ""
+                    }).ToList();
+        }
+
+        public async Task<List<UserGlobal>> GetAsync(bool showEmptyRecords = false)
+        {
+            var applications = await _unitOfWork.ApplicationRepository.GetManyAsync();
+            return (from user in (await _unitOfWork.UserRepository.GetManyAsync(u => showEmptyRecords ? string.IsNullOrEmpty(u.UserFirstName) : !string.IsNullOrEmpty(u.UserFirstName)))
+                    select new UserGlobal
+                    {
+                        ID = user.ID,
+                        UserFirstName = user.UserFirstName,
+                        UserEmail = user.UserEmail,
+                        UserLogin = user.UserLogin,
+                        UserLastName = user.UserLastName,
+                        UserRegistered = user.UserRegistered,
+                        UserStatus = user.UserStatus,
+                        UserKey = user.UserKey,
+                        UserType = user.UserType,
+                        UserApplication = applications?.FirstOrDefault(a => user.UserApplication == a.ApplicationKey)?.ApplicationName ?? ""
+                    }).ToList();
         }
     }
 }

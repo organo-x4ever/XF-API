@@ -333,11 +333,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
         public IEnumerable<UserGlobal> Get(bool showEmptyRecords = false)
         {
-            var applications = _unitOfWork.ApplicationRepository.GetMany(a =>
-                (!showEmptyRecords ? a.ApplicationName.Trim().Length > 0 : false));
-            var records =
-                (from user in _unitOfWork.UserRepository.GetMany(u =>
-                        (!showEmptyRecords ? u.UserFirstName.Trim().Length > 0 : false))
+            var applications = _unitOfWork.ApplicationRepository.GetMany();
+            var records = (from user in _unitOfWork.UserRepository.GetMany(u => (!showEmptyRecords ? u.UserFirstName.Trim().Length > 0 : false))
                     select new UserGlobal
                     {
                         ID = user.ID,

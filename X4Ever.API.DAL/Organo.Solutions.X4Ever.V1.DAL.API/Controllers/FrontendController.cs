@@ -27,29 +27,29 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class FrontendController : ApiControllerOverride
     {
-        private readonly IUserMetaServices _userMetaServices;
-        private readonly IUserTrackerServices _userTrackerServices;
+        private readonly IUserMetaPivotServices _userMetaPivotServices;
+        private readonly IUserTrackerPivotServices _userTrackerPivotServices;
         private readonly IOpenNotificationUserServices _openNotificationUserServices;
         private readonly IUserNotificationServices _notificationServices;
         private readonly IUserTrackerRealtimeServices _userTrackerRealtimeServices;
         private readonly IWebUserMetaRealtimeServices _webUserMetaRealtimeServices;
         private readonly IUserNotificationServices _userNotificationServices;
         private readonly IUserTrackerReportServices _trackerReportServices;
-        private readonly IUserServices _userServices;
+        private readonly IUserPivotServices _userPivotServices;
         private IEmailContent _emailContent;
         private INotification _notification;
         private readonly IHelper _helper;
         private IList<string> Messages { get; set; }
 
-        public FrontendController(UserServices userServices, OpenNotificationUserServices openNotificationUserServices,
+        public FrontendController(UserPivotServices userPivotServices, OpenNotificationUserServices openNotificationUserServices,
             UserNotificationServices notificationServices, UserTrackerRealtimeServices userTrackerRealtimeServices,
-            UserMetaServices userMetaServices, UserTrackerServices userTrackerServices,
+            UserMetaPivotServices userMetaPivotServices, UserTrackerPivotServices userTrackerPivotServices,
             WebUserMetaRealtimeServices webUserMetaRealtimeServices,
             UserNotificationServices userNotificationServices, UserTrackerReportServices trackerReportServices)
         {
-            _userServices = userServices;
-            _userMetaServices = userMetaServices;
-            _userTrackerServices = userTrackerServices;
+            _userPivotServices = userPivotServices;
+            _userMetaPivotServices = userMetaPivotServices;
+            _userTrackerPivotServices = userTrackerPivotServices;
             _openNotificationUserServices = openNotificationUserServices;
             _emailContent = new EmailContent();
             _notificationServices = notificationServices;
@@ -67,9 +67,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("getusers")]
         public async Task<HttpResponseMessage> GetUsers(bool showEmptyRecords = false)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            var users = _userServices.Get(showEmptyRecords);
-            //.OrderBy(u => u.UserFirstName).ThenBy(u => u.UserLastName).ThenBy(u => u.UserRegistered)
+            var watch = Stopwatch.StartNew();
+            var users = await _userPivotServices.GetAsync(showEmptyRecords);
             watch.Stop();
             var response = Request.CreateResponse(HttpStatusCode.OK, users);
             var elapsedMs = watch.ElapsedMilliseconds;
@@ -158,14 +157,14 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("getmetarowbyuserid")]
         public async Task<HttpResponseMessage> GetMetaRowByUser(long id)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, await _userMetaServices.GetUserRowByIdAsync(id));
+            return Request.CreateResponse(HttpStatusCode.OK, await _userMetaPivotServices.GetMetaAsync(id));
         }
 
         [GET("gettrackerrowbyuserid")]
         [Route("gettrackerrowbyuserid")]
         public async Task<HttpResponseMessage> GetTrackerRowByUser(long id)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, await _userTrackerServices.GetUserRowAsync(id));
+            return Request.CreateResponse(HttpStatusCode.OK, await _userTrackerPivotServices.GetTrackersAsync(id));
         }
 
         [GET("getbydateasync")]

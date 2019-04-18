@@ -46,12 +46,12 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\bin\Release\O
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\bin\Release\CryptSharp.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.csprojAssemblyReference.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Repository.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Repository\bin\Release\Organo.Solutions.X4Ever.V1.DAL.Model.pdb
