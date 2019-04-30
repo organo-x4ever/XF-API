@@ -196,7 +196,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 {
                     string message = "";
                     var user = await _userServices.GetAsync(base.UserID);
-                    var response = false;
                     var content = _emailContent.GetEmailDetail(user.LanguageCode, emailType,
                         new string[] { });
                     if (content != null)

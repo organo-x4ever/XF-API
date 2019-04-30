@@ -58,6 +58,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         {
             return _unitOfWork.UserPushTokenRepository.GetByID(ID);
         }
+        
         public async Task<UserPushToken> GetAsync(string ID)
         {
             return await _unitOfWork.UserPushTokenRepository.GetByIDAsync(ID);
@@ -79,6 +80,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
             return await GetAsync(tokenDetail?.UserID ?? 0);
         }
+        
         public async Task<UserPushToken> GetAsync(long userId)
         {
             return await _unitOfWork.UserPushTokenRepository.GetAsync(u => u.UserID == userId);
@@ -86,7 +88,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
         public bool Insert(ref ValidationErrors validationErrors, UserPushToken entity)
         {
-            dynamic[] obj = {entity};
+            dynamic[] obj = { entity, true, false };
             if (Validate(ref validationErrors, obj))
             {
                 if (Exists(ref entity))
@@ -161,9 +163,22 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 UserID = userId
             });
         }
+        
+        public bool Update(ref ValidationErrors validationErrors, string userKey, long userId, string userApplication)
+        {
+            var userPush = _unitOfWork.UserPushTokenRepository.GetLast(p => p.UserKey?.ToLower() == userKey?.ToLower());
+            if (userPush != null)
+            {
+                userPush.UserID = userId;
+                userPush.DeviceApplication = userApplication;
+                return Update(ref validationErrors, userPush);
+            }
+            return false;
+        }
+
         public bool Update(ref ValidationErrors validationErrors, UserPushToken entity)
         {
-            dynamic[] obj = {entity};
+            dynamic[] obj = { entity, true, false };
             if (Validate(ref validationErrors, obj))
             {
                 if (Exists(ref entity))
@@ -188,6 +203,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 entity.UserID = userId;
             return Update(ref validationErrors, entity);
         }
+
         public bool Exists(ref UserPushToken entity)
         {
             var userPushToken = entity;
@@ -207,9 +223,17 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         public bool Validate(ref ValidationErrors validationErrors, dynamic[] objValue)
         {
             var obj = (UserPushToken) objValue[0];
-            if (obj.UserID == 0)
+            var option_1 = (bool)(objValue[1] ?? false);
+            var option_2 = (bool)(objValue[2] ?? false);
+
+            if (option_1 && obj.UserID == 0)
             {
                 validationErrors.Add("UserIDRequired");
+            }
+
+            if(option_2 && string.IsNullOrEmpty(obj.UserKey))
+            {
+                validationErrors.Add("UserKeyRequired");
             }
 
             if (obj.DeviceToken.Trim().Length == 0)
@@ -222,28 +246,48 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
         public async Task<IEnumerable<Notification_UserTracker>> CheckTrackerDue(int userId = 0)
         {
-            double.TryParse(_helper.GetAppSetting("WeightSubmitIntervalDays"), out double timeInterval);
-            var date = DateTime.Today.AddDays(-timeInterval);
-            var users = (from u in _unitOfWork.UserRepository.GetMany(u =>
-                    u.ID == (userId == 0 ? u.ID : userId)
-                    && !_unitOfWork.UserTrackerRepository
-                        .GetMany(t => t.UserID == u.ID && t.ModifyDate >= date
-                                                       && _unitOfWork.UserPushTokenRepository.GetMany(p =>
-                                                           p.UserID == u.ID && t.UserID == p.UserID &&
-                                                           (p.DevicePlatform != null &&
-                                                            (p.DevicePlatform.Contains("Android") ||
-                                                             p.DevicePlatform.Contains("iOS")))).Any()).Any())
-                select new Notification_UserTracker()
+            return await Task.Factory.StartNew(() => {
+                double.TryParse(_helper.GetAppSetting("WeightSubmitIntervalDays"), out double timeInterval);
+                var date = DateTime.Today.AddDays(-timeInterval);
+                var users = (from u in _unitOfWork.UserRepository.GetMany(u =>
+                        u.ID == (userId == 0 ? u.ID : userId)
+                        && !_unitOfWork.UserTrackerRepository
+                            .GetMany(t => t.UserID == u.ID && t.ModifyDate >= date
+                                                           && _unitOfWork.UserPushTokenRepository.GetMany(p =>
+                                                               p.UserID == u.ID && t.UserID == p.UserID &&
+                                                               (p.DevicePlatform != null &&
+                                                                (p.DevicePlatform.Contains("Android") ||
+                                                                 p.DevicePlatform.Contains("iOS")))).Any()).Any())
+                    select new Notification_UserTracker()
+                    {
+                        UserID = u.ID,
+                        UserEmail = u.UserEmail,
+                        UserPushToken = _unitOfWork.UserPushTokenRepository.GetMany(p =>
+                                p.UserID == u.ID && p.DevicePlatform != null &&
+                                (p.DevicePlatform.Contains("Android") || p.DevicePlatform.Contains("iOS")))?
+                            .OrderByDescending(p => p.ID)?.FirstOrDefault(),
+                        LanguageCode = _unitOfWork.UserSettingRepository.Get(s => s.UserID == u.ID)?.LanguageCode,
+                    }).ToList();
+                return users;
+            });
+        }
+
+        public bool InsertInitial(ref ValidationErrors validationErrors, UserPushToken entity)
+        {
+            dynamic[] obj = { entity, false, true };
+            if (Validate(ref validationErrors, obj))
+            {
+                var userPush = _unitOfWork.UserPushTokenRepository.GetLast(p => p.DeviceToken == entity.DeviceToken && p.UserID == 0 && p.DevicePlatform == entity.DevicePlatform);
+                if (userPush != null)
                 {
-                    UserID = u.ID,
-                    UserEmail = u.UserEmail,
-                    UserPushToken = _unitOfWork.UserPushTokenRepository.GetMany(p =>
-                            p.UserID == u.ID && p.DevicePlatform != null &&
-                            (p.DevicePlatform.Contains("Android") || p.DevicePlatform.Contains("iOS")))?
-                        .OrderByDescending(p => p.ID)?.FirstOrDefault(),
-                    LanguageCode = _unitOfWork.UserSettingRepository.Get(s => s.UserID == u.ID)?.LanguageCode,
-                }).ToList();
-            return users;
+                    userPush.UserKey = entity.UserKey;
+                    _unitOfWork.UserPushTokenRepository.Update(userPush);
+                }
+                else
+                    _unitOfWork.UserPushTokenRepository.Insert(entity);
+                return _unitOfWork.Commit();
+            }
+            return false;
         }
     }
 }

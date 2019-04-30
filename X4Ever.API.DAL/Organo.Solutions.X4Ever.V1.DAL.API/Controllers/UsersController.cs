@@ -51,20 +51,20 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             _notificationServices = notificationServices;
         }
 
-        [GET("get")]
-        [Route("get")]
-        public async Task<HttpResponseMessage> Get()
-        {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            //var users = _userServices.Get().OrderBy(u => u.UserFirstName).ThenBy(u => u.UserLastName)
-            //    .ThenBy(u => u.UserRegistered);
-            var users = new UserGlobal();
-            watch.Stop();
-            var response = Request.CreateResponse(HttpStatusCode.OK, users);
-            var elapsedMs = watch.ElapsedMilliseconds;
-            response.Headers.Add(HttpConstants.EXECUTION_TIME, elapsedMs.ToString());
-            return response;
-        }
+        //[GET("get")]
+        //[Route("get")]
+        //public async Task<HttpResponseMessage> Get()
+        //{
+        //    var watch = Stopwatch.StartNew();
+        //    //var users = _userServices.Get().OrderBy(u => u.UserFirstName).ThenBy(u => u.UserLastName)
+        //    //    .ThenBy(u => u.UserRegistered);
+        //    var users = new UserGlobal();
+        //    watch.Stop();
+        //    var response = Request.CreateResponse(HttpStatusCode.OK, users);
+        //    var elapsedMs = watch.ElapsedMilliseconds;
+        //    response.Headers.Add(HttpConstants.EXECUTION_TIME, elapsedMs.ToString());
+        //    return response;
+        //}
 
         [POST("authuser")]
         [Route("authuser")]
@@ -288,7 +288,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                     {
                         string message = "";
                         var userDetail = await _userServices.GetAsync(base.UserID);
-                        var response = false;
                         var content = _emailContent.GetEmailDetail(
                             userDetail.LanguageCode != null ? userDetail.LanguageCode : "en",
                             EmailType.WEIGHT_GOAL_SETUP,

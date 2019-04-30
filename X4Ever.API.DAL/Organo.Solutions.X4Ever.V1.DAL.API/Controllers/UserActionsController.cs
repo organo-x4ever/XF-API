@@ -16,6 +16,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
+using Organo.Solutions.X4Ever.V1.DAL.Model.EnumerationTypes;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -29,13 +30,18 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private IHelper _helper;
         private ICountryServices _countryServices;
         private readonly IYoutubeVideoServices _youtubeVideoServices = new YoutubeVideoServices();
+        private readonly IUserPushTokenServices _userPushTokenServices;
+        private readonly IUserNotificationSettingServices _userNotificationSettingServices;
 
         public UserActionsController(UserServices userServices, CountryServices countryServices,
-            UserSettingServices userSettingServices)
+            UserSettingServices userSettingServices,UserPushTokenServices userPushTokenServices,
+            UserNotificationSettingServices userNotificationSettingServices)
         {
+            _userPushTokenServices = userPushTokenServices;
             _userServices = userServices;
             _countryServices = countryServices;
             _userSettingServices = userSettingServices;
+            _userNotificationSettingServices=userNotificationSettingServices;
             _helper = new Helper.Helper();
         }
 
@@ -43,198 +49,93 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("getbase")]
         public async Task<IHttpActionResult> GetBaseString(string username, string password)
         {
-            return Ok(Convert.ToBase64String(Encoding.UTF8.GetBytes(username + ":" + password)));
+            return await Task.Factory.StartNew(() => {
+                return Ok(Convert.ToBase64String(Encoding.UTF8.GetBytes(username + ":" + password)));
+            });
         }
-
-        //[POST("postencryption")]
-        //[Route("postencryption")]
-        //public IHttpActionResult PostEncryption(List<TempEncrypt> tempEncrypts)
-        //{
-        //    if (tempEncrypts != null)
-        //    {
-        //        var users = _userServices.GetLoginCredential("");
-        //        foreach (var tempEncrypt in tempEncrypts)
-        //        {
-        //            //var response = _userServices.UpdateDirectPassword(tempEncrypt.Email, tempEncrypt.Password);
-        //            tempEncrypt.EncryPassword = _helper.ConvertToSHA512(tempEncrypt.Password);
-        //            tempEncrypt.SavedPassword =
-        //                users.FirstOrDefault(u => u.Username.Trim().ToLower() == tempEncrypt.Email.Trim().ToLower())
-        //                    ?.Password;
-        //            tempEncrypt.MisMatch = tempEncrypt.EncryPassword == tempEncrypt.SavedPassword;
-        //        }
-        //    }
-
-        //    return Ok(tempEncrypts.Where(e => e.MisMatch == false));
-        //}
-
-        //[POST("posttestemail")]
-        //[Route("posttestemail")]
-        //public IHttpActionResult PostTestEmail()
-        //{
-        //    string message = "";
-        //    var response = false;
-        //    EmailContent emailContent = new EmailContent();
-        //    EmailDetail content = new EmailDetail();
-        //    //content = emailContent.GetEmailDetail("en", EmailType.NEW_ACCOUNT, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject,
-        //    //    content.Body, true);
-        //    //message += SetupLog(response, EmailType.NEW_ACCOUNT) + " - " + message;
-        //    //content = emailContent.GetEmailDetail("it", EmailType.WEIGHT_GOAL_SETUP, new string[] { });
-        //    //if (content != null)
-        //    //{
-        //    //    response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //}
-
-        //    //message += SetupLog(response, EmailType.WEIGHT_GOAL_SETUP);
-        //    content = emailContent.GetEmailDetail("it", EmailType.AFTER_7_DAYS_ACCOUNT_CREATION, new string[] { });
-        //    if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    message += SetupLog(response, EmailType.AFTER_7_DAYS_ACCOUNT_CREATION);
-        //    //content = emailContent.GetEmailDetail("it", EmailType.LOSING_10_LBS, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //message += SetupLog(response, EmailType.LOSING_10_LBS);
-        //    //content = emailContent.GetEmailDetail("en", EmailType.LOSING_25_LBS, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //message += SetupLog(response, EmailType.LOSING_25_LBS);
-        //    //content = emailContent.GetEmailDetail("en", EmailType.LOSING_50_LBS, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //message += SetupLog(response, EmailType.LOSING_50_LBS);
-        //    //content = emailContent.GetEmailDetail("en", EmailType.LOSING_100_LBS, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //message += SetupLog(response, EmailType.LOSING_100_LBS);
-        //    ////content = emailContent.GetEmailDetail("en", EmailType.ACHIEVED_GOAL, new string[] { });
-        //    ////if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    ////message += SetupLog(response, EmailType.ACHIEVED_GOAL);
-        //    //content = emailContent.GetEmailDetail("en", EmailType.AFTER_EVERY_7_DAYS, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //message += SetupLog(response, EmailType.AFTER_EVERY_7_DAYS);
-
-
-        //    //content = emailContent.GetEmailDetail("es", EmailType.WEIGHT_GOAL_SETUP, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject,
-        //    //    content.Body, true);
-        //    //message += SetupLog(response, EmailType.WEIGHT_GOAL_SETUP);
-        //    ////content = emailContent.GetEmailDetail("es", EmailType.AFTER_7_DAYS_ACCOUNT_CREATION, new string[] { });
-        //    ////if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    ////message += SetupLog(response, EmailType.AFTER_7_DAYS_ACCOUNT_CREATION);
-        //    //content = emailContent.GetEmailDetail("es", EmailType.LOSING_10_LBS, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //message += SetupLog(response, EmailType.LOSING_10_LBS);
-        //    //content = emailContent.GetEmailDetail("es", EmailType.LOSING_25_LBS, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //message += SetupLog(response, EmailType.LOSING_25_LBS);
-        //    //content = emailContent.GetEmailDetail("es", EmailType.LOSING_50_LBS, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //message += SetupLog(response, EmailType.LOSING_50_LBS);
-        //    //content = emailContent.GetEmailDetail("es", EmailType.LOSING_100_LBS, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //message += SetupLog(response, EmailType.LOSING_100_LBS);
-        //    ////content = emailContent.GetEmailDetail("es", EmailType.ACHIEVED_GOAL, new string[] { });
-        //    ////if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    ////message += SetupLog(response, EmailType.ACHIEVED_GOAL);
-        //    //content = emailContent.GetEmailDetail("es", EmailType.AFTER_EVERY_7_DAYS, new string[] { });
-        //    //if (content != null) response = new Message().SendMail(ref message, "gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    //message += SetupLog(response, EmailType.AFTER_EVERY_7_DAYS);
-
-        //    ////var requestCode = _helper.GetUniqueCode();
-        //    ////content = emailContent.GetEmailDetail("en", EmailType.FORGOT_PASSWORD, new string[] { requestCode });
-        //    ////if (content != null) response = new Message().SendMail("gdeol.cf9e@organogold.com", "", "", content.Subject, content.Body, true);
-        //    ////message += SetupLog(response, EmailType.FORGOT_PASSWORD);
-        //    string SetupLog(bool success, EmailType emailType)
-        //    {
-        //        return emailType.ToString() + ": " + (success ? "Success" : message) + ", ";
-        //    }
-
-        //    return Ok(message);
-        //}
 
         [POST("fileupload")]
         [Route("fileupload")]
         public async Task<HttpResponseMessage> PostFileUpload()
         {
-            Dictionary<string, object> dict = new Dictionary<string, object>();
-            try
-            {
-                int size = 1024;
+            return await Task.Factory.StartNew(() => {
+                Dictionary<string, object> dict = new Dictionary<string, object>();
                 try
                 {
-                    size = (int) this._helper.GetAppSetting("photoUploadSizeKB", typeof(System.Int32));
-                }
-                catch
-                {
-                }
-
-                var httpRequest = HttpContext.Current.Request;
-                foreach (string file in httpRequest.Files)
-                {
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
-                    var postedFile = httpRequest.Files[file];
-                    if (postedFile != null && postedFile.ContentLength > 0)
+                    if(!int.TryParse(_helper.GetAppSetting("photoUploadSizeKB"),out int size))
+                        size=1024;
+                    var httpRequest = HttpContext.Current.Request;
+                    foreach (string file in httpRequest.Files)
                     {
-                        IList<string> AllowedFileExtensions = new List<string> {".jpg", ".gif", ".png"};
-                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
-                        var extension = ext.ToLower();
-                        if (!AllowedFileExtensions.Contains(extension))
+                        HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+                        var postedFile = httpRequest.Files[file];
+                        if (postedFile != null && postedFile.ContentLength > 0)
                         {
-                            var message = string.Format("Please Upload File of type .jpg,.gif,.png.");
-                            dict.Add("error", message);
-                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                            IList<string> AllowedFileExtensions = new List<string> {".jpg", ".gif", ".png"};
+                            var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                            var extension = ext.ToLower();
+                            if (!AllowedFileExtensions.Contains(extension))
+                            {
+                                var message = string.Format("Please Upload File of type .jpg,.gif,.png.");
+                                dict.Add("error", message);
+                                return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                            }
+                            //else if (postedFile.ContentLength > size)
+                            //{
+                            //    var message = string.Format("Please Upload a file upto " + size + " KB.");
+                            //    dict.Add("error", message);
+                            //    return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                            //}
+                            else
+                            {
+                                var filePath = HttpContext.Current.Server.MapPath("~/Userimage/" + postedFile.FileName);
+                                postedFile.SaveAs(filePath);
+                            }
                         }
-                        //else if (postedFile.ContentLength > size)
-                        //{
-                        //    var message = string.Format("Please Upload a file upto " + size + " KB.");
-                        //    dict.Add("error", message);
-                        //    return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
-                        //}
-                        else
-                        {
-                            var filePath = HttpContext.Current.Server.MapPath("~/Userimage/" + postedFile.FileName);
-                            postedFile.SaveAs(filePath);
-                        }
+
+                        var message1 = string.Format("MessageFileUploadedSuccessfully");
+                        return Request.CreateErrorResponse(HttpStatusCode.Created, message1);
+                        ;
                     }
 
-                    var message1 = string.Format("MessageFileUploadedSuccessfully");
-                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1);
-                    ;
+                    var res = string.Format("Please Upload a image.");
+                    dict.Add("error", res);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, dict);
                 }
-
-                var res = string.Format("Please Upload a image.");
-                dict.Add("error", res);
-                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
-            }
-            catch (Exception ex)
-            {
-                var msg = ex;
-                var res = string.Format("some Message");
-                dict.Add("error", res);
-                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
-            }
+                catch (Exception ex)
+                {
+                    var msg = ex;
+                    var res = string.Format("some Message");
+                    dict.Add("error", res);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+                }
+            });
         }
 
-        //[POST("register")]
-        //[Route("register")]
-        //public IHttpActionResult PostUser(UserRegisterNew entity)
-        //{
-        //    if (entity == null)
-        //    {
-        //        return BadRequest("MessageInvalidObject");
-        //    }
+        // GET: api/news
+        [POST("postnotification")]
+        [Route("postnotification")]
+        public async Task<IHttpActionResult> PostNotification(UserPushToken userPushToken)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid Request");
+            return await Task.Factory.StartNew(() => {
+                var validationErrors = new ValidationErrors();
+                try
+                {
+                    userPushToken.DevicePlatform = GetPlatform().ToString();
+                    var response = _userPushTokenServices.InsertInitial(ref validationErrors, userPushToken);
+                    if (response)
+                        return Ok(HttpConstants.SUCCESS);
+                }
+                catch(Exception)
+                {
+                    //
+                }
 
-        // Guid guid = Guid.NewGuid(); var user = new User() { UserActivationKey = guid.ToString(),
-        // UserEmail = entity.Email, UserFirstName = entity.FirstName, UserLogin = entity.Username,
-        // UserRegistered = DateTime.Now, UserStatus = entity.Status, UserPassword = entity.UserCode };
-
-        // var list = new List<UserMeta>(); list.Add(new UserMeta() { MetaDescription = "User Weight
-        // Loss Goal", MetaKey = "WeightLossGoal", MetaLabel = "UserMeta", MetaType =
-        // "weightlossgoal", MetaValue = entity.WeightLossGoal, ModifyDate = DateTime.Now, });
-        // list.Add(new UserMeta() { MetaDescription = "Gender", MetaKey = "Gender", MetaLabel =
-        // "UserMeta", MetaType = "gender", MetaValue = entity.Gender, ModifyDate = DateTime.Now, });
-
-        //    validationErrors = new ValidationErrors();
-        //    if (_userServices.Insert(ref validationErrors, user, list))
-        //        return Ok(HttpConstants.SUCCESS);
-        //    else
-        //        return BadRequest(validationErrors.Show());
-        //}
+                return Ok(validationErrors.Show());
+            });
+        }
 
         [POST("register")]
         [Route("register")]
@@ -265,11 +166,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 validationErrors = new ValidationErrors();
                 if (_userServices.Insert(ref validationErrors, user))
                 {
-                    if (entity.LanguageCode != null && entity.LanguageCode.Trim().Length > 0 &&
-                        entity.WeightVolumeType != null && entity.WeightVolumeType.Trim().Length > 0)
+                    var userDetail = await _userServices.GetByEmailAsync(user.UserEmail);
+                    if (userDetail != null)
                     {
-                        var userDetail = await _userServices.GetAsync(user.UserEmail);
-                        if (userDetail != null)
+                        if(!string.IsNullOrEmpty(user.UserKey))
+                            _userPushTokenServices.Update(ref validationErrors, user.UserKey, userDetail.ID, userDetail.UserApplication);
+
+                        if (!string.IsNullOrEmpty(entity?.LanguageCode) && !string.IsNullOrEmpty(entity?.WeightVolumeType))
                         {
                             var date = DateTime.Now;
                             _userSettingServices.Insert(ref validationErrors, new UserSetting()
@@ -281,14 +184,27 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                                 LanguageDetail = entity.LanguageDetail
                             });
                         }
+
+                        _userNotificationSettingServices.Insert(ref validationErrors, new UserNotificationSetting
+                        {
+                            UserID = userDetail.ID,
+                            CreateDate = DateTime.Now,
+                            Intimation = true,
+                            IsGeneralMessage = true,
+                            IsNotifications = true,
+                            IsPromotional = true,
+                            IsSpecialOffer = true,
+                            IsVersionUpdate = true,
+                            IsWeightSubmitReminder = true,
+                            ModifyDate = DateTime.Now
+                        });
                     }
 
                     string message = "";
                     EmailContent emailContent = new EmailContent();
                     var content = emailContent.GetEmailDetail("en", EmailType.NEW_ACCOUNT, new string[] { });
                     if (content != null)
-                        new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body,
-                            true);
+                        new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body, true);
                     return Ok(HttpConstants.SUCCESS);
                 }
                 else
@@ -304,53 +220,59 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("requestpassword")]
         public async Task<IHttpActionResult> PostForgotPasswordRequest(Models.ForgotPassword request)
         {
-            if (request == null || request.UserLogin == null || request.UserLogin.Trim().Length == 0 ||
-                request.UserEmail == null || request.UserEmail.Trim().Length == 0)
-                return Ok("MessageAllInputRequired");
-            validationErrors = new ValidationErrors();
-            string requestCode = "";
-            var user = _userServices.ForgotPasswordRequest(ref validationErrors, request.UserLogin.Trim(),
-                request.UserEmail.Trim(), out requestCode);
-            if (user != null)
-            {
-                string message = "";
-                EmailContent emailContent = new EmailContent();
-                var content = emailContent.GetEmailDetail("en", EmailType.FORGOT_PASSWORD, new string[] {requestCode});
-                if (content != null)
-                    new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body, true);
-                return Ok(HttpConstants.SUCCESS);
-            }
-            else
-                return Ok(validationErrors.Show());
+            return await Task.Factory.StartNew(() => {
+                if (request == null || request.UserLogin == null || request.UserLogin.Trim().Length == 0 ||
+                    request.UserEmail == null || request.UserEmail.Trim().Length == 0)
+                    return Ok("MessageAllInputRequired");
+                validationErrors = new ValidationErrors();
+                string requestCode = "";
+                var user = _userServices.ForgotPasswordRequest(ref validationErrors, request.UserLogin.Trim(),
+                    request.UserEmail.Trim(), out requestCode);
+                if (user != null)
+                {
+                    string message = "";
+                    EmailContent emailContent = new EmailContent();
+                    var content = emailContent.GetEmailDetail("en", EmailType.FORGOT_PASSWORD, new string[] {requestCode});
+                    if (content != null)
+                        _ = new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body, true);
+                    return Ok(HttpConstants.SUCCESS);
+                }
+                else
+                    return Ok(validationErrors.Show());
+            });
         }
 
         [POST("updatepassword")]
         [Route("updatepassword")]
         public async Task<IHttpActionResult> PostForgotPasswordUpdate([FromBody] Models.PasswordDetail detail)
         {
-            if (detail == null || detail.RequestCode == null || detail.RequestCode.Trim().Length == 0 ||
-                detail.Password == null || detail.Password.Trim().Length == 0)
-                return Ok("MessageAllInputRequired");
-            validationErrors = new ValidationErrors();
-            if (_userServices.ChangeForgotPassword(ref validationErrors, detail.RequestCode.Trim(),
-                detail.Password.Trim()))
-                return Ok(HttpConstants.SUCCESS);
-            return Ok(validationErrors.Show());
+            return await Task.Factory.StartNew(() => {
+                if (detail == null || detail.RequestCode == null || detail.RequestCode.Trim().Length == 0 ||
+                    detail.Password == null || detail.Password.Trim().Length == 0)
+                    return Ok("MessageAllInputRequired");
+                validationErrors = new ValidationErrors();
+                if (_userServices.ChangeForgotPassword(ref validationErrors, detail.RequestCode.Trim(),
+                    detail.Password.Trim()))
+                    return Ok(HttpConstants.SUCCESS);
+                return Ok(validationErrors.Show());
+            });
         }
 
         [GET("updateuserstatus")]
         [Route("updateuserstatus")]
         public async Task<IHttpActionResult> GetUserStatus(string activation_code)
         {
-            string message = "Wrong param or no param is sent";
-            if (activation_code.Trim().Length == 0)
+            return await Task.Factory.StartNew(() => { 
+                string message = "Wrong param or no param is sent";
+                if (activation_code.Trim().Length == 0)
+                    return Ok(message);
+                else if (string.IsNullOrEmpty(activation_code) || string.IsNullOrWhiteSpace(activation_code))
+                    return Ok("Wrong param or no param is sent");
+                validationErrors = new ValidationErrors();
+                if (_userServices.UpdateUserStatus(ref validationErrors, activation_code))
+                    return Ok("E-mail verified successfully");
                 return Ok(message);
-            else if (string.IsNullOrEmpty(activation_code) || string.IsNullOrWhiteSpace(activation_code))
-                return Ok("Wrong param or no param is sent");
-            validationErrors = new ValidationErrors();
-            if (_userServices.UpdateUserStatus(ref validationErrors, activation_code))
-                return Ok("E-mail verified successfully");
-            return Ok(message);
+            });
         }
 
         [GET("checkconnection")]
@@ -367,5 +289,31 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         {
             return Ok(await _countryServices.GetAsync());
         }
-    }
+    
+        
+        private PlatformType GetPlatform()
+        {
+            var request = Request;
+            if (request != null && request.Headers != null)
+            {
+                var headers = request.Headers;
+                if (headers.Contains(HttpConstants.PLATFORM))
+                {
+                    try
+                    {
+                        var type = headers.GetValues(HttpConstants.PLATFORM).First();
+                        return (PlatformType) Enum.Parse(typeof(PlatformType), type, true);
+                    }
+                    catch (Exception)
+                    {
+                        //
+                    }
+
+                    return PlatformType.Wrong;
+                }
+            }
+
+            return PlatformType.None;
+        }
+        }
 }

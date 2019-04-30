@@ -111,10 +111,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
             }
-
-            //try
-            //{
-                bool success = false;
+            return await Task.Factory.StartNew(() => {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
                 ValidationErrors validationErrors = new ValidationErrors();
                 if (_userMilestoneServices.Insert(ref validationErrors, base.UserID, userMilestone))
@@ -133,12 +130,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                     response.Headers.Add(HttpConstants.EXECUTION_TIME, elapsedMs.ToString());
                     return response;
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    new LogsController().PostDebugLog(ex.ToString() + ", Token:" + base.Token).GetAwaiter();
-            //    return Request.CreateResponse(HttpStatusCode.ExpectationFailed, ex.ToString());
-            //}
+            });
         }
     }
 }

@@ -36,9 +36,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             if (platform == PlatformType.Wrong)
                 menuList = new List<Menu>();
             else if (platform == PlatformType.None)
-                menuList = _menuServices.GetByApplication(ApplicationKey).ToList();
+                menuList = (await _menuServices.GetByApplicationAsync(ApplicationKey)).ToList();
             else
-                menuList = _menuServices.GetByApplication(ApplicationKey, platform).ToList();
+                menuList = (await _menuServices.GetByApplicationAsync(ApplicationKey, platform)).ToList();
 
             if (this.UserID == 55)
             {

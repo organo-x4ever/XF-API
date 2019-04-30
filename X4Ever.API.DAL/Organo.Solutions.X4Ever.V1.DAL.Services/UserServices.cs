@@ -503,13 +503,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             dynamic[] obj = {entity, true, false, false, false, false};
             if (this.Validate(ref validationErrors, obj))
             {
-                var code = _helper.GetUniqueCode();
-
-                var activationCode = "";
-                if (entity.UserActivationKey == null || entity.UserActivationKey.Trim().Length == 0)
-                    activationCode = _helper.GetUniqueCode();
-                else
-                    activationCode = entity.UserActivationKey.Trim();
+                var code = string.IsNullOrEmpty(entity?.UserKey) ? _helper.GetUniqueCode() : entity?.UserKey;
+                var activationCode = string.IsNullOrEmpty(entity.UserActivationKey) ? _helper.GetUniqueCode() : entity.UserActivationKey.Trim();
 
                 var user = new User()
                 {

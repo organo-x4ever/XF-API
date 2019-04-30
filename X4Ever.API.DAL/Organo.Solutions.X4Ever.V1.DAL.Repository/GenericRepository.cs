@@ -558,7 +558,10 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
         {
             try
             {
-                return _dbSet.Where(where).FirstOrDefault<TEntity>();
+                return await Task.Factory.StartNew(() => 
+                { 
+                    return _dbSet.Where(where).FirstOrDefault<TEntity>();
+                });
             }
             catch (Exception ex)
             {
@@ -649,9 +652,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
         {
             try
             {
-                if (predicate == null)
-                    return _dbSet.LastOrDefault<TEntity>();
-                return _dbSet.LastOrDefault<TEntity>(predicate);
+                return await Task.Factory.StartNew(()=>{ 
+                    if (predicate == null)
+                        return _dbSet.LastOrDefault<TEntity>();
+                    return _dbSet.LastOrDefault<TEntity>(predicate);
+                });
             }
             catch (Exception ex)
             {

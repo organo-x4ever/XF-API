@@ -94,6 +94,7 @@
     <Compile Include="UserMilestone.cs" />
     <Compile Include="UserMilestoneExtended.cs" />
     <Compile Include="UserNotification.cs" />
+    <Compile Include="UserNotificationSetting.cs" />
     <Compile Include="UserNotificationType.cs" />
     <Compile Include="UserNotificationView.cs" />
     <Compile Include="UserPasswordHistory.cs" />

@@ -76,14 +76,15 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            ValidationErrors validationErrors = new ValidationErrors();
-            if (validationErrors.Count() == 0)
-            {
-                return Ok(HttpConstants.SUCCESS);
-            }
-            else
-                return Ok(validationErrors.Show());
+            return await Task.Factory.StartNew(() => {
+                ValidationErrors validationErrors = new ValidationErrors();
+                if (validationErrors.Count() == 0)
+                {
+                    return Ok(HttpConstants.SUCCESS);
+                }
+                else
+                    return Ok(validationErrors.Show());
+            });
         }
 
         // POST: api/UserTrackers
@@ -144,7 +145,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 {
                     string message = "";
                     var user = await _userServices.GetAsync(base.UserID);
-                    var response = false;
                     var content = _emailContent.GetEmailDetail(user.LanguageCode, emailType,
                         new string[] { });
                     if (content != null)
@@ -182,7 +182,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
             return new UserTracker();
         }
-
 
         // POST: api/UserTrackers
         [POST("posttrackerdelete")]

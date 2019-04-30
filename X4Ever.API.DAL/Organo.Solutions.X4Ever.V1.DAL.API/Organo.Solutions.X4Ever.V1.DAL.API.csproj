@@ -1129,6 +1129,7 @@
     <Compile Include="Controllers\MilestonePercentagesController.cs" />
     <Compile Include="Controllers\MilestonesController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\NotificationSettingsController.cs" />
     <Compile Include="Controllers\OpenNotificationsController.cs" />
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\PushNotificationsController.cs" />

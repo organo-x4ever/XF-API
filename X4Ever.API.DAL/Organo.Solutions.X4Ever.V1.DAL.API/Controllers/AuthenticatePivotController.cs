@@ -27,7 +27,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private readonly IUserTokensServices _tokenServices;
         private readonly IUserPivotServices _userPivotServices;
         private readonly IHelper _helper;
-        private readonly IFilterLog _filterLog;
 
         #endregion Private variable.
 
@@ -41,7 +40,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             _tokenServices = tokenServices;
             _userPivotServices = userPivotServices;
             _helper = new Helper();
-            _filterLog = new FilterLog((bool)_helper.GetAppSetting(CommonConstants.AuthenticationFilterCollect, typeof(bool)));
         }
 
         #endregion Public Constructor
@@ -54,32 +52,21 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [POST("login")]
         public HttpResponseMessage Login()
         {
-            _filterLog.Save(LogType.AuthenticatePivot, new string[] { "UserID: 0", "Login Step: 1" },"0");
-
             if (System.Threading.Thread.CurrentPrincipal == null ||
                 !System.Threading.Thread.CurrentPrincipal.Identity.IsAuthenticated)
                 return UnAuthorized(HttpConstants.UNAUTHORIZED);
-
-            _filterLog.Save(LogType.AuthenticatePivot, new string[] {"UserID: 0","Login Step: 2" },"0");
-            
+   
             if (!(System.Threading.Thread.CurrentPrincipal.Identity is BasicAuthenticationIdentity
                 basicAuthenticationIdentity))
                 return UnAuthorized(HttpConstants.UNAUTHORIZED);
             var userId=basicAuthenticationIdentity?.UserId ?? 0;
-            _filterLog.Save(LogType.AuthenticatePivot, new string[] {"UserID: " + userId.ToString(),"Login Step: 3" },userId.ToString());
             var token = _tokenServices.GenerateToken(basicAuthenticationIdentity?.UserId ?? 0);
-            _filterLog.Save(LogType.AuthenticatePivot, new string[] {"UserID: " + userId.ToString(),"Login Step: 4" },userId.ToString());
             var response = Request.CreateResponse(HttpStatusCode.OK);
-            _filterLog.Save(LogType.AuthenticatePivot, new string[] {"UserID: " + userId.ToString(),"Login Step: 5" },userId.ToString());
             response.Headers.Add(HttpConstants.TOKEN, token.AuthToken);
-            _filterLog.Save(LogType.AuthenticatePivot, new string[] {"UserID: " + userId.ToString(),"Login Step: 6" },userId.ToString());
             response.Headers.Add(HttpConstants.TOKEN_EXPIRY,
                 token.ExpiresOn.ToString(CultureInfo.CurrentCulture));
-            _filterLog.Save(LogType.AuthenticatePivot, new string[] {"UserID: " + userId.ToString(),"Login Step: 7" },userId.ToString());
             response.Headers.Add(HttpConstants.ACCESS_CONTROL_EXPOSE_HEADERS,
                 HttpConstants.TOKEN_COMMA_TOKEN_EXPIRY);
-            _filterLog.Save(LogType.AuthenticatePivot, new string[] {"UserID: " + userId.ToString(),"Login Step: 8" },userId.ToString());
-            _filterLog.Save(LogType.AuthenticatePivot, new string[] {"UserID: " + userId.ToString(),"Token: "+token.AuthToken,"TokenExpiry: "+token.ExpiresOn.ToString(CultureInfo.CurrentCulture) },userId.ToString());
             return response;
         }
         

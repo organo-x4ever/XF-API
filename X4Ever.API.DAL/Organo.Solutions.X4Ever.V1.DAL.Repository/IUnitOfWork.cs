@@ -65,6 +65,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
         IGenericRepository<UserTrackerPivot> UserTrackerPivotRepository { get; }
         IGenericRepository<WebUserMetaPivot> WebUserMetaPivotRepository { get; }
         IGenericRepository<WebUserTrackerViewPivot> WebUserTrackerViewPivotRepository { get; }
+
+        IGenericRepository<UserNotificationSetting> UserNotificationSettingRepository { get; }
+
         bool Commit();
         Task<bool> CommitAsync();
 

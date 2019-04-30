@@ -43,26 +43,17 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("post")]
         public async Task<IHttpActionResult> Post(UserPushToken userPushToken)
         {
-            var validationErrors = new ValidationErrors();
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest("Invalid Request");
-                }
-
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid Request");
+            return await Task.Factory.StartNew(() => {
+                var validationErrors = new ValidationErrors();
                 userPushToken.DeviceApplication = ApplicationKey;
                 userPushToken.DevicePlatform = Platform.ToString();
                 var response = _userPushTokenServices.Insert(ref validationErrors, base.UserID, userPushToken);
                 if (response)
                     return Ok(HttpConstants.SUCCESS);
-            }
-            catch
-            {
-                //
-            }
-
-            return Ok(validationErrors.Show());
+                return Ok(validationErrors.Show());
+            });
         }
 
         // GET: api/news
@@ -71,17 +62,16 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         public async Task<IHttpActionResult> PostTokenAsync(UserPushTokenRegister userPushToken)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest("Invalid Request");
-            }
-
-            userPushToken.DeviceApplication = ApplicationKey;
-            userPushToken.DevicePlatform = Platform.ToString();
-            var validationErrors = new ValidationErrors();
-            var response = _userPushTokenServices.Insert(ref validationErrors, base.UserID, userPushToken);
-            if (response)
-                return Ok(HttpConstants.SUCCESS);
-            return Ok(validationErrors.Show());
+            return await Task.Factory.StartNew(() => {
+                userPushToken.DeviceApplication = ApplicationKey;
+                userPushToken.DevicePlatform = Platform.ToString();
+                var validationErrors = new ValidationErrors();
+                var response = _userPushTokenServices.Insert(ref validationErrors, base.UserID, userPushToken);
+                if (response)
+                    return Ok(HttpConstants.SUCCESS);
+                return Ok(validationErrors.Show());
+            });
         }
     }
 }

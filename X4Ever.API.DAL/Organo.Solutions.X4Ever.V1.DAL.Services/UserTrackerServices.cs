@@ -269,7 +269,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
         public bool Insert(ref ValidationErrors validationErrors, long userId, UserTracker entity)
         {
-            var success = false;
             entity.UserID = userId;
             dynamic[] obj = {entity, false, true, false};
             if (Validate(ref validationErrors, obj))

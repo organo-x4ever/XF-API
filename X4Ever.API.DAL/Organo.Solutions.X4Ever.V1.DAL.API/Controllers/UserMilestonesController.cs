@@ -63,15 +63,14 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         public async Task<IHttpActionResult> PostUserMilestone(UserMilestone userMilestone)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
-
-            ValidationErrors validationErrors = new ValidationErrors();
-            if (_userMilestoneServices.Insert(ref validationErrors, base.UserID, userMilestone))
-                return Ok(HttpConstants.SUCCESS);
-            else
-                return Ok(validationErrors.Show());
+            return await Task.Factory.StartNew(() => {
+                ValidationErrors validationErrors = new ValidationErrors();
+                if (_userMilestoneServices.Insert(ref validationErrors, base.UserID, userMilestone))
+                    return Ok(HttpConstants.SUCCESS);
+                else
+                    return Ok(validationErrors.Show());
+            });
         }
     }
 }

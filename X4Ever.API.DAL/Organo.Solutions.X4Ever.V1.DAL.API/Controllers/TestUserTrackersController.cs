@@ -159,23 +159,15 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         public async Task<HttpResponseMessage> PostUserTracker(UserTracker userTracker)
         {
             if (!ModelState.IsValid)
-            {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-            }
 
-            //try
-            //{
+            return await Task.Factory.StartNew(() => {
                 ValidationErrors validationErrors = new ValidationErrors();
                 if (_userTrackerServices.Insert(ref validationErrors, base.UserID, userTracker))
                     return Request.CreateResponse(HttpStatusCode.OK, HttpConstants.SUCCESS);
                 else
                     return Request.CreateResponse(HttpStatusCode.BadRequest, validationErrors.Show());
-            //}
-            //catch (Exception ex)
-            //{
-            //    new LogsController().PostDebugLog(ex.ToString() + ", Token:" + base.Token).GetAwaiter();
-            //    return Request.CreateResponse(HttpStatusCode.BadRequest, ex.ToString());
-            //}
+            });
         }
 
         // POST: api/UserTrackers
@@ -238,7 +230,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                     {
                         string message = "";
                         var user = await _userServices.GetAsync(base.UserID);
-                        var response = false;
                         var content = _emailContent.GetEmailDetail(user.LanguageCode, emailType,
                             new string[] { });
                         if (content != null)

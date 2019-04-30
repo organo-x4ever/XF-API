@@ -155,13 +155,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
 
         public string GetUniqueCode()
         {
-            var code = Guid.NewGuid().ToString();
-            var codes = code.Split('-');
-            var codeCombined = "";
-            foreach (var c in codes)
-                codeCombined += c.ToUpper();
-
-            return codeCombined;
+            return Guid.NewGuid().ToString().Replace("-","").ToUpper();
         }
 
         public bool IsValidEmail(string email)
@@ -524,7 +518,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 //
             }

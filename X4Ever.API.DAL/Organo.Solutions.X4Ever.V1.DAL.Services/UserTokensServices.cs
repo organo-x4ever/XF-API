@@ -202,12 +202,11 @@
             var datetime = DateTime.Now;
             try
             {
-                int period = _helper.GetAppSetting("AuthTokenExpiry", typeof(System.Int32));
-                if (period == null || period == 0)
+                if (int.TryParse(_helper.GetAppSetting("AuthTokenExpiry"), out int period))
                     period = 30;
 
                 var sessionType = SessionType.Min;
-                var type = _helper.GetAppSetting("AuthTokenExpiry_PeriodType", typeof(System.String));
+                var type = _helper.GetAppSetting("AuthTokenExpiry_PeriodType", typeof(string));
                 if (type != null || type.ToString().Length != 0)
                     SessionType.TryParse(type, out sessionType);
 
@@ -238,7 +237,7 @@
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 datetime = DateTime.Now.AddMinutes(30);
             }

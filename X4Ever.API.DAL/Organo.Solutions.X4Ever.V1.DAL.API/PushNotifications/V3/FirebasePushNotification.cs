@@ -77,16 +77,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.PushNotifications.V3
                 if (httpResponse.StatusCode != HttpStatusCode.Accepted &&
                     httpResponse.StatusCode != HttpStatusCode.OK &&
                     httpResponse.StatusCode != HttpStatusCode.Created)
-                    result = string.Format(
-                        "An error has occurred when try to get server response: {httpResponse.StatusCode} ({httpResponse.StatusDescription})");
+                    result = $"An error has occurred when try to get server response: {httpResponse.StatusCode} ({httpResponse.StatusDescription})";
                 return result;
             }
             catch (Exception ex)
             {
                 return ex + (ex.InnerException != null ? ", INNER:" + ex.InnerException.Message : "");
             }
-
-            return "failed";
         }
 
         public async Task<string> PushNotifyAsync(string[] deviceTokens, string title, string message)
@@ -141,16 +138,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.PushNotifications.V3
                 if (httpResponse.StatusCode != HttpStatusCode.Accepted &&
                     httpResponse.StatusCode != HttpStatusCode.OK &&
                     httpResponse.StatusCode != HttpStatusCode.Created)
-                    result = string.Format(
-                        "An error has occurred when try to get server response: {httpResponse.StatusCode} ({httpResponse.StatusDescription})");
+                    result = $"An error has occurred when try to get server response: {httpResponse.StatusCode} ({httpResponse.StatusDescription})";
                 return result;
             }
             catch (Exception ex)
             {
                 return ex + (ex.InnerException != null ? ", INNER:" + ex.InnerException.Message : "");
             }
-
-            return "failed";
         }
 
         public void Dispose()

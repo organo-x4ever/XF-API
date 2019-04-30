@@ -30,64 +30,70 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [POST("upload")]
         public async Task<string> Post()
         {
-            var httpRequest = HttpContext.Current.Request;
-            try
-            {
-                if (httpRequest.Files.Count > 0)
+            return await Task.Factory.StartNew(() => {
+                var httpRequest = HttpContext.Current.Request;
+                try
                 {
-                    foreach (string file in httpRequest.Files)
+                    if (httpRequest.Files.Count > 0)
                     {
-                        var postedFile = httpRequest.Files[file];
-                        var fileName = postedFile.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault();
-                        var filePath = HttpContext.Current.Server.MapPath("~/" + FileUploadPath + "/" + fileName);
-                        postedFile.SaveAs(filePath);
-                        return HttpConstants.SUCCESS + "#" + FileUploadPath + "/" + fileName;
+                        foreach (string file in httpRequest.Files)
+                        {
+                            var postedFile = httpRequest.Files[file];
+                            var fileName = postedFile.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault();
+                            var filePath = HttpContext.Current.Server.MapPath("~/" + FileUploadPath + "/" + fileName);
+                            postedFile.SaveAs(filePath);
+                            return HttpConstants.SUCCESS + "#" + FileUploadPath + "/" + fileName;
+                        }
                     }
-                }
 
-                return "MessageFileUploadFailed";
-            }
-            catch (Exception ex)
-            {
-                return "MessageErrorOccurred";
-            }
+                    return "MessageFileUploadFailed";
+                }
+                catch (Exception)
+                {
+                    return "MessageErrorOccurred";
+                }
+            });
         }
 
         [Route("uploadasync")]
         [POST("uploadasync")]
         public async Task<HttpResponseMessage> PostAsync()
         {
-            var httpRequest = HttpContext.Current.Request;
-            try
-            {
-                if (httpRequest.Files.Count > 0)
-                    foreach (string file in httpRequest.Files)
-                    {
-                        var postedFile = httpRequest.Files[file];
-                        if (postedFile != null)
+            return await Task.Factory.StartNew(() => {
+                var httpRequest = HttpContext.Current.Request;
+                try
+                {
+                    if (httpRequest.Files.Count > 0)
+                        foreach (string file in httpRequest.Files)
                         {
-                            var fileName = postedFile.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault();
-                            var filePath = HttpContext.Current.Server.MapPath("~/" + FileUploadPath + "/" + fileName);
-                            postedFile.SaveAs(filePath);
-                            return Request.CreateResponse(HttpStatusCode.OK, FileUploadPath + "/" + fileName);
+                            var postedFile = httpRequest.Files[file];
+                            if (postedFile != null)
+                            {
+                                var fileName = postedFile.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault();
+                                var filePath = HttpContext.Current.Server.MapPath("~/" + FileUploadPath + "/" + fileName);
+                                postedFile.SaveAs(filePath);
+                                return Request.CreateResponse(HttpStatusCode.OK, FileUploadPath + "/" + fileName);
+                            }
                         }
-                    }
 
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "MessageFileUploadFailed");
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "MessageFileUploadFailed#" + ex.Message);
-            }
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "MessageFileUploadFailed");
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "MessageFileUploadFailed#" + ex.Message);
+                }
+            });
         }
 
         [Route("get")]
         [GET("get")]
         public async Task<string> Get(string param1)
         {
-            if (param1 != null)
-                return _helper.GetAppSetting(param1);
-            return "";
+            return await Task.Factory.StartNew(() => {
+                if (param1 != null)
+                    return _helper.GetAppSetting(param1);
+                return "";
+            });
         }
 
         //string[] headers = new string[number];

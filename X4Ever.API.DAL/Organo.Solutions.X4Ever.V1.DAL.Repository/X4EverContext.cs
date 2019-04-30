@@ -68,5 +68,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
         public DbSet<WebUserMetaPivot> WebUserMetaPivots { get; set; }
 
         public DbSet<WebUserTrackerViewPivot> WebUserTrackerViewPivots { get; set; }
+
+        public DbSet<UserNotificationSetting> UserNotificationSettings {get;set;}
     }
 }
