@@ -19,8 +19,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Model
         [Column(name: "promotional_allowed")] public bool IsPromotional { get; set; }
         [Column(name: "special_offer_allowed")] public bool IsSpecialOffer { get; set; }
         [Column(name: "version_update_allowed")] public bool IsVersionUpdate { get; set; }
-        [Column(name: "weight_submit_reminder_allowed")] public bool IsWeightSubmitReminder { get; set; }
-        [Column(name: "is_email")] public bool IsNotifications { get; set; }
+        [Column(name: "weight_submit_reminder_allowed")] public bool IsWeightSubmitReminder { get; set; }       
 
         [Column(name: "create_date")] public DateTime CreateDate { get; set; }
         [Column(name: "modify_date")] public DateTime ModifyDate { get; set; }

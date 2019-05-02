@@ -1,4 +1,7 @@
-﻿using Microsoft.Practices.Unity;
+﻿using AutoMapper;
+using Microsoft.Practices.Unity;
+using Organo.Solutions.X4Ever.V1.DAL.API.Models;
+using Organo.Solutions.X4Ever.V1.DAL.Model;
 using Organo.Solutions.X4Ever.V1.DAL.Repository;
 using Organo.Solutions.X4Ever.V1.DAL.Resolver;
 using Organo.Solutions.X4Ever.V1.DAL.Services;
@@ -17,6 +20,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API
 
             // register dependency resolver for WebAPI RC
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<NotificationSetting, UserNotificationSetting>());
         }
 
         private static IUnityContainer BuildUnityContainer()

@@ -1,5 +1,6 @@
 C:\XF-API\X4Ever.API.DAL\PushSharp.Core\bin\Debug\PushSharp.Core.dll
 C:\XF-API\X4Ever.API.DAL\PushSharp.Core\bin\Debug\PushSharp.Core.pdb
+C:\XF-API\X4Ever.API.DAL\PushSharp.Core\obj\Debug\PushSharp.Core.csprojAssemblyReference.cache
 C:\XF-API\X4Ever.API.DAL\PushSharp.Core\obj\Debug\PushSharp.Core.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\PushSharp.Core\obj\Debug\PushSharp.Core.dll
 C:\XF-API\X4Ever.API.DAL\PushSharp.Core\obj\Debug\PushSharp.Core.pdb

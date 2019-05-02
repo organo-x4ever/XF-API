@@ -207,3 +207,8 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Core.p
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AutoMapper.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.ValueTuple.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AutoMapper.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AutoMapper.xml
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.ValueTuple.xml

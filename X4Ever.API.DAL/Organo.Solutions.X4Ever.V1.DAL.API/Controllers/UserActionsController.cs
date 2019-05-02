@@ -191,7 +191,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                             CreateDate = DateTime.Now,
                             Intimation = true,
                             IsGeneralMessage = true,
-                            IsNotifications = true,
                             IsPromotional = true,
                             IsSpecialOffer = true,
                             IsVersionUpdate = true,

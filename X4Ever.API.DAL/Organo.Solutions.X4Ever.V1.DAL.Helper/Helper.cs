@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.Helper
 {
@@ -322,14 +323,26 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
 
         public PhoneNumber PhoneNumber { get; set; }
 
+        private string GetExceptionDetail(Exception exception)
+        {
+            var stringBuilder = new StringBuilder();
+            while (exception != null)
+            {
+                stringBuilder.AppendLine(exception.Message);
+                stringBuilder.AppendLine(exception.StackTrace);
+                exception = exception.InnerException;
+            }
+            return stringBuilder.ToString();
+        }
+
         public void SaveLog(Exception ex, string className, string method = "")
         {
             try
             {
-                var logFilePath = GetAppSetting("genericRepositoryError");
+                var logFilePath = GetAppSetting("uowErrorLogs");
                 // Today's file name
-                var fileName = $"{DateTime.Now:yyyy-MM-dd}-gr-exception.log";
-                var path = logFilePath + "\\" + fileName;
+                var fileName = $"{DateTime.Now:yyyy-MM-dd}-uow-exception.log";
+                var path = HttpContext.Current.Request.MapPath("~/" + logFilePath + "/" + fileName);
                 // This text is added only once to the file.
                 if (!File.Exists(path))
                 {
@@ -341,7 +354,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                         sw.WriteLine($"{dateString}: Error of type {ex.GetType().Name} in class {className} and method {method} has the following validation errors:");
                         if (ex.InnerException != null)
                         {
-                            sw.WriteLine($"- Error: {ex.InnerException.Message}");
+                            sw.WriteLine($"- Error: {GetExceptionDetail(ex)}");
                             sw.WriteLine($"Date: {DateTime.Now}");
                             sw.WriteLine(Environment.NewLine);
                         }
@@ -358,16 +371,16 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                         sw.WriteLine($"{dateString}: Error of type {ex.GetType().Name} in class {className} and method {method} has the following validation errors:");
                         if (ex.InnerException != null)
                         {
-                            sw.WriteLine($"- Error: {ex.InnerException.Message}");
+                            sw.WriteLine($"- Error: {GetExceptionDetail(ex)}");
                             sw.WriteLine($"Date: {DateTime.Now}");
                             sw.WriteLine(Environment.NewLine);
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //
+                _ = exception;
             }
         }
 
@@ -390,7 +403,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                         await sw.WriteLineAsync($"{dateString}: Error of type {ex.GetType().Name} in class {className} and method {method} has the following validation errors:");
                         if (ex.InnerException != null)
                         {
-                            await sw.WriteLineAsync($"- Error: {ex.InnerException.Message}");
+                            sw.WriteLine($"- Error: {GetExceptionDetail(ex)}");
                             await sw.WriteLineAsync($"Date: {DateTime.Now}");
                             await sw.WriteLineAsync(Environment.NewLine);
                         }
@@ -407,16 +420,16 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                         await sw.WriteLineAsync($"{dateString}: Error of type {ex.GetType().Name} in class {className} and method {method} has the following validation errors:");
                         if (ex.InnerException != null)
                         {
-                            await sw.WriteLineAsync($"- Error: {ex.InnerException.Message}");
+                            sw.WriteLine($"- Error: {GetExceptionDetail(ex)}");
                             await sw.WriteLineAsync($"Date: {DateTime.Now}");
                             await sw.WriteLineAsync(Environment.NewLine);
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //
+                _ = exception;
             }
         }
 
@@ -463,9 +476,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //
+                _ = exception;
             }
         }
 
@@ -518,9 +531,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //
+                _ = exception;
             }
         }
     }

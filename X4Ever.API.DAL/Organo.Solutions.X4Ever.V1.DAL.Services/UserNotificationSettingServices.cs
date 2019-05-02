@@ -27,18 +27,10 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         public bool Insert(ref ValidationErrors validationErrors, UserNotificationSetting userNotification)
         {
             if (Validate(ref validationErrors, new object[] { userNotification }))
-            {
-                var entity = Get(userId: userNotification.UserID);
-                if (entity == null)
-                {
-                    userNotification.CreateDate = DateTime.Now;
-                    _unitOfWork.UserNotificationSettingRepository.Insert(userNotification);
-                }
-                else
-                {
-                    entity = userNotification;
-                    return Update(ref validationErrors, entity);
-                }
+            {   
+                userNotification.CreateDate = DateTime.Now;
+                userNotification.ModifyDate = DateTime.Now;
+                _unitOfWork.UserNotificationSettingRepository.Insert(userNotification);
                 return _unitOfWork.Commit();
             }
             return false;
@@ -55,7 +47,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 }
                 else
                 {
-                    entity = userNotification;
+                    entity.Intimation = userNotification.Intimation;
+                    entity.IsGeneralMessage = userNotification.IsGeneralMessage;
+                    entity.IsPromotional= userNotification.IsPromotional;
+                    entity.IsSpecialOffer = userNotification.IsSpecialOffer;
+                    entity.IsVersionUpdate = userNotification.IsVersionUpdate;
+                    entity.IsWeightSubmitReminder = userNotification.IsWeightSubmitReminder;
+
                     entity.ModifyDate = DateTime.Now;
                     _unitOfWork.UserNotificationSettingRepository.Update(entity);
                 }

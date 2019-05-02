@@ -1,5 +1,6 @@
 ﻿
 using AttributeRouting.Web.Http;
+using Organo.Solutions.X4Ever.V1.DAL.API.Models;
 using Organo.Solutions.X4Ever.V1.DAL.API.Security.ActionFilters;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Model;
@@ -52,8 +53,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         // POST: api/UserTrackers
         [POST("postsettings")]
         [Route("postsettings")]
-        [ResponseType(typeof(UserNotificationSetting))]
-        public IHttpActionResult PostSettings(UserNotificationSetting userNotification)
+        [ResponseType(typeof(NotificationSetting))]
+        public IHttpActionResult PostSettings(NotificationSetting userNotification)
         {
             if (!ModelState.IsValid)
             {
@@ -61,8 +62,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             }
 
             ValidationErrors validationErrors = new ValidationErrors();
-            userNotification.UserID = UserID;
-            if (_userNotificationSettingServices.Update(ref validationErrors, userNotification))
+            var entity = AutoMapper.Mapper.Map<UserNotificationSetting>(userNotification);
+            entity.UserID = UserID;
+            if (_userNotificationSettingServices.Update(ref validationErrors, entity))
             {
                 return Ok(HttpConstants.SUCCESS);
             }
