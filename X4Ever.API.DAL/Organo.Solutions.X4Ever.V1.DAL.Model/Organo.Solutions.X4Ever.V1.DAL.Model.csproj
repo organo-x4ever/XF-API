@@ -82,6 +82,7 @@
     <Compile Include="Province.cs" />
     <Compile Include="Statics\NotificationType.cs" />
     <Compile Include="Statics\TrackerConstants.cs" />
+    <Compile Include="Statistic.cs" />
     <Compile Include="Testimonial.cs" />
     <Compile Include="TrackerPivot.cs" />
     <Compile Include="UserAuthentication.cs" />

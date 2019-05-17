@@ -74,6 +74,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
 
         private IGenericRepository<UserTrackerDeleted> _userTrackerDeletedRepository;
         private IGenericRepository<UserNotificationSetting> _userNotificationSettingRepository;
+        private IGenericRepository<Statistic> _statisticRepository;
 
         public IGenericRepository<User> UserRepository =>
             _userRepository ?? (_userRepository = new GenericRepository<User>(_context));
@@ -249,6 +250,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
 
         public IGenericRepository<UserNotificationSetting> UserNotificationSettingRepository => 
             _userNotificationSettingRepository?? (_userNotificationSettingRepository=new GenericRepository<UserNotificationSetting>(_context));
+
+        public IGenericRepository<Statistic> StatisticRepository => 
+            _statisticRepository??(_statisticRepository=new GenericRepository<Statistic>(_context));
 
         public bool Commit()
         {

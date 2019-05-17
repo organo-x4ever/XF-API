@@ -64,6 +64,7 @@
     <Compile Include="IOpenNotificationUserServices.cs" />
     <Compile Include="IPasswordHistoryServices.cs" />
     <Compile Include="IProvinceServices.cs" />
+    <Compile Include="IStatisticServices.cs" />
     <Compile Include="ITestimonialServices.cs" />
     <Compile Include="IUserMetaPivotServices.cs" />
     <Compile Include="IUserMetaServices.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="PasswordHistoryServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinceServices.cs" />
+    <Compile Include="StatisticServices.cs" />
     <Compile Include="TestimonialServices.cs" />
     <Compile Include="UserMetaPivotServices.cs" />
     <Compile Include="UserMetaServices.cs" />

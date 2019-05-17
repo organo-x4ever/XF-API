@@ -68,6 +68,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
 
         IGenericRepository<UserNotificationSetting> UserNotificationSettingRepository { get; }
 
+        IGenericRepository<Statistic> StatisticRepository {get;}
+
         bool Commit();
         Task<bool> CommitAsync();
 

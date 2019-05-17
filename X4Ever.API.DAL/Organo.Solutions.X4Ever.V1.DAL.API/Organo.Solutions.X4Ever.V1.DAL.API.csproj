@@ -1141,6 +1141,7 @@
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\PushNotificationsController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\TestimonialsController.cs" />
     <Compile Include="Controllers\TestUserMilestonesController.cs" />
     <Compile Include="Controllers\TestUserTrackersController.cs" />

@@ -11,6 +11,7 @@ using System.Web.Http.Cors;
 using AttributeRouting.Web.Http;
 using Organo.Solutions.X4Ever.V1.DAL.API.Security.ActionFilters;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
+using System.Text;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -28,9 +29,10 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
         [Route("upload")]
         [POST("upload")]
-        public async Task<string> Post()
+        public string Post()
         {
-            return await Task.Factory.StartNew(() => {
+            try
+            {
                 var httpRequest = HttpContext.Current.Request;
                 try
                 {
@@ -48,18 +50,23 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
                     return "MessageFileUploadFailed";
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    return "MessageErrorOccurred";
+                    return "MessageErrorOccurred#" + GetExceptionDetail(ex);
                 }
-            });
+            }
+            catch (Exception ex)
+            {
+                return "MAIN#" + GetExceptionDetail(ex);
+            }
         }
 
         [Route("uploadasync")]
         [POST("uploadasync")]
-        public async Task<HttpResponseMessage> PostAsync()
+        public HttpResponseMessage PostAsync()
         {
-            return await Task.Factory.StartNew(() => {
+            try
+            {
                 var httpRequest = HttpContext.Current.Request;
                 try
                 {
@@ -80,35 +87,26 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "MessageFileUploadFailed#" + ex.Message);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "MessageFileUploadFailed#" + GetExceptionDetail(ex));
                 }
-            });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, "MAIN#" + GetExceptionDetail(ex));
+            }
         }
 
         [Route("get")]
         [GET("get")]
         public async Task<string> Get(string param1)
         {
-            return await Task.Factory.StartNew(() => {
+            return await Task.Factory.StartNew(() =>
+            {
                 if (param1 != null)
                     return _helper.GetAppSetting(param1);
                 return "";
             });
         }
-
-        //string[] headers = new string[number];
-        //for (var i = 0; i < number; i++)
-        //{
-        //    var header = base.GetHeader(HttpConstants.HTTP_HEADER_PARAM + (i + 1).ToString());
-        //    if (header != null)
-        //        headers[i] = (string)header;
-        //}
-
-        //if (headers.Length == number)
-        //{
-        //    var data = CryptoEngine.Decrypt(headers[0], headers[1] ?? headers[1]);
-        //    return _helper.GetAppSetting(data);
-        //}
 
         private string FileUploadPath
         {
@@ -127,5 +125,34 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 return fileUploadPath;
             }
         }
+
+        public string GetExceptionDetail(Exception exception)
+        {
+            var stringBuilder = new StringBuilder();
+            while (exception != null)
+            {
+                stringBuilder.AppendLine(exception.Message);
+                stringBuilder.AppendLine(exception.StackTrace);
+                exception = exception.InnerException;
+            }
+
+            return stringBuilder.ToString();
+        }
     }
 }
+
+
+
+//string[] headers = new string[number];
+//for (var i = 0; i < number; i++)
+//{
+//    var header = base.GetHeader(HttpConstants.HTTP_HEADER_PARAM + (i + 1).ToString());
+//    if (header != null)
+//        headers[i] = (string)header;
+//}
+
+//if (headers.Length == number)
+//{
+//    var data = CryptoEngine.Decrypt(headers[0], headers[1] ?? headers[1]);
+//    return _helper.GetAppSetting(data);
+//}

@@ -21,7 +21,6 @@ C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\bin\Debug\EntityFramework.dll
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csprojAssemblyReference.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
