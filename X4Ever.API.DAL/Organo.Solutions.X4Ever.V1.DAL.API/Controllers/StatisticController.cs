@@ -27,7 +27,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
         [POST("post")]
         [Route("post")]
-        public async Task<IHttpActionResult> Post(Statistic model)
+        public IHttpActionResult Post(Statistic model)
         {
             if (!ModelState.IsValid) return BadRequest();
             var validationErrors = new ValidationErrors();

@@ -30,3 +30,4 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\obj\Debug\Organ
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Resolver.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Resolver.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Resolver.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Resolver\obj\Debug\Organo.Solutions.X4Ever.V1.DAL.Resolver.csprojAssemblyReference.cache

@@ -31,6 +31,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         public static string TrackerViewAllowed => "tracker:IsViewAllowed";
         public static string TrackerDownloadAllowed => "tracker:IsDownloadAllowed";
 
+        public static string X4EverBlogs=>"weblink:x4ever_blogs";
+
         public static string ExcludingSubmitCurrentWeight => "excludingSubmitCurrentWeight";
         public static string WeightSubmitIntervalDays => "WeightSubmitIntervalDays";
         public static string UsernameLengthMin => "usernameLengthMin";

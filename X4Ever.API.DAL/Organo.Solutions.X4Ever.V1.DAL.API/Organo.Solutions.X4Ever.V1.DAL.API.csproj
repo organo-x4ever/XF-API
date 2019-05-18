@@ -1127,6 +1127,7 @@
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\ApplicationLanguagesController.cs" />
     <Compile Include="Controllers\AuthenticatePivotController.cs" />
+    <Compile Include="Controllers\ConstantsController.cs" />
     <Compile Include="Controllers\FrontendController.cs" />
     <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\MealPlansController.cs" />
