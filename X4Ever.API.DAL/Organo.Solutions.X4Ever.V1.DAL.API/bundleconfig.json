@@ -70,5 +70,11 @@
     "inputFiles": [
       "realtime/app_realtime_weight_tracking.js"
     ]
+  },
+  {
+    "outputFileName": "App_Dynamic/blogs-init.min.js",
+    "inputFiles": [
+      "App_Dynamic/blogs-init.js"
+    ]
   }
 ]
