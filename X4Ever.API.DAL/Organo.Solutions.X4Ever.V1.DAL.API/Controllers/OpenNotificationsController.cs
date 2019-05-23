@@ -80,17 +80,15 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                         var content = _emailContent.GetEmailDetail(user.LanguageCode,
                             EmailType.AFTER_7_DAYS_ACCOUNT_CREATION,
                             new string[] { });
+
                         if (content != null)
                         {
-                            if (new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject,
-                                content.Body, true))
-                            {
+                            new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body, true);
                                 validationErrors = await AddValidation(validationErrors,
                                     await _notificationServices.Insert(
                                         user.UserID, user.UserEmail,
-                                        DateTime.Now, content.Subject, content.Body, "E-mail sent successfully",
+                                        DateTime.Now, content.Subject, content.Body, string.IsNullOrEmpty(message)?"E-mail sent successfully":message,
                                         EmailType.AFTER_7_DAYS_ACCOUNT_CREATION.ToString(), false, true, "email"));
-                            }
                         }
                     }
                     catch (Exception)

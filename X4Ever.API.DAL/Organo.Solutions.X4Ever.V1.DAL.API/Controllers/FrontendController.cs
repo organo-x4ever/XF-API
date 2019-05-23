@@ -262,7 +262,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                         _helper.GetAppSetting(NotificationConstant.CertificatePassProd),
                         environment.ToLower().Contains("production"));
                 }
-
                 foreach (var user in users)
                 {
                     if (sendPush ?? false && user.DeviceToken != null)
@@ -285,9 +284,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                         validationErrors = await AddValidation(validationErrors,
                             await _notificationServices.Insert(user.UserID, user.DeviceToken, DateTime.Now,
                                 notificationTitle, notificationBody,
-                                !string.IsNullOrEmpty(response) ? response : "No response returned",
-                                "Frontend Custom Message [AUTH_CODE: " + authCode + "],[USER_TOKEN: " +
-                                Token + "]", true, false, user.DevicePlatform.ToLower()));
+                                !string.IsNullOrEmpty(response) ? response : "No response returned",$"Frontend Custom Message [AUTH_CODE: {authCode}],[USER_TOKEN: {Token}]", true, false, user.DevicePlatform.ToLower()));
                     }
 
                     if (sendEmail ?? false)
@@ -296,21 +293,20 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                         try
                         {
                             var content = "";
-                            if (attachFooter)
+                            if (attachFooter){
                                 content = _emailContent.FooterContent(user.LanguageCode);
-                            new Message().SendMail(ref message, user.UserEmail, "", "", emailSubject,
-                                emailBody + (attachFooter ? content ?? "" : ""), true);
+                            }
+                            new Message().SendMail(ref message, user.UserEmail, "", "", emailSubject, emailBody + (attachFooter ? content ?? "" : ""), true);
+                            emailBody = emailBody + (attachFooter ? content ?? "" : "");
+                            var messageBody = string.IsNullOrEmpty(message) ? "E-mail sent successfully" : message;
+                            var messageIdentity = $"Frontend Custom Message [AUTH_CODE: {authCode}],[USER_TOKEN: {Token}]";
                             validationErrors.Add(message);
-                            validationErrors = await AddValidation(validationErrors,
-                                await _notificationServices.Insert(user.UserID, user.UserEmail, DateTime.Now,
-                                    emailSubject, emailBody + (attachFooter ? content ?? "" : ""),
-                                    string.IsNullOrEmpty(message) ? "E-mail sent successfully" : message,
-                                    "Frontend Custom Message [AUTH_CODE: " + authCode + "],[USER_TOKEN: " +
-                                    Token + "]", false, false, "email"));
+                            var result = await _notificationServices.Insert(user.UserID, user.UserEmail, DateTime.Now, emailSubject, messageBody, messageBody, messageIdentity, false, false, "email");
+                            validationErrors = await AddValidation(validationErrors, result);
                         }
-                        catch (Exception)
+                        catch (Exception exception)
                         {
-                            //
+                            validationErrors.Add(exception.ToString());
                         }
                     }
                 }

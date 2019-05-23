@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushSharp.Apple", "PushShar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushSharp.Core", "PushSharp.Core\PushSharp.Core.csproj", "{2B44A8DA-60BC-4577-A2D7-D9D53F164B2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organo.Solutions.X4Ever.V1.DAL.API.Tests", "Organo.Solutions.X4Ever.V1.DAL.API.Tests\Organo.Solutions.X4Ever.V1.DAL.API.Tests.csproj", "{69EA856C-3B9A-46FF-AB85-0A5E30DAAB99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organo.Solutions.X4Ever.V1.DAL.Services.Tests", "Organo.Solutions.X4Ever.V1.DAL.Services.Tests\Organo.Solutions.X4Ever.V1.DAL.Services.Tests.csproj", "{9249E839-FA15-420F-B2E0-780E2A69E4CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,14 @@ Global
 		{2B44A8DA-60BC-4577-A2D7-D9D53F164B2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B44A8DA-60BC-4577-A2D7-D9D53F164B2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B44A8DA-60BC-4577-A2D7-D9D53F164B2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69EA856C-3B9A-46FF-AB85-0A5E30DAAB99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69EA856C-3B9A-46FF-AB85-0A5E30DAAB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69EA856C-3B9A-46FF-AB85-0A5E30DAAB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69EA856C-3B9A-46FF-AB85-0A5E30DAAB99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9249E839-FA15-420F-B2E0-780E2A69E4CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9249E839-FA15-420F-B2E0-780E2A69E4CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9249E839-FA15-420F-B2E0-780E2A69E4CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9249E839-FA15-420F-B2E0-780E2A69E4CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

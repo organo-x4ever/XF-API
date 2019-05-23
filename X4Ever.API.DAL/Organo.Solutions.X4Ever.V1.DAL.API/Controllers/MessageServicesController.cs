@@ -30,9 +30,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             await Task.Run(() =>
             {
                 if (content != null)
-                    new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body,
-                        true);
-                return Ok("Success");
+                    new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body, true);
+                return Ok(string.IsNullOrEmpty(message) ? "Success" : message);
             });
             return Ok();
         }
@@ -44,9 +43,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             string message = "";
             var user = _userServices.Get(base.UserID);
             if (content != null)
-                new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body,
-                    true);
-            return Ok("Success");
+            {
+                new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body, true);
+                return Ok(string.IsNullOrEmpty(message) ? "Success" : message);
+            }
+            return Ok();
         }
     }
 }

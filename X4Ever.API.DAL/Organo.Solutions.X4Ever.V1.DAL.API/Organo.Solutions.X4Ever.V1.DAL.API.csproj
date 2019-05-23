@@ -202,6 +202,7 @@
     </Content>
     <Content Include="App_Dynamic\blogs.html" />
     <Content Include="App_Dynamic\blogs.js" />
+    <Content Include="App_Files\app.js" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
@@ -1030,6 +1031,8 @@
     </Content>
     <Content Include="test\ersi\index.html" />
     <Content Include="test\MSPowerBI\user_list_report.html" />
+    <Content Include="Uploads\Programming_Languages_MapPath.jpeg" />
+    <Content Include="Uploads\sql_joins.png" />
     <Content Include="view\auth_push_notification.html" />
     <Content Include="view\auth_push_notification.js" />
     <Content Include="view\auth_push_notification.min.js">
@@ -1391,7 +1394,6 @@
     <Folder Include="App_Exception_Logs\" />
     <Folder Include="ErrorLog\" />
     <Folder Include="uowErrorLogs\" />
-    <Folder Include="Uploads\" />
     <Folder Include="Userimage\" />
   </ItemGroup>
   <ItemGroup>

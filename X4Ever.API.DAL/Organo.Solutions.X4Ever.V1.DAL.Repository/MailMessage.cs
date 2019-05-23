@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -83,9 +84,21 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             }
             catch (Exception ex)
             {
-                message = ex.Message.ToString();
+                message = GetExceptionDetail(ex);
                 return false;
             }
+        }
+
+        public string GetExceptionDetail(Exception exception)
+        {
+            var stringBuilder = new StringBuilder();
+            while (exception != null)
+            {
+                stringBuilder.AppendLine(exception.Message);
+                stringBuilder.AppendLine(exception.StackTrace);
+                exception = exception.InnerException;
+            }
+            return stringBuilder.ToString();
         }
 
         private bool invalid = false;

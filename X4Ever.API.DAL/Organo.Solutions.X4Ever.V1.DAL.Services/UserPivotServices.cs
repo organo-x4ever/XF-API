@@ -11,7 +11,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
     public class UserPivotServices : IUserPivotServices, IValidation
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly Helper.IHelper _helper;
+        private readonly IHelper _helper;
         private readonly IUserMetaPivotServices _userMetaPivotServices;
         private readonly IUserTrackerPivotServices _userTrackerPivotServices;
         private readonly IUserMilestoneServices _userMilestoneServices;
@@ -39,8 +39,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             if (!(user is null))
             {
                 _unitOfWork.UserRepository.Reload(user);
-                if (VerifySha512(user.UserPassword, password))
+                if (VerifySha512(user.UserPassword, password)) {
                     return user.ID;
+                }
 
                 if (VerifyHash(user.UserPassword, password))
                 {
@@ -57,6 +58,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     _unitOfWork.Commit();
                     return user.ID;
                 }
+
+                return 100000;
             }
 
             return 0;

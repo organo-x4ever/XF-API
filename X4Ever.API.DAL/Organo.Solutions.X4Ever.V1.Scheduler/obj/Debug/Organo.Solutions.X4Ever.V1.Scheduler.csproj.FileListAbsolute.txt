@@ -1,0 +1,12 @@
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\bin\Debug\Organo.Solutions.X4Ever.V1.Scheduler.exe.config
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\bin\Debug\Organo.Solutions.X4Ever.V1.Scheduler.exe
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\bin\Debug\Organo.Solutions.X4Ever.V1.Scheduler.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\bin\Debug\EntityFramework.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\bin\Debug\CryptSharp.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\bin\Debug\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\obj\Debug\Organo.Solutions.X4Ever.V1.Scheduler.csprojAssemblyReference.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\obj\Debug\Organo.Solutions.X4Ever.V1.Scheduler.csproj.CoreCompileInputs.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\obj\Debug\Organo.Solutions.X4Ever.V1.Scheduler.csproj.CopyComplete
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\obj\Debug\Organo.Solutions.X4Ever.V1.Scheduler.exe
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.Scheduler\obj\Debug\Organo.Solutions.X4Ever.V1.Scheduler.pdb
