@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -16,7 +16,6 @@ using Organo.Solutions.X4Ever.V1.DAL.API.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Helper;
 using Organo.Solutions.X4Ever.V1.DAL.Model;
 using Organo.Solutions.X4Ever.V1.DAL.Services;
-using Organo.Solutions.X4Ever.V1.DAL.API.Models;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Repository;
 
@@ -39,7 +38,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private IEmailContent _emailContent;
         private INotification _notification;
         private readonly IHelper _helper;
-        private IList<string> Messages { get; set; }
 
         public FrontendController(UserPivotServices userPivotServices, OpenNotificationUserServices openNotificationUserServices,
             UserNotificationServices notificationServices, UserTrackerRealtimeServices userTrackerRealtimeServices,
@@ -80,7 +78,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("gettrackerdetailasync")]
         public async Task<HttpResponseMessage> GetTrackerDetailAsync()
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
             var userTrackers = await _trackerReportServices.GetTrackerDetailAsync();
             var response = Request.CreateResponse(HttpStatusCode.OK, userTrackers);
             watch.Stop();
@@ -92,7 +90,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("gettrackerdetailasync")]
         public async Task<HttpResponseMessage> GetTrackerDetailLatestAsync(DateTime fromDate, DateTime toDate)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
             var userTrackers =
                 await _trackerReportServices.GetTrackerDetailPeriodAsync(fromDate, toDate);
             var response = Request.CreateResponse(HttpStatusCode.OK, userTrackers);
@@ -184,7 +182,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("getnotificationbodybykeyasync")]
         public async Task<HttpResponseMessage> GetNotificationBodyByKeyAsync(long key)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
             var notification = await _userNotificationServices.GetBodyByIdAsync(key);
             var response = Request.CreateResponse(HttpStatusCode.OK, notification);
             watch.Stop();

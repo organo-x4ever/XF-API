@@ -65,9 +65,8 @@ $(function() {
                 hideLoader();
             },
             error: function (x, y, z) {
-                console.log("Error: ",x,y,z);
+                console.log("Error: ", x, y, z);
                 if (x.status === 401) {
-                    //
                     $('.div-message').text("You are unauthorized");
                     return;
                 }

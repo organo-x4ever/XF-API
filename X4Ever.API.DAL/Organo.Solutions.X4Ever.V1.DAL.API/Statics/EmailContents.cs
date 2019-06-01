@@ -34,25 +34,37 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Statics
                 ? (languageCode.Split('-'))[0]
                 : "en";
             string[] filePath = FilePath(langCode, emailType);
-            FileInfo fileInfo = new FileInfo(filePath[1]);
-            if (fileInfo.Exists)
+            if (!string.IsNullOrEmpty(filePath[1]))
             {
-                string[] pStrings = new string[paramStrings.Length + 1];
-                pStrings[0] = FooterContent(langCode);
-                for (int i = 0; i < paramStrings.Length; i++)
+                FileInfo fileInfo = new FileInfo(filePath[1]);
+                if (fileInfo.Exists)
                 {
-                    pStrings[i + 1] = paramStrings[i];
-                }
+                    string[] pStrings = new string[paramStrings.Length + 1];
+                    pStrings[0] = FooterContent(langCode);
+                    for (int i = 0; i < paramStrings.Length; i++)
+                    {
+                        pStrings[i + 1] = paramStrings[i];
+                    }
 
-                string emailTemplate = File.ReadAllText(filePath[1]);
-                emailDetail.Subject = filePath[0];
-                emailDetail.Body = string.Format(emailTemplate, pStrings);
-                return emailDetail;
+                    string emailTemplate = File.ReadAllText(filePath[1]);
+                    emailDetail.Subject = filePath[0];
+                    emailDetail.Body = string.Format(emailTemplate, pStrings);
+                    return emailDetail;
+                }
+                else if (!IsRepeat)
+                {
+                    IsRepeat = true;
+                    return GetEmailBody("en", emailType, paramStrings);
+                }
             }
-            else if (!IsRepeat)
+            else
             {
-                IsRepeat = true;
-                return GetEmailBody("en", emailType, paramStrings);
+                emailDetail.Subject = emailType.ToString();
+                foreach (var p in paramStrings)
+                {
+                    emailDetail.Body += p + " <br /> ";
+                }
+                return emailDetail;
             }
 
             return null;
@@ -76,10 +88,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Statics
             languageCode = GetLanguageCode(languageCode);
             string[] fileName = new string[2];
             fileName[0] = EmailSubject(emailType + "_SUBJECT_" + languageCode.ToUpper());
-            fileName[1] =
-                HttpContext.Current.Server.MapPath("~/EmailTemplates/" + emailType.ToString() + "_TEMPLATE_" +
+            fileName[1] = HttpContext.Current?.Request?.MapPath("~/EmailTemplates/" + emailType.ToString() + "_TEMPLATE_" +
                                                    languageCode.ToUpper() +
-                                                   ".html");
+                                                   ".html")??"";
             return fileName;
         }
 
@@ -87,9 +98,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Statics
         {
             var emailTemplate = "";
             var fileName =
-                HttpContext.Current.Server.MapPath("~/EmailTemplates/FOOTER_TEMPLATE_" +
+                HttpContext.Current?.Server?.MapPath("~/EmailTemplates/FOOTER_TEMPLATE_" +
                                                    GetLanguageCode(languageCode).ToUpper() +
-                                                   ".html");
+                                                   ".html")??"";
             FileInfo fileInfo = new FileInfo(fileName);
             if (fileInfo.Exists)
             {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Organo.Solutions.X4Ever.V1.DAL.Helper
 {
     public static class CommonConstants
@@ -21,9 +16,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         public static double KG_LB_CONVERT_VALUE => 2.20462262185;
         public static double KG_LB_CONVERT_VALUE_1 => 0.45359237;
 
-        public static string FilterLogPath=>"filterLogs";
-        public static string AuthenticationFilterCollect=>"authentication_filter:collect";
-        public static string AuthenticationFilterEmails=>"authentication_filter:identity";
+        public static string FilterLogPath => "filterLogs";
+        public static string AuthenticationFilterCollect => "authentication_filter:collect";
+        public static string AuthenticationFilterEmails => "authentication_filter:identity";
 
         public static string LastTrackerDeleteOnly => "tracker:IsLastDeleteOnly";
         public static string TrackerDeleteAllowed => "tracker:IsDeleteAllowed";
@@ -31,7 +26,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         public static string TrackerViewAllowed => "tracker:IsViewAllowed";
         public static string TrackerDownloadAllowed => "tracker:IsDownloadAllowed";
 
-        public static string X4EverBlogs=>"weblink:x4ever_blogs";
+        public static string X4EverBlogs => "weblink:x4ever_blogs";
+        public static string X4EverBlogsSPA => "weblink:x4ever_blogs_es";
+        public static string X4EverEMEABlogs => "weblink:x4ever_emeablogs";
 
         public static string ExcludingSubmitCurrentWeight => "excludingSubmitCurrentWeight";
         public static string WeightSubmitIntervalDays => "WeightSubmitIntervalDays";

@@ -217,7 +217,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
         [POST("requestpassword")]
         [Route("requestpassword")]
-        public async Task<IHttpActionResult> PostForgotPasswordRequest(Models.ForgotPassword request)
+        public async Task<IHttpActionResult> PostForgotPasswordRequest(ForgotPassword request)
         {
             return await Task.Factory.StartNew(() => {
                 if (request == null || request.UserLogin == null || request.UserLogin.Trim().Length == 0 ||
