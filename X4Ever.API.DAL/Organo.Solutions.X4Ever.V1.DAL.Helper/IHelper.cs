@@ -56,5 +56,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         void SaveLog(DbEntityValidationResult eve);
 
         Task SaveLogAsync(DbEntityValidationResult eve);
+        Task SaveEmailLogAsync(string[] logs);
     }
 }

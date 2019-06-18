@@ -138,7 +138,62 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             await sw.WriteLineAsync(dateString + ":: " + logs);
         }
 
+        public IHttpActionResult WriteEmailLog(List<string> emailLogStrings)
+        {
+            // Today's file name
+            var fileName = $"{DateTime.Now:yyyy-MM-dd}-debug.log";
+
+            // File's full path
+            var path = HttpContext.Current.Request.MapPath("~/" + EmailLogFilePath + "/" + fileName);
+            try
+            {
+                // This text is added only once to the file.
+                if (!File.Exists(path))
+                {
+                    // Create a file to write to.
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        WriteEmailLogText(sw, emailLogStrings);
+                    }
+                }
+                else
+                {
+                    // This text is always added, making the file longer over time
+                    // if it is not deleted.
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        WriteEmailLogText(sw, emailLogStrings);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //return BadRequest(exception.Message);
+            }
+
+            return Ok("Success");
+        }
+
+        void WriteEmailLogText(StreamWriter sw, List<string> logs)
+        {
+            try
+            {
+                var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                sw.WriteLine(dateString + " | EMAIL | LOG");
+                foreach (var log in logs)
+                {
+                    sw.WriteLine(log);
+                }
+                sw.WriteLine(Environment.NewLine);
+            }
+            catch
+            {
+                //
+            }
+        }
+
         string LogFilePath => _helper.GetAppSetting("errorLogs");
         string DebugLogFilePath => _helper.GetAppSetting("debugLogs");
+        string EmailLogFilePath=>_helper.GetAppSetting("emailError");
     }
 }

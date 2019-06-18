@@ -19,6 +19,7 @@
         public static string APPLICATION => "Application";
         public static string LANGUAGE => "Language";
         public static string PLATFORM => "Platform";
+        public static string VERSION=>"Version";
         public static string ACCESS_CONTROL_EXPOSE_HEADERS => "Access-Control-Expose-Headers";
         public static string TOKEN_COMMA_TOKEN_EXPIRY => "Token,TokenExpiry";
         public static string EXECUTION_TIME => "ExecutionTime";

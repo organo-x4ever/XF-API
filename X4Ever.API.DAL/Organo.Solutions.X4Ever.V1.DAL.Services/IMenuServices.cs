@@ -12,5 +12,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         Task<IEnumerable<Menu>> GetByApplicationAsync(string applicationKey);
         IEnumerable<Menu> GetByApplication(string applicationKey, PlatformType platformType);
         Task<IEnumerable<Menu>> GetByApplicationAsync(string applicationKey, PlatformType platformType);
+        Task<IEnumerable<Menu>> GetByApplicationAsync(string applicationKey, PlatformType platformType,int version);
     }
 }

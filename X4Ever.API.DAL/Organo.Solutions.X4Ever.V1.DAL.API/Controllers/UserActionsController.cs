@@ -32,16 +32,19 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private readonly IYoutubeVideoServices _youtubeVideoServices = new YoutubeVideoServices();
         private readonly IUserPushTokenServices _userPushTokenServices;
         private readonly IUserNotificationSettingServices _userNotificationSettingServices;
+        private readonly IOpenNotificationUserServices _openNotificationUserServices;
 
         public UserActionsController(UserServices userServices, CountryServices countryServices,
             UserSettingServices userSettingServices,UserPushTokenServices userPushTokenServices,
-            UserNotificationSettingServices userNotificationSettingServices)
+            UserNotificationSettingServices userNotificationSettingServices,
+            OpenNotificationUserServices openNotificationUserServices)
         {
             _userPushTokenServices = userPushTokenServices;
             _userServices = userServices;
             _countryServices = countryServices;
             _userSettingServices = userSettingServices;
             _userNotificationSettingServices=userNotificationSettingServices;
+            _openNotificationUserServices = openNotificationUserServices;
             _helper = new Helper.Helper();
         }
 
@@ -217,44 +220,43 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
         [POST("requestpassword")]
         [Route("requestpassword")]
-        public async Task<IHttpActionResult> PostForgotPasswordRequest(ForgotPassword request)
+        public IHttpActionResult PostForgotPasswordRequest(ForgotPassword request)
         {
-            return await Task.Factory.StartNew(() => {
-                if (request == null || request.UserLogin == null || request.UserLogin.Trim().Length == 0 ||
-                    request.UserEmail == null || request.UserEmail.Trim().Length == 0)
-                    return Ok("MessageAllInputRequired");
-                validationErrors = new ValidationErrors();
-                string requestCode = "";
-                var user = _userServices.ForgotPasswordRequest(ref validationErrors, request.UserLogin.Trim(),
-                    request.UserEmail.Trim(), out requestCode);
-                if (user != null)
-                {
-                    string message = "";
-                    EmailContent emailContent = new EmailContent();
-                    var content = emailContent.GetEmailDetail("en", EmailType.FORGOT_PASSWORD, new string[] {requestCode});
-                    if (content != null)
-                        _ = new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body, true);
-                    return Ok(HttpConstants.SUCCESS);
-                }
-                else
-                    return Ok(validationErrors.Show());
-            });
+            if (string.IsNullOrEmpty(request?.UserLogin ?? "") || string.IsNullOrEmpty(request?.UserEmail ?? ""))
+                return Ok("MessageAllInputRequired");
+            validationErrors = new ValidationErrors();
+            string requestCode = "";
+            var user = _userServices.ForgotPasswordRequest(ref validationErrors, request.UserLogin.Trim(), request.UserEmail.Trim(), out requestCode);
+            if (user != null)
+            {
+                string message = "";
+                EmailContent emailContent = new EmailContent();
+                var content = emailContent.GetEmailDetail("en", EmailType.FORGOT_PASSWORD, new string[] { requestCode });
+                if (content != null)
+                    _ = new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body, true);
+                return Ok(HttpConstants.SUCCESS);
+            }
+            else
+                return Ok(validationErrors.Show());
+        }
+        
+        public void EmailSend_Complete(List<string> logs)
+        {
+            new LogsController().WriteEmailLog(logs);
         }
 
         [POST("updatepassword")]
         [Route("updatepassword")]
-        public async Task<IHttpActionResult> PostForgotPasswordUpdate([FromBody] Models.PasswordDetail detail)
+        public IHttpActionResult PostForgotPasswordUpdate([FromBody] Models.PasswordDetail detail)
         {
-            return await Task.Factory.StartNew(() => {
-                if (detail == null || detail.RequestCode == null || detail.RequestCode.Trim().Length == 0 ||
-                    detail.Password == null || detail.Password.Trim().Length == 0)
-                    return Ok("MessageAllInputRequired");
-                validationErrors = new ValidationErrors();
-                if (_userServices.ChangeForgotPassword(ref validationErrors, detail.RequestCode.Trim(),
-                    detail.Password.Trim()))
-                    return Ok(HttpConstants.SUCCESS);
-                return Ok(validationErrors.Show());
-            });
+            if (detail == null || detail.RequestCode == null || detail.RequestCode.Trim().Length == 0 ||
+                detail.Password == null || detail.Password.Trim().Length == 0)
+                return Ok("MessageAllInputRequired");
+            validationErrors = new ValidationErrors();
+            if (_userServices.ChangeForgotPassword(ref validationErrors, detail.RequestCode.Trim(),
+                detail.Password.Trim()))
+                return Ok(HttpConstants.SUCCESS);
+            return Ok(validationErrors.Show());
         }
 
         [GET("updateuserstatus")]
@@ -276,8 +278,10 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
         [GET("checkconnection")]
         [Route("checkconnection")]
-        public HttpResponseMessage GetConnection()
+        public async Task<HttpResponseMessage> GetConnection()
         {
+            //var users = await _openNotificationUserServices.GetWeeklyAsync();
+
             var userPivot = new UserPivot();
             return Request.CreateResponse(HttpStatusCode.OK, "Connected");
         }

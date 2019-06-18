@@ -8,6 +8,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
     {
         UserNotificationSetting Get(long userId);
         Task<UserNotificationSetting> GetAsync(long userId);
+        Task<UserNotificationSettingViewModel> GetNewAsync(long userId);
         bool Insert(ref ValidationErrors validationErrors, UserNotificationSetting userNotification);
         bool Update(ref ValidationErrors validationErrors, UserNotificationSetting userNotification);
     } 

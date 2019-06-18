@@ -63,7 +63,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         {
             double.TryParse(_helper.GetAppSetting("WeightSubmitIntervalDays"), out double timeInterval);
             var date = DateTime.Today.AddDays(-(timeInterval));
-            return (from o in await _unitOfWork.OpenNotificationUserRepository.GetManyAsync(u => u.ModifyDate <= date)
+
+            var userList = await _unitOfWork.OpenNotificationUserRepository.GetManyAsync(u => u.ModifyDate <= date);
+            var notifications = await _unitOfWork.UserNotificationSettingRepository.GetManyAsync(n => n.IsWeightSubmitReminder && userList.Any(u => u.UserID == n.UserID));
+            return (from o in userList 
+                    where notifications.Any(n => n.UserID == o.UserID)
                 select new OpenNotificationUserMap()
                 {
                     ID = o.ID,

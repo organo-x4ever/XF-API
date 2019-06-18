@@ -31,14 +31,16 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("get")]
         public async Task<IHttpActionResult> GetByUser()
         {
-            List<Menu> menuList;
+            List<Menu> menuList=new List<Menu>();
             var platform = Platform;
             if (platform == PlatformType.Wrong)
                 menuList = new List<Menu>();
             else if (platform == PlatformType.None)
                 menuList = (await _menuServices.GetByApplicationAsync(ApplicationKey)).ToList();
-            else
+            else if(platform==PlatformType.Android)
                 menuList = (await _menuServices.GetByApplicationAsync(ApplicationKey, platform)).ToList();
+            else if(platform==PlatformType.iOS)
+                menuList = (await _menuServices.GetByApplicationAsync(ApplicationKey, platform,VersionNumber)).ToList();
 
             if (this.UserID == 55)
             {

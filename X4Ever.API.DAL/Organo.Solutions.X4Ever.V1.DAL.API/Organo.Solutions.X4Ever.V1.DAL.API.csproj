@@ -1289,6 +1289,19 @@
     <Content Include="build\less\users-list.less" />
     <Content Include="build\less\variables.less" />
     <None Include="bundleconfig.json" />
+    <Content Include="ErrorLog\DebugLogs\2018-10-17-debug.log" />
+    <Content Include="ErrorLog\DebugLogs\2018-10-29-debug.log" />
+    <Content Include="ErrorLog\DebugLogs\2018-11-06-debug.log" />
+    <Content Include="ErrorLog\DebugLogs\2019-03-26-debug.log" />
+    <Content Include="ErrorLog\ErrorLogs\2018-10-17-exception.log" />
+    <Content Include="ErrorLog\ErrorLogs\2018-10-29-exception.log" />
+    <Content Include="ErrorLog\ErrorLogs\2019-04-16-filter-1.log" />
+    <Content Include="ErrorLog\ErrorLogs\2019-04-16-filter.log" />
+    <Content Include="ErrorLog\FilterLogs\2019-04-17-filter-1.log" />
+    <Content Include="ErrorLog\FilterLogs\2019-04-17-filter.log" />
+    <Content Include="ErrorLog\uowErrorLogs\2018-10-22-uow-exception.log" />
+    <Content Include="ErrorLog\uowErrorLogs\2019-03-28-uow-exception.log" />
+    <Content Include="ErrorLog\uowErrorLogs\2019-04-30-uow-exception.log" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -1392,7 +1405,8 @@
     <Folder Include="APILog\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_Exception_Logs\" />
-    <Folder Include="ErrorLog\" />
+    <Folder Include="ErrorLog\emailFailedLogs\" />
+    <Folder Include="ErrorLog\grErrorLogs\" />
     <Folder Include="uowErrorLogs\" />
     <Folder Include="Userimage\" />
   </ItemGroup>

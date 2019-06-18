@@ -1,6 +1,6 @@
 ﻿var basics = {
-    baseUrl: 'https://mapp.oghq.ca/'
-    ,currentDate: function() {
+    baseUrl: 'https://mapp.oghq.ca/',
+    currentDate: function() {
         var date = new Date();
         var d = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
         return d;

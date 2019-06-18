@@ -1,4 +1,5 @@
-﻿using Organo.Solutions.X4Ever.V1.DAL.Repository.Model;
+﻿using Organo.Solutions.X4Ever.V1.DAL.Helper;
+using Organo.Solutions.X4Ever.V1.DAL.Repository.Model;
 using System;
 using System.Globalization;
 using System.Net;
@@ -13,11 +14,12 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
     public class Message
     {
         private MailProperty mailProperty;
-
+        private readonly IHelper _helper;
         public Message()
         {
             mailProperty = new MailProperty();
-        }
+            _helper=new Helper.Helper();
+        } 
 
         public bool SendMail(ref string message,string recipient, string cc, string bcc, string subject, string body, bool isHTML = false, MailPriority mailPriority = MailPriority.High)
         {
@@ -75,9 +77,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
                 {
                     UseDefaultCredentials = true,
                     Credentials = new NetworkCredential(mailProperty.Username, mailProperty.Password),
-                    EnableSsl = mailProperty.SSL.Trim().Length > 0,
+                    EnableSsl = mailProperty.SSL.Trim().Length > 0
                 };
-
+                smtpClient.SendCompleted += SmtpClient_SendCompleted;
                 smtpClient.Send(mailMessage);
                 return true;
                 // To use Google SMTP, has to Turn ON Access for less secure apps at: https://www.google.com/settings/security/lesssecureapps
@@ -85,8 +87,20 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
             catch (Exception ex)
             {
                 message = GetExceptionDetail(ex);
+                SendLogs(new string[] { message });
                 return false;
             }
+        }
+
+        private void SmtpClient_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            var s = sender;
+            string[] logs = new string[] { "Cancelled: " + (e.Cancelled ? "true" : "false"), "Error.Message: " + e.Error.Message, "Error.HelpLink: " + e.Error.HelpLink, "Error.Source: " + e.Error.Source, GetExceptionDetail(e.Error) };
+        }
+
+        private void SendLogs(string[] logs)
+        {
+            _helper.SaveEmailLogAsync(logs);
         }
 
         public string GetExceptionDetail(Exception exception)

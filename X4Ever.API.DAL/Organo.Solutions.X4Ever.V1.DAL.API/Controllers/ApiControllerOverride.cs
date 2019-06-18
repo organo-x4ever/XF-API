@@ -5,6 +5,7 @@ using System.Web.Http;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Model.EnumerationTypes;
 using System.Web.Http.ModelBinding;
+using System.Collections.Generic;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -94,6 +95,42 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
             return PlatformType.None;
         }
+        
+        protected string Version => GetVersion();
+
+        private string GetVersion()
+        {
+             var request = Request;
+            if (request != null && request.Headers != null)
+            {
+                var headers = request.Headers;
+                if (headers.Contains(HttpConstants.VERSION))
+                {
+                    return headers.GetValues(HttpConstants.VERSION).First();
+                }
+            }
+
+            return "";
+        }
+        
+        protected int VersionNumber => GetVersionNumber();
+
+        private int GetVersionNumber()
+        {
+             var request = Request;
+            if (request != null && request.Headers != null)
+            {
+                var headers = request.Headers;
+                if (headers.Contains(HttpConstants.VERSION))
+                {
+                    var version= headers.GetValues(HttpConstants.VERSION).First();
+                    int.TryParse(version.Replace(".",""),out int v);
+                    return v;
+                }
+            }
+
+            return 0;
+        }
 
         public object GetHeader(string httpConstants)
         {
@@ -108,6 +145,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             }
 
             return null;
+        }
+
+        public void EmailSend_Complete(List<string> logs)
+        {
+            new LogsController().WriteEmailLog(logs);
         }
     }
 }

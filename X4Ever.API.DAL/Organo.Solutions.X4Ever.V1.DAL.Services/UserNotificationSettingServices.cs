@@ -24,6 +24,34 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             return await _unitOfWork.UserNotificationSettingRepository.GetAsync(n => n.UserID == userId);
         }
 
+        public async Task<UserNotificationSettingViewModel> GetNewAsync(long userId)
+        {
+            var settings = await _unitOfWork.UserNotificationSettingRepository.GetAsync(n => n.UserID == userId);
+            if (settings != null)
+            {
+                return new UserNotificationSettingViewModel()
+                {
+                    UserID = settings.UserID,
+                    IsWeightSubmitReminder = settings.IsWeightSubmitReminder,
+                    CreateDate = settings.CreateDate,
+                    ID = settings.ID,
+                    Intimation = settings.Intimation,
+                    IsGeneralMessage = settings.IsGeneralMessage,
+                    IsPromotional = settings.IsPromotional,
+                    IsSpecialOffer = settings.IsSpecialOffer,
+                    IsVersionUpdate = settings.IsVersionUpdate,
+                    ModifyDate = settings.ModifyDate,
+                    IsVisibleGeneralMessage = true,
+                    IsVisibleIntimation = true,
+                    IsVisiblePromotional = true,
+                    IsVisibleSpecialOffer = true,
+                    IsVisibleVersionUpdate = true,
+                    IsVisibleWeightSubmitReminder = true
+                };
+            }
+            return null;
+        }
+
         public bool Insert(ref ValidationErrors validationErrors, UserNotificationSetting userNotification)
         {
             if (Validate(ref validationErrors, new object[] { userNotification }))

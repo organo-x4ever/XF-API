@@ -84,14 +84,18 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         public async Task<IEnumerable<Menu>> GetByApplicationAsync(string applicationKey, PlatformType platformType)
         {
             var platform = platformType.ToString();
-            var appMenu =
-                await _unitOfWork.ApplicationMenuRepository.GetManyAsync(a =>
-                    a.ApplicationKey == applicationKey && (a.PlatformExcluded != null
-                        ? !a.PlatformExcluded.ToLower()
-                            .Contains(platform.ToLower())
-                        : true));
-            return await _unitOfWork.MenuRepository.GetManyAsync(m =>
-                m.MenuActive && appMenu.Any(a => a.MenuID == m.ID));
+            var appMenus = await _unitOfWork.ApplicationMenuRepository.GetManyAsync(a => a.ApplicationKey == applicationKey);
+            var appMenu = appMenus.Where(a => (a.PlatformExcluded != null ? !a.PlatformExcluded.ToLower().Contains(platform.ToLower()) : true));
+            return await _unitOfWork.MenuRepository.GetManyAsync(m => m.MenuActive && appMenu.Any(a => a.MenuID == m.ID));
+        }
+
+        public async Task<IEnumerable<Menu>> GetByApplicationAsync(string applicationKey, PlatformType platformType, int version)
+        {
+            var platform = platformType.ToString();
+            var appMenus = await _unitOfWork.ApplicationMenuRepository.GetManyAsync(a => a.ApplicationKey == applicationKey);
+            var appMenu = version > 300 ? appMenus.Where(a => a.MenuID != 9 ? (a.PlatformExcluded != null ? !a.PlatformExcluded.ToLower().Contains(platform.ToLower()) : true) : true)
+                 : appMenus.Where(a => (a.PlatformExcluded != null ? !a.PlatformExcluded.ToLower().Contains(platform.ToLower()) : true));
+            return await _unitOfWork.MenuRepository.GetManyAsync(m => m.MenuActive && appMenu.Any(a => a.MenuID == m.ID));
         }
 
         public bool Insert(ref ValidationErrors validationErrors, Menu entity)

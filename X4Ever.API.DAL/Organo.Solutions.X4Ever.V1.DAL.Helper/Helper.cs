@@ -536,5 +536,48 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                 _ = exception;
             }
         }
+
+        
+        public async Task SaveEmailLogAsync(string[] logs)
+        {
+            try
+            {
+                var logFilePath = GetAppSetting("emailError");
+                // Today's file name
+                var fileName = $"{DateTime.Now:yyyy-MM-dd}-uow-exception.log";
+                var path = logFilePath + "\\" + fileName;
+                // This text is added only once to the file.
+                if (!File.Exists(path))
+                {
+                    // Create a file to write to.
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                        await sw.WriteLineAsync(dateString + " | EMAIL | LOG");
+                        foreach(var log in logs)
+                        await sw.WriteLineAsync(log);
+                            await sw.WriteLineAsync(Environment.NewLine);
+                    }
+                }
+                else
+                {
+                    // This text is always added, making the file longer over time
+                    // if it is not deleted.
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                        await sw.WriteLineAsync(dateString + " | EMAIL | LOG");
+                        await sw.WriteLineAsync(dateString + " | EMAIL | LOG");
+                        foreach(var log in logs)
+                        await sw.WriteLineAsync(log);
+                            await sw.WriteLineAsync(Environment.NewLine);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                _ = exception;
+            }
+        }
     }
 }
