@@ -38,11 +38,12 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private IEmailContent _emailContent;
         private INotification _notification;
         private readonly IHelper _helper;
-
+        private readonly IUserNotificationSettingsViewServices _userNotificationSettingsViewServices;
+        
         public FrontendController(UserPivotServices userPivotServices, OpenNotificationUserServices openNotificationUserServices,
             UserNotificationServices notificationServices, UserTrackerRealtimeServices userTrackerRealtimeServices,
             UserMetaPivotServices userMetaPivotServices, UserTrackerPivotServices userTrackerPivotServices,
-            WebUserMetaRealtimeServices webUserMetaRealtimeServices,
+            WebUserMetaRealtimeServices webUserMetaRealtimeServices, UserNotificationSettingsViewServices userNotificationSettingsViewServices,
             UserNotificationServices userNotificationServices, UserTrackerReportServices trackerReportServices)
         {
             _userPivotServices = userPivotServices;
@@ -55,6 +56,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             _webUserMetaRealtimeServices = webUserMetaRealtimeServices;
             _userNotificationServices = userNotificationServices;
             _trackerReportServices = trackerReportServices;
+            _userNotificationSettingsViewServices = userNotificationSettingsViewServices;
             _helper = new Helper.Helper();
             _notification = new AppleNotification(
                 HttpContext.Current.Server.MapPath(_helper.GetAppSetting(NotificationConstant.CertificatePathDev)),
@@ -169,11 +171,23 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("getbydateasync")]
         public async Task<HttpResponseMessage> GetByDateAsync(DateTime fromDate, DateTime toDate)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
             var notification =
                 await _userNotificationServices.GetByDateAsync(fromDate, toDate, q => q.OrderByDescending(n => n.ID));
             var response = Request.CreateResponse(HttpStatusCode.OK, notification);
             watch.Stop();
+            response.Headers.Add(HttpConstants.EXECUTION_TIME, watch.ElapsedMilliseconds.ToString());
+            return response;
+        }
+
+        [GET("getnotifysettings")]
+        [Route("getnotifysettings")]
+        public async Task<HttpResponseMessage> GetNotifySettingsAsync()
+        {
+            var watch = Stopwatch.StartNew();
+            var result = await _userNotificationSettingsViewServices.GetAsync();
+            watch.Stop();
+            var response = Request.CreateResponse(HttpStatusCode.OK, result);
             response.Headers.Add(HttpConstants.EXECUTION_TIME, watch.ElapsedMilliseconds.ToString());
             return response;
         }

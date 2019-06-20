@@ -59,8 +59,43 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             if (!(System.Threading.Thread.CurrentPrincipal.Identity is BasicAuthenticationIdentity
                 basicAuthenticationIdentity))
                 return UnAuthorized(HttpConstants.UNAUTHORIZED);
-            var userId=basicAuthenticationIdentity?.UserId ?? 0;
-            var token = _tokenServices.GenerateToken(basicAuthenticationIdentity?.UserId ?? 0);
+            var userId = basicAuthenticationIdentity?.UserId ?? 0;
+            var token = _tokenServices.GenerateToken(userId);
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Headers.Add(HttpConstants.TOKEN, token.AuthToken);
+            response.Headers.Add(HttpConstants.TOKEN_EXPIRY,
+                token.ExpiresOn.ToString(CultureInfo.CurrentCulture));
+            response.Headers.Add(HttpConstants.ACCESS_CONTROL_EXPOSE_HEADERS,
+                HttpConstants.TOKEN_COMMA_TOKEN_EXPIRY);
+            return response;
+        }
+
+        
+        /// <summary>
+        /// Authenticates user and returns token with expiry.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        [POST("authtoken")]
+        public HttpResponseMessage AuthToken()
+        {
+            if (System.Threading.Thread.CurrentPrincipal == null ||
+                !System.Threading.Thread.CurrentPrincipal.Identity.IsAuthenticated)
+                return UnAuthorized(HttpConstants.UNAUTHORIZED);
+   
+            if (!(System.Threading.Thread.CurrentPrincipal.Identity is BasicAuthenticationIdentity
+                basicAuthenticationIdentity))
+                return UnAuthorized(HttpConstants.UNAUTHORIZED);
+            bool isUserAllowed = false;
+            var userId = basicAuthenticationIdentity?.UserId ?? 0;
+            if (userId != 0)
+            {
+                var allowedUserSetting = _helper.GetAppSetting(CommonConstants.AllowedUsersKey);
+                var allowedUsers = allowedUserSetting.Split(';');
+                isUserAllowed = allowedUsers.Any(a => userId.ToString().Equals(a));
+            }
+            if (!isUserAllowed) return UnAuthorized(HttpConstants.UNAUTHORIZED);
+            var token = _tokenServices.GenerateToken(userId);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add(HttpConstants.TOKEN, token.AuthToken);
             response.Headers.Add(HttpConstants.TOKEN_EXPIRY,

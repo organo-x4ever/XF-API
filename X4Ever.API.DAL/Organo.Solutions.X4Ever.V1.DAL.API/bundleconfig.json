@@ -76,5 +76,11 @@
     "inputFiles": [
       "App_Dynamic/blogs-init.js"
     ]
+  },
+  {
+    "outputFileName": "view/push_notification_settings.min.js",
+    "inputFiles": [
+      "view/push_notification_settings.js"
+    ]
   }
 ]

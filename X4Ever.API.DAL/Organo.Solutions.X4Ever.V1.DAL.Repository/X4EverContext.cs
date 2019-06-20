@@ -60,6 +60,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
         public DbSet<UserTrackerDetailReportV2> UserTrackerDetailReportV2 { get; set; }
 
         public DbSet<UserNotificationView> UserNotificationViews { get; set; }
+        public DbSet<UserNotificationSettingsView> UserNotificationSettingsViews { get; set; }
 
         public DbSet<UserTrackerRealtime> UserTrackerRealtimes { get; set; }
 

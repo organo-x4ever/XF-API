@@ -32,14 +32,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         public async Task<HttpResponseMessage> GetAsync()
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
-            //var result = await _userNotificationSettingServices.GetAsync(UserID);
             var result = await _userNotificationSettingServices.GetNewAsync(UserID);
             watch.Stop();
             var response = Request.CreateResponse(HttpStatusCode.OK, result);
             response.Headers.Add(HttpConstants.EXECUTION_TIME, watch.ElapsedMilliseconds.ToString());
             return response;
         }
-
+        
         [GET("getbytoken")]
         [Route("getbytoken")]
         public HttpResponseMessage Get()

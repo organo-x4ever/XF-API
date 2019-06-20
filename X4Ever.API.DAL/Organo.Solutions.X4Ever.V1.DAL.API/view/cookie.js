@@ -1,5 +1,4 @@
-﻿// Original JavaScript code by Chirp Internet: www.chirp.com.au
-// Please acknowledge use of this code by including this header.
+﻿
 var cookie = {
     tokenHeader: 'Token',
     dateFormat: 'yyyy-MM-dd hh:mm:ss',

@@ -1069,6 +1069,11 @@
     <Content Include="view\logout.min.js">
       <DependentUpon>logout.js</DependentUpon>
     </Content>
+    <Content Include="view\push_notification_settings.html" />
+    <Content Include="view\push_notification_settings.js" />
+    <Content Include="view\push_notification_settings.min.js">
+      <DependentUpon>push_notification_settings.js</DependentUpon>
+    </Content>
     <Content Include="view\tracker_report_daterange.html" />
     <Content Include="view\tracker_report_daterange.js" />
     <Content Include="view\index.html" />

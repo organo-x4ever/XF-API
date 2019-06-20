@@ -30,6 +30,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         public static string X4EverBlogsSPA => "weblink:x4ever_blogs_es";
         public static string X4EverEMEABlogs => "weblink:x4ever_emeablogs";
 
+        public static string AllowedUsersKey=>"frontend:AllowedUsers";
+
         public static string ExcludingSubmitCurrentWeight => "excludingSubmitCurrentWeight";
         public static string WeightSubmitIntervalDays => "WeightSubmitIntervalDays";
         public static string UsernameLengthMin => "usernameLengthMin";

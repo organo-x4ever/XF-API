@@ -72,6 +72,7 @@
     <Compile Include="IUserMilestoneServices.cs" />
     <Compile Include="IUserNotificationServices.cs" />
     <Compile Include="IUserNotificationSettingServices.cs" />
+    <Compile Include="IUserNotificationSettingsViewServices.cs" />
     <Compile Include="IUserPivotServices.cs" />
     <Compile Include="IUserPushTokenServices.cs" />
     <Compile Include="IUserServices.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="UserMilestoneServices.cs" />
     <Compile Include="UserNotificationServices.cs" />
     <Compile Include="UserNotificationSettingServices.cs" />
+    <Compile Include="UserNotificationSettingsViewServices.cs" />
     <Compile Include="UserPivotServices.cs" />
     <Compile Include="UserPushTokenServices.cs" />
     <Compile Include="UserServices.cs" />

@@ -203,9 +203,9 @@
             try
             {
                 if (int.TryParse(_helper.GetAppSetting("AuthTokenExpiry"), out int period))
-                    period = 30;
+                    period = 7;
 
-                var sessionType = SessionType.Min;
+                var sessionType = SessionType.D;
                 var type = _helper.GetAppSetting("AuthTokenExpiry_PeriodType", typeof(string));
                 if (type != null || type.ToString().Length != 0)
                     SessionType.TryParse(type, out sessionType);
