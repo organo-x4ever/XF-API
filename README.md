@@ -1,10 +1,15 @@
 # x4ever-api
+
 x4ever api description
 
 
-# X4everNgUi
+# x4ever-ng-ui
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+
+# git clone
+
+https://github.com/Nishaan-Angular/angular-8-registration-login-example.git
 
 ## Development server
 
