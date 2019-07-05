@@ -18,68 +18,149 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Repository
         public Message()
         {
             mailProperty = new MailProperty();
-            _helper=new Helper.Helper();
-        } 
+            _helper = new Helper.Helper();
+        }
 
         public bool SendMail(ref string message,string recipient, string cc, string bcc, string subject, string body, bool isHTML = false, MailPriority mailPriority = MailPriority.High)
         {
-            return this.SendMail(ref message, mailProperty.SendFrom, recipient, cc, bcc, subject, body, isHTML, mailPriority);
+            return SendMail(ref message, mailProperty.SendFrom, recipient, cc, bcc, subject, body, isHTML, mailPriority);
         }
 
-        public bool SendMail(ref string message, string sender, string recipient, string cc, string bcc, string subject,
+        private bool SendEmailUsingOffice365(ref string message, string sender, string recipient, string cc, string bcc, string subject,
             string body, bool isHTML = false, MailPriority mailPriority = MailPriority.High)
         {
+            MailMessage mailMessage = new MailMessage();
+            
+            // Your Office 365 from email address
+            mailMessage.From = new MailAddress(sender);
+            if ((recipient != null) && (recipient.Trim() != string.Empty))
+            {
+                foreach (var address in recipient.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    if (IsValidEmail(address) == true)
+                    {
+                        // Set recipient email address
+                        mailMessage.To.Add(new MailAddress(address.Trim()));
+                    }
+                }
+            }
+
+            if ((cc != null) && (cc.Trim() != string.Empty))
+            {
+                foreach (var address in cc.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    if (IsValidEmail(address) == true)
+                    {
+                        // Set CC recipient email address
+                        mailMessage.CC.Add(new MailAddress(address.Trim()));
+                    }
+                }
+            }
+
+            if (bcc != null && bcc.Trim() != string.Empty)
+            {
+                foreach (var address in bcc.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    if (IsValidEmail(address) == true)
+                    {
+                        // Set BCC recipient email address
+                        mailMessage.Bcc.Add(new MailAddress(address.Trim()));
+                    }
+                }
+            }
+
+            // Set email subject
+            mailMessage.Subject = subject.Trim();
+                
+            // Set email body
+            mailMessage.Body = body.Trim();
+
+            mailMessage.IsBodyHtml = isHTML;
+            mailMessage.Priority = mailPriority;
+
+            var smtpClient = new SmtpClient(mailProperty.SmtpSever, mailProperty.Port)
+            {
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Credentials = new NetworkCredential(mailProperty.Username, mailProperty.Password),
+                UseDefaultCredentials = true,
+                EnableSsl = true,
+            };
+
             try
             {
-                message = "";
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress(sender);
+                smtpClient.Send(mailMessage);
+                smtpClient = null;
+                mailMessage.Dispose();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = GetExceptionDetail(ex);
+                SendLogs(new string[] { message });
+            }
+            return false;
+        }
 
-                if ((recipient != null) && (recipient.Trim() != string.Empty))
+        private void SmtpClient_SendCompleted1(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool SendMail(ref string message, string sender, string recipient, string cc, string bcc, string subject,
+            string body, bool isHTML = false, MailPriority mailPriority = MailPriority.High)
+        {
+            message = "";
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress(sender);
+            mailMessage.ReplyToList.Add(new MailAddress(sender));
+
+            if ((recipient != null) && (recipient.Trim() != string.Empty))
+            {
+                foreach (var address in recipient.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    foreach (var address in recipient.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries))
+                    if (IsValidEmail(address) == true)
                     {
-                        if (IsValidEmail(address) == true)
-                        {
-                            mailMessage.To.Add(new MailAddress(address.Trim()));
-                        }
+                        mailMessage.To.Add(new MailAddress(address.Trim()));
                     }
                 }
+            }
 
-                if ((cc != null) && (cc.Trim() != string.Empty))
+            if ((cc != null) && (cc.Trim() != string.Empty))
+            {
+                foreach (var address in cc.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    foreach (var address in cc.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries))
+                    if (IsValidEmail(address) == true)
                     {
-                        if (IsValidEmail(address) == true)
-                        {
-                            mailMessage.CC.Add(new MailAddress(address.Trim()));
-                        }
+                        mailMessage.CC.Add(new MailAddress(address.Trim()));
                     }
                 }
+            }
 
-                if (bcc != null && bcc.Trim() != string.Empty)
+            if (bcc != null && bcc.Trim() != string.Empty)
+            {
+                foreach (var address in bcc.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    foreach (var address in bcc.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries))
+                    if (IsValidEmail(address) == true)
                     {
-                        if (IsValidEmail(address) == true)
-                        {
-                            mailMessage.Bcc.Add(new MailAddress(address.Trim()));
-                        }
+                        mailMessage.Bcc.Add(new MailAddress(address.Trim()));
                     }
                 }
+            }
 
-                mailMessage.Subject = subject.Trim();
-                mailMessage.Body = body.Trim();
-                mailMessage.IsBodyHtml = isHTML;
-                mailMessage.Priority = mailPriority;
+            mailMessage.Subject = subject.Trim();
+            mailMessage.Body = body.Trim();
+            mailMessage.IsBodyHtml = isHTML;
+            mailMessage.Priority = mailPriority;
 
-                var smtpClient = new SmtpClient(mailProperty.SmtpSever, mailProperty.Port)
-                {
-                    UseDefaultCredentials = true,
-                    Credentials = new NetworkCredential(mailProperty.Username, mailProperty.Password),
-                    EnableSsl = mailProperty.SSL.Trim().Length > 0
-                };
-                smtpClient.SendCompleted += SmtpClient_SendCompleted;
+            var smtpClient = new SmtpClient(mailProperty.SmtpSever, mailProperty.Port)
+            {
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(mailProperty.Username, mailProperty.Password),
+                EnableSsl = mailProperty.SSL.Trim().Length > 0
+            };
+
+            try
+            {
                 smtpClient.Send(mailMessage);
                 return true;
                 // To use Google SMTP, has to Turn ON Access for less secure apps at: https://www.google.com/settings/security/lesssecureapps

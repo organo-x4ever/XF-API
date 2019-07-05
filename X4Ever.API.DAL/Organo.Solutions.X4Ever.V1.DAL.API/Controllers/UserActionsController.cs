@@ -233,11 +233,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 EmailContent emailContent = new EmailContent();
                 var content = emailContent.GetEmailDetail("en", EmailType.FORGOT_PASSWORD, new string[] { requestCode });
                 if (content != null)
-                    _ = new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body, true);
-                return Ok(HttpConstants.SUCCESS);
+                {    if(new Message().SendMail(ref message, user.UserEmail, "", "", content.Subject, content.Body, true))
+                        return Ok(HttpConstants.SUCCESS);
+                    else
+                        return BadRequest(message);
+                }
             }
-            else
-                return Ok(validationErrors.Show());
+            return BadRequest(validationErrors.Show());
         }
         
         public void EmailSend_Complete(List<string> logs)

@@ -202,8 +202,8 @@
             var datetime = DateTime.Now;
             try
             {
-                if (int.TryParse(_helper.GetAppSetting("AuthTokenExpiry"), out int period))
-                    period = 7;
+                if (!int.TryParse(_helper.GetAppSetting("AuthTokenExpiry"), out int period))
+                    period = 3;
 
                 var sessionType = SessionType.D;
                 var type = _helper.GetAppSetting("AuthTokenExpiry_PeriodType", typeof(string));
@@ -229,7 +229,7 @@
                         break;
 
                     case SessionType.Min:
-                        datetime = DateTime.Now.AddHours(period);
+                        datetime = DateTime.Now.AddMinutes(period);
                         break;
 
                     default:

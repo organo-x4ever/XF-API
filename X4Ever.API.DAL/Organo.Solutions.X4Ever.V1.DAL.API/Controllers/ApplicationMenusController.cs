@@ -37,14 +37,14 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 menuList = new List<Menu>();
             else if (platform == PlatformType.None)
                 menuList = (await _menuServices.GetByApplicationAsync(ApplicationKey)).ToList();
-            else if(platform==PlatformType.Android)
+            else if (VersionNumber == 0)
                 menuList = (await _menuServices.GetByApplicationAsync(ApplicationKey, platform)).ToList();
-            else if(platform==PlatformType.iOS)
-                menuList = (await _menuServices.GetByApplicationAsync(ApplicationKey, platform,VersionNumber)).ToList();
+            else
+                menuList = (await _menuServices.GetByApplicationAsync(ApplicationKey, platform, VersionNumber)).ToList();
 
             if (this.UserID == 55)
             {
-                int[] menuIDs = {7, 8};
+                int[] menuIDs = {7, 8, 12};
                 menuList = menuList.Where(m => menuIDs.Contains(m.ID) == false).ToList();
             }
 

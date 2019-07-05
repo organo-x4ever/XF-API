@@ -536,7 +536,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
                 _ = exception;
             }
         }
-
         
         public async Task SaveEmailLogAsync(string[] logs)
         {
@@ -544,8 +543,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
             {
                 var logFilePath = GetAppSetting("emailError");
                 // Today's file name
-                var fileName = $"{DateTime.Now:yyyy-MM-dd}-uow-exception.log";
-                var path = logFilePath + "\\" + fileName;
+                var fileName = $"{DateTime.Now:yyyy-MM-dd}-email-exception.log";
+                var path = HttpContext.Current.Server.MapPath("~\\" + logFilePath + "\\" + fileName);
                 // This text is added only once to the file.
                 if (!File.Exists(path))
                 {

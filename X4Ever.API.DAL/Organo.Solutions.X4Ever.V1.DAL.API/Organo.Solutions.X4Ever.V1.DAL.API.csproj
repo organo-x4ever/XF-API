@@ -203,6 +203,12 @@
     <Content Include="App_Dynamic\blogs.html" />
     <Content Include="App_Dynamic\blogs.js" />
     <Content Include="App_Files\app.js" />
+    <Content Include="App_Web\en-US\more.html" />
+    <Content Include="App_Web\es-US\more.html" />
+    <Content Include="App_Web\form-post.html" />
+    <Content Include="App_Web\form-post.js" />
+    <Content Include="App_Web\fr-CA\more.html" />
+    <Content Include="App_Web\it-IT\more.html" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
@@ -1190,6 +1196,7 @@
     <Compile Include="Models\PushMessageModel.cs" />
     <Compile Include="Models\TempEncrypt.cs" />
     <Compile Include="Models\Tracker.cs" />
+    <Compile Include="Models\UserFeedback.cs" />
     <Compile Include="Models\UserForApp.cs" />
     <Compile Include="Models\UserRegister.cs" />
     <Compile Include="Models\UserRegisterNew.cs" />
@@ -1411,6 +1418,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="App_Exception_Logs\" />
     <Folder Include="ErrorLog\emailFailedLogs\" />
+    <Folder Include="ErrorLog\feedback\" />
     <Folder Include="ErrorLog\grErrorLogs\" />
     <Folder Include="uowErrorLogs\" />
     <Folder Include="Userimage\" />

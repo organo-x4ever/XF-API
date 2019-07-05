@@ -125,7 +125,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 {
                     var version= headers.GetValues(HttpConstants.VERSION).First();
                     int.TryParse(version.Replace(".",""),out int v);
-                    return v;
+                    return (Platform == PlatformType.Android ? v / 10 : v) ;
                 }
             }
 

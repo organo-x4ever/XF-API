@@ -88,7 +88,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Statics
             languageCode = GetLanguageCode(languageCode);
             string[] fileName = new string[2];
             fileName[0] = EmailSubject(emailType + "_SUBJECT_" + languageCode.ToUpper());
-            fileName[1] = HttpContext.Current?.Request?.MapPath("~/EmailTemplates/" + emailType.ToString() + "_TEMPLATE_" +
+            fileName[1] = HttpContext.Current?.Server?.MapPath("~/EmailTemplates/" + emailType.ToString() + "_TEMPLATE_" +
                                                    languageCode.ToUpper() +
                                                    ".html")??"";
             return fileName;

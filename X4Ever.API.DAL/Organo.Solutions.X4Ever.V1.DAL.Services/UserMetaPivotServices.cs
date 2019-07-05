@@ -21,6 +21,14 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             _tokensServices = new UserTokensServices(unitOfWork);
             _converter = new Converter();
         }
+        
+        private string _weightVolumeType { get; set; }
+        private string WeightVolumeType(long userId)
+        {
+            if (!(_weightVolumeType != null && _weightVolumeType.Trim().Length > 0))
+                _weightVolumeType = _unitOfWork.UserSettingRepository.GetFirst(s => s.UserID == userId)?.WeightVolumeType ?? "lb";
+            return _weightVolumeType;
+        }
 
         public bool Delete(ref ValidationErrors validationErrors, List<UserMeta> entity)
         {
@@ -44,8 +52,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         public MetaPivot GetMeta(long ID)
         {
             var metaList = _unitOfWork.UserMetaRepository.GetMany(ut => ut.UserID == ID);
-            return metaList.GroupBy(ut => new
-                {ut.UserID}).Select(
+            var meta = metaList.GroupBy(ut => new { ut.UserID }).Select(
                 ut => new MetaPivot
                 {
                     UserId = ut.Key.UserID,
@@ -67,6 +74,32 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                            ?.MetaValue ?? "",
                     ModifyDate = metaList.OrderByDescending(m => m.ModifyDate).FirstOrDefault().ModifyDate
                 }).FirstOrDefault();
+
+            if(meta == null) return meta;
+            
+            var weightVolumeType = meta?.WeightVolumeType;
+            if (weightVolumeType?.Trim().Length == 0)
+                weightVolumeType = WeightVolumeType(ID);
+
+            return new MetaPivot()
+            {
+                UserId = meta.UserId,
+                WeightVolumeType = meta.WeightVolumeType,
+                State = meta.State,
+                Address = meta.Address,
+                Age = meta.Age,
+                City = meta.City,
+                Country = meta.Country,
+                Gender = meta.Gender,
+                PostalCode = meta.PostalCode,
+                ProfilePhoto = meta.ProfilePhoto,
+                WeightLossGoal = meta.WeightLossGoalUI.Trim().Length == 0
+                                ? (!weightVolumeType.Contains("lb") ?
+                                meta.WeightLossGoal : _converter.ConvertKilogramToPound(meta.WeightLossGoal))
+                                : meta.WeightLossGoalUI,
+                WeightLossGoalUI = meta.WeightLossGoalUI,
+                ModifyDate = meta.ModifyDate
+            };
         }
 
         public async Task<MetaPivot> GetMetaAsync(string token)
@@ -104,7 +137,31 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     ModifyDate = metaList.OrderByDescending(m => m.ModifyDate).FirstOrDefault().ModifyDate
                 }).FirstOrDefault();
 
-            return meta;
+            if(meta == null) return meta;
+
+            var weightVolumeType = meta?.WeightVolumeType;
+            if (weightVolumeType?.Trim().Length == 0)
+                weightVolumeType = WeightVolumeType(userId);
+
+            return new MetaPivot()
+            {
+                UserId = meta.UserId,
+                WeightVolumeType = meta.WeightVolumeType,
+                State = meta.State,
+                Address = meta.Address,
+                Age = meta.Age,
+                City = meta.City,
+                Country = meta.Country,
+                Gender = meta.Gender,
+                PostalCode = meta.PostalCode,
+                ProfilePhoto = meta.ProfilePhoto,
+                WeightLossGoal = meta.WeightLossGoalUI.Trim().Length == 0
+                                ? (!weightVolumeType.Contains("lb") ?
+                                meta.WeightLossGoal : _converter.ConvertKilogramToPound(meta.WeightLossGoal))
+                                : meta.WeightLossGoalUI,
+                WeightLossGoalUI = meta.WeightLossGoalUI,
+                ModifyDate = meta.ModifyDate
+            };
         }
 
         public async Task<MetaPivot> GetMetaAsync(long userId, string weightVolumeType)
@@ -134,14 +191,30 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     ModifyDate = metaList.OrderByDescending(m => m.ModifyDate).FirstOrDefault().ModifyDate
                 }).FirstOrDefault();
 
-            if (meta != null && weightVolumeType.ToLower().Contains("lb"))
-            {
-                meta.WeightLossGoal = meta.WeightLossGoalUI.Trim().Length == 0
-                    ? _converter.ConvertKilogramToPound(meta.WeightLossGoal)
-                    : meta.WeightLossGoalUI;
-            }
+            if(meta == null) return meta;
 
-            return meta;
+            if (weightVolumeType?.Trim().Length == 0)
+                weightVolumeType = meta?.WeightVolumeType;
+
+            return new MetaPivot()
+            {
+                UserId = meta.UserId,
+                WeightVolumeType = meta.WeightVolumeType,
+                State = meta.State,
+                Address = meta.Address,
+                Age = meta.Age,
+                City = meta.City,
+                Country = meta.Country,
+                Gender = meta.Gender,
+                PostalCode = meta.PostalCode,
+                ProfilePhoto = meta.ProfilePhoto,
+                WeightLossGoal = meta.WeightLossGoalUI.Trim().Length == 0
+                                ? (!weightVolumeType.Contains("lb") ?
+                                meta.WeightLossGoal : _converter.ConvertKilogramToPound(meta.WeightLossGoal))
+                                : meta.WeightLossGoalUI,
+                WeightLossGoalUI = meta.WeightLossGoalUI,
+                ModifyDate = meta.ModifyDate
+            };
         }
 
         public bool Insert(ref ValidationErrors validationErrors, long userId, UserMeta entity)

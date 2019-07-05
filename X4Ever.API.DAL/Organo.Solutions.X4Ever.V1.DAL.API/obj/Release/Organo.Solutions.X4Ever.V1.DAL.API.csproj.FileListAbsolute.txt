@@ -175,11 +175,10 @@ C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CopyComplete
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.dll
 C:\XamarinMobile\Web API\Organo.Solutions.X4Ever.V1.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csprojAssemblyReference.cache
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll.config
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AutoMapper.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Newtonsoft.Json.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.PushNotification.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.API.Security.dll
@@ -188,6 +187,7 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Resolver.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Services.dll
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.ValueTuple.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Apple.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Core.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\NLog.dll
@@ -201,14 +201,14 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Repository.dll.config
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Resolver.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Organo.Solutions.X4Ever.V1.DAL.Services.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AutoMapper.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AutoMapper.xml
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Newtonsoft.Json.xml
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.ValueTuple.xml
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Apple.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Core.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csprojAssemblyReference.cache
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AutoMapper.dll
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.ValueTuple.dll
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AutoMapper.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\AutoMapper.xml
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.ValueTuple.xml

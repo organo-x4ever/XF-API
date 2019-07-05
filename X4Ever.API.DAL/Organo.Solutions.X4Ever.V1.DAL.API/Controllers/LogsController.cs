@@ -14,6 +14,7 @@ using Organo.Solutions.X4Ever.V1.DAL.API.Models;
 using Organo.Solutions.X4Ever.V1.DAL;
 using System.Threading.Tasks;
 using System.Web;
+using Organo.Solutions.X4Ever.V1.DAL.Helper;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -192,8 +193,54 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             }
         }
 
+        [POST("feedback")]
+        [Route("feedback")]
+        public async Task<IHttpActionResult> PostFeedback(UserFeedback userFeedback)
+        {
+            // Today's file name
+            var fileName = $"{DateTime.Now:yyyy-MM-dd}-feedback.log";
+
+            // File's full path
+            var path = HttpContext.Current.Request.MapPath("~/" + FeedbackFilePath + "/" + fileName);
+            try
+            {
+                // This text is added only once to the file.
+                if (!File.Exists(path))
+                {
+                    // Create a file to write to.
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        await WriteText(sw, userFeedback);
+                    }
+                }
+                else
+                {
+                    // This text is always added, making the file longer over time
+                    // if it is not deleted.
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        await WriteText(sw, userFeedback);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+
+            return Ok("Success");
+        }
+
+        private async Task WriteText(StreamWriter sw, UserFeedback userFeedback)
+        {
+            var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+            userFeedback.Date = dateString;
+            await sw.WriteLineAsync(JsonConvert.SerializeObject(userFeedback));
+        }
+
         string LogFilePath => _helper.GetAppSetting("errorLogs");
         string DebugLogFilePath => _helper.GetAppSetting("debugLogs");
-        string EmailLogFilePath=>_helper.GetAppSetting("emailError");
+        string EmailLogFilePath => _helper.GetAppSetting("emailError");
+        string FeedbackFilePath => _helper.GetAppSetting(CommonConstants.FEEDBACK_DIR_PATH);
     }
 }

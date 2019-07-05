@@ -66,7 +66,8 @@
         {
             get
             {
-                return (int)_helper.GetAppSetting("Port", typeof(int));
+                int.TryParse(_helper.GetAppSetting("Port"),out int port);
+                return port;
             }
         }
 

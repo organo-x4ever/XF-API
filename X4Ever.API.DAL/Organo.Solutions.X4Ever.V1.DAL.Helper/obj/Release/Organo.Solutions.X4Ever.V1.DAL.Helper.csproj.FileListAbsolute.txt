@@ -26,4 +26,3 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Release\Organ
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Helper.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Helper.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Helper.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Helper\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Helper.csprojAssemblyReference.cache
