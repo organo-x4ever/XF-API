@@ -209,6 +209,11 @@
     <Content Include="App_Web\form-post.js" />
     <Content Include="App_Web\fr-CA\more.html" />
     <Content Include="App_Web\it-IT\more.html" />
+    <Content Include="App_Web\more.js" />
+    <Content Include="App_Web\more.min.js">
+      <DependentUpon>more.js</DependentUpon>
+    </Content>
+    <Content Include="App_Web\_backup\.12.html" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />

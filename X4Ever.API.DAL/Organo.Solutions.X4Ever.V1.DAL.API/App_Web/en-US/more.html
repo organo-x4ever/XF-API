@@ -13,23 +13,109 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <!--<link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">-->
+    <link rel="stylesheet" href="../../dist/css/skins/skin-yellow.css">
     <style>
-        .content{
-            padding-bottom:0 !important;
+        .content {
+            padding-bottom: 0 !important;
         }
+
         .wrapper {
             background-color: #3F3E3D !important;
         }
+
         body {
             background-color: #3F3E3D !important;
         }
+
         .tab-pane {
-            margin-top: 20px !important;
-            margin-bottom: 20px !important;
+            margin-top: 0 !important;
+            margin-bottom: 10px !important;
+            min-height:500px !important;
         }
+
+        .nav-tabs-custom > .nav-tabs > li.active {
+            border-top-color: #FCD900 !important;
+            background-color: #232222 !important;
+        }
+
+            .nav-tabs-custom > .nav-tabs > li.active a {
+                background-color: #232222 !important;
+            }
+
+        .nav-tabs-custom {
+            background: #232222 !important;
+            /*margin-bottom: 20px;
+                background: #fff;
+                box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+                border-radius: 3px;*/
+        }
+
+            .nav-tabs-custom > .tab-content {
+                background: #232222 !important;
+                /*background: #fff;
+                padding: 10px;
+                border-bottom-right-radius: 3px;
+                border-bottom-left-radius: 3px;*/
+            }
+
+            .nav-tabs-custom > .nav-tabs {
+                border-bottom-color: #3F3E3D !important;
+                /*margin: 0;
+                border-bottom-color: #f4f4f4;*/
+                border-top-right-radius: 3px;
+                border-top-left-radius: 3px;
+            }
+
+                .nav-tabs-custom > .nav-tabs > li:first-of-type.active > a {
+                    border-left-color: #3F3E3D !important;
+                }
+
+                .nav-tabs-custom > .nav-tabs > li a {
+                    color: #808080 !important;
+                }
+
+                    .nav-tabs-custom > .nav-tabs > li a:hover {
+                        color: #fff !important;
+                    }
+
+                .nav-tabs-custom > .nav-tabs > li.active > a {
+                    /*border-top-color: #3F3E3D !important;*/
+                    border-left-color: #3F3E3D !important;
+                    border-right-color: #3F3E3D !important;
+                    color: #fff !important;
+                }
+
+                    .nav-tabs-custom > .nav-tabs > li.active > a:hover {
+                        /*border-top-color: #3F3E3D !important;*/
+                        border-left-color: #3F3E3D !important;
+                        border-right-color: #3F3E3D !important;
+                        color: #808080 !important;
+                    }
+
+        label.control-label {
+            color: #808080 !important;
+        }
+
+        input, textarea {
+            background-color: #3F3E3D !important;
+            border: 0px none !important;
+        }
+
+        .checkbox-style {
+            background-color: #3F3E3D !important;
+            /*border: 0px none !important;*/
+        }
+
+        .btn-feedback {
+            color: #000000 !important;
+            background-color: #FCD900 !important;
+            border-color: #e9c906 !important;
+        }
+
     </style>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-yellow sidebar-mini">
     <div class="wrapper">
 
         <!-- Main content -->
@@ -40,47 +126,52 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#feedback" data-toggle="tab">Feedback</a></li>
-                            <li class="hidden"><a href="#timeline" data-toggle="tab">Timeline</a></li>
-                            <li class="hidden"><a href="#settings" data-toggle="tab">Settings</a></li>
+                            <li class=""><a href="#timeline" data-toggle="tab">Timeline</a></li>
+                            <li class=""><a href="#journey" data-toggle="tab">Journey</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="active tab-pane" id="feedback">
-                                <form class="form-horizontal form-feedback" action="../form-post.html" method="get">
-                                    <div class="form-group">
-                                        <label for="inputFullName" class="col-md-1 control-label">Full Name</label>
-                                        <div class="col-md-10">
+                                    <div name="message" class="col-md-offset-1 col-md-10 alert">
+                                        <h4></h4>
+                                        <span></span>
+                                    </div>
+                                <form class="form-horizontal form-feedback">
+                                    <div class="form-group no-pad-top">
+                                        <!--<label for="inputFullName" class="col-md-1 control-label">Full Name</label>-->
+                                        <div class="col-md-10 col-md-offset-1">
                                             <input type="text" class="form-control" id="inputFullName" name="fullname" placeholder="Full Name" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputEmail" class="col-md-1 control-label">E-Mail</label>
-                                        <div class="col-md-10">
+                                        <!--<label for="inputEmail" class="col-md-1 control-label">E-Mail</label>-->
+                                        <div class="col-md-10 col-md-offset-1">
                                             <input type="email" class="form-control" id="inputEmail" name="useremail" placeholder="E-Mail" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputExperience" class="col-md-1 control-label">Experience</label>
-                                        <div class="col-md-10">
+                                        <!--<label for="inputExperience" class="col-md-1 control-label">Experience</label>-->
+                                        <div class="col-md-10 col-md-offset-1">
                                             <textarea class="form-control" style="min-height:80px; max-height:120px;" id="inputExperience" name="experience" placeholder="Experience"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputComments" class="col-md-1 control-label">Comments</label>
-                                        <div class="col-md-10">
+                                        <!--<label for="inputComments" class="col-md-1 control-label">Comments</label>-->
+                                        <div class="col-md-10 col-md-offset-1">
                                             <textarea class="form-control" style="min-height:80px; max-height:120px;" id="inputComments" name="comments" placeholder="Comments"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputFile" class="col-md-1 control-label">Attachment</label>
-                                        <div class="col-md-10">
-                                            <input type="file" class="form-control" id="inputFile" name="attchedfile" placeholder="Attachment" />
+                                        <!--<label for="inputFile" class="col-md-1 control-label">Attachment</label>-->
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <input type="file" class="form-control" id="inputFile" onchange="ValidateSingleInput(this);" placeholder="Attachment" />
+                                            <input type="hidden" class="hidden" name="attchedfile" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-lg-offset-1 col-md-10">
                                             <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="allowaccess"> I allow to access my profile to find problem
+                                                <label class="control-label">
+                                                    <input type="checkbox" name="allowaccess" class="checkbox-style"> I allow to access my profile to find problem
                                                 </label>
                                             </div>
                                         </div>
@@ -90,187 +181,25 @@
                                             <button type="submit" class="btn btn-danger btn-feedback">Submit</button>
                                         </div>
                                     </div>
-                                    <input type="hidden" class="hidden" name="token" />
                                 </form>
                             </div><!-- /.tab-pane -->
-                            <div class="tab-pane hidden" id="timeline">
+                            <div class="tab-pane" id="timeline">
                                 <!-- The timeline -->
-                                <ul class="timeline timeline-inverse">
-                                    <!-- timeline time label -->
-                                    <li class="time-label">
-                                        <span class="bg-red">
-                                            10 Feb. 2014
-                                        </span>
-                                    </li>
-                                    <!-- /.timeline-label -->
-                                    <!-- timeline item -->
-                                    <li>
-                                        <i class="fa fa-envelope bg-blue"></i>
-                                        <div class="timeline-item">
-                                            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-                                            <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-                                            <div class="timeline-body">
-                                                Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                                weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                                jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                                quora plaxo ideeli hulu weebly balihoo...
-                                            </div>
-                                            <div class="timeline-footer">
-                                                <a class="btn btn-primary btn-xs">Read more</a>
-                                                <a class="btn btn-danger btn-xs">Delete</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <!-- END timeline item -->
-                                    <!-- timeline item -->
-                                    <li>
-                                        <i class="fa fa-user bg-aqua"></i>
-                                        <div class="timeline-item">
-                                            <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-                                            <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
-                                        </div>
-                                    </li>
-                                    <!-- END timeline item -->
-                                    <!-- timeline item -->
-                                    <li>
-                                        <i class="fa fa-comments bg-yellow"></i>
-                                        <div class="timeline-item">
-                                            <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-                                            <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-                                            <div class="timeline-body">
-                                                Take me to your leader!
-                                                Switzerland is small and neutral!
-                                                We are more like Germany, ambitious and misunderstood!
-                                            </div>
-                                            <div class="timeline-footer">
-                                                <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <!-- END timeline item -->
-                                    <!-- timeline time label -->
-                                    <li class="time-label">
-                                        <span class="bg-green">
-                                            3 Jan. 2014
-                                        </span>
-                                    </li>
-                                    <!-- /.timeline-label -->
-                                    <!-- timeline item -->
-                                    <li>
-                                        <i class="fa fa-camera bg-purple"></i>
-                                        <div class="timeline-item">
-                                            <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-                                            <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-                                            <div class="timeline-body">
-                                                <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                                <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                                <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                                <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <!-- END timeline item -->
-                                    <li>
-                                        <i class="fa fa-clock-o bg-gray"></i>
-                                    </li>
-                                </ul>
+                                <label class="control-label">
+                                    Timeline is coming shortly
+                                </label>
                             </div><!-- /.tab-pane -->
 
-                            <div class="tab-pane hidden" id="settings">
-
-                                <!-- Post -->
-                                <div class="post">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                                        <span class='username'>
-                                            <a href="#">Jonathan Burke Jr.</a>
-                                            <a href='#' class='pull-right btn-box-tool'><i class='fa fa-times'></i></a>
-                                        </span>
-                                        <span class='description'>Shared publicly - 7:30 PM today</span>
-                                    </div><!-- /.user-block -->
-                                    <p>
-                                        Lorem ipsum represents a long-held tradition for designers,
-                                        typographers and the like. Some people hate it and argue for
-                                        its demise, but others ignore the hate as they create awesome
-                                        tools to help create filler text for everyone from bacon lovers
-                                        to Charlie Sheen fans.
-                                    </p>
-                                    <ul class="list-inline">
-                                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
-                                        <li class="pull-right"><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments (5)</a></li>
-                                    </ul>
-
-                                    <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                                </div><!-- /.post -->
-                                <!-- Post -->
-                                <div class="post clearfix">
-                                    <div class='user-block'>
-                                        <img class='img-circle img-bordered-sm' src='../../dist/img/user7-128x128.jpg' alt='user image'>
-                                        <span class='username'>
-                                            <a href="#">Sarah Ross</a>
-                                            <a href='#' class='pull-right btn-box-tool'><i class='fa fa-times'></i></a>
-                                        </span>
-                                        <span class='description'>Sent you a message - 3 days ago</span>
-                                    </div><!-- /.user-block -->
-                                    <p>
-                                        Lorem ipsum represents a long-held tradition for designers,
-                                        typographers and the like. Some people hate it and argue for
-                                        its demise, but others ignore the hate as they create awesome
-                                        tools to help create filler text for everyone from bacon lovers
-                                        to Charlie Sheen fans.
-                                    </p>
-
-                                    <form class='form-horizontal'>
-                                        <div class='form-group margin-bottom-none'>
-                                            <div class='col-sm-9'>
-                                                <input class="form-control input-sm" placeholder="Response">
-                                            </div>
-                                            <div class='col-sm-3'>
-                                                <button class='btn btn-danger pull-right btn-block btn-sm'>Send</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div><!-- /.post -->
-                                <!-- Post -->
-                                <div class="post">
-                                    <div class='user-block'>
-                                        <img class='img-circle img-bordered-sm' src='../../dist/img/user6-128x128.jpg' alt='user image'>
-                                        <span class='username'>
-                                            <a href="#">Adam Jones</a>
-                                            <a href='#' class='pull-right btn-box-tool'><i class='fa fa-times'></i></a>
-                                        </span>
-                                        <span class='description'>Posted 5 photos - 5 days ago</span>
-                                    </div><!-- /.user-block -->
-                                    <div class='row margin-bottom'>
-                                        <div class='col-sm-6'>
-                                            <img class='img-responsive' src='../../dist/img/photo1.png' alt='Photo'>
-                                        </div><!-- /.col -->
-                                        <div class='col-sm-6'>
-                                            <div class='row'>
-                                                <div class='col-sm-6'>
-                                                    <img class='img-responsive' src='../../dist/img/photo2.png' alt='Photo'>
-                                                    <br>
-                                                    <img class='img-responsive' src='../../dist/img/photo3.jpg' alt='Photo'>
-                                                </div><!-- /.col -->
-                                                <div class='col-sm-6'>
-                                                    <img class='img-responsive' src='../../dist/img/photo4.jpg' alt='Photo'>
-                                                    <br>
-                                                    <img class='img-responsive' src='../../dist/img/photo1.png' alt='Photo'>
-                                                </div><!-- /.col -->
-                                            </div><!-- /.row -->
-                                        </div><!-- /.col -->
-                                    </div><!-- /.row -->
-
-                                    <ul class="list-inline">
-                                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
-                                        <li class="pull-right"><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments (5)</a></li>
-                                    </ul>
-
-                                    <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                                </div><!-- /.post -->
+                            <div class="tab-pane" id="journey">
+                                <!-- Journey/Posts -->
+                                <label class="control-label">
+                                    Journey content will be here shortly
+                                </label>
                             </div><!-- /.tab-pane -->
+                            <input type="hidden" class="hidden" name="token" />
+                            <div class="loading-results hidden">
+                                <img src="../../view/images/ajax-loader.gif" />
+                            </div>
                         </div><!-- /.tab-content -->
                     </div><!-- /.nav-tabs-custom -->
                 </div><!-- /.col -->
@@ -285,28 +214,7 @@
     <script src="../../bootstrap/js/bootstrap.min.js"></script>
     <!-- FastClick -->
     <script src="../../plugins/fastclick/fastclick.min.js"></script>
-    
-    <script>
-        $(document).ready(function () {
-            $(".btn-feedback").click(function (e) {
-                e.preventDefault();
-                $(".form-feedback").submit();
-            });
-            let token = getQueryString("token");
-            $("input[name=token]").val(token);
-        });
-
-        function getQueryString(name) {
-            let vars = [],
-                hash;
-            let hashes = window.location.href.slice(window.location.href.indexOf("?") + 1).split("&");
-            for (let i = 0; i < hashes.length; i++) {
-                hash = hashes[i].split("=");
-                vars.push(hash[0]);
-                vars[hash[0]] = hash[1];
-            }
-            return vars[name];
-        }
-    </script>
+    <script src="../../dist/js/app.min.js"></script>
+    <script src="../more.min.js?v=1.0.2"></script>
 </body>
 </html>

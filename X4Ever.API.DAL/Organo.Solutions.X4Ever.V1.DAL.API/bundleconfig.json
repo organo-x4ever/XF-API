@@ -82,5 +82,11 @@
     "inputFiles": [
       "view/push_notification_settings.js"
     ]
+  },
+  {
+    "outputFileName": "App_Web/more.min.js",
+    "inputFiles": [
+      "App_Web/more.js"
+    ]
   }
 ]

@@ -12,6 +12,7 @@ using AttributeRouting.Web.Http;
 using Organo.Solutions.X4Ever.V1.DAL.API.Security.ActionFilters;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
 using System.Text;
+using System.IO;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -33,6 +34,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         {
             try
             {
+                var context = HttpContext.Current;
                 var httpRequest = HttpContext.Current.Request;
                 try
                 {
@@ -59,6 +61,36 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             {
                 return "MAIN#" + GetExceptionDetail(ex);
             }
+        }
+        
+        [Route("upload/web")]
+        [POST("upload/web")]
+        public string PostWeb(string postedFileName)
+        {
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+                if (httpRequest.Files.Count > 0)
+                {
+                        foreach (string file in httpRequest.Files)
+                        {
+                            var postedFile = httpRequest.Files[file];
+                            if(postedFile!=null) {
+                                postedFileName += Path.GetExtension(postedFile.FileName);
+                                var fileName = postedFile.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault();
+                                var filePath = HttpContext.Current.Server.MapPath("~/" + FileUploadPath + "/" + postedFileName);
+                                postedFile.SaveAs(filePath);
+                                return HttpConstants.SUCCESS + "#" + FileUploadPath + "/" + postedFileName;
+                            }
+                        }
+                    }
+
+                    return "MessageFileUploadFailed";
+                }
+                catch (Exception ex)
+                {
+                    return "MessageErrorOccurred#" + GetExceptionDetail(ex);
+                }
         }
 
         [Route("uploadasync")]

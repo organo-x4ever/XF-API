@@ -1,10 +1,220 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <title>More</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <!--<link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">-->
+    <link rel="stylesheet" href="../../dist/css/skins/skin-yellow.css">
+    <style>
+        .content {
+            padding-bottom: 0 !important;
+        }
+
+        .wrapper {
+            background-color: #3F3E3D !important;
+        }
+
+        body {
+            background-color: #3F3E3D !important;
+        }
+
+        .tab-pane {
+            margin-top: 0 !important;
+            margin-bottom: 10px !important;
+            min-height:500px !important;
+        }
+
+        .nav-tabs-custom > .nav-tabs > li.active {
+            border-top-color: #FCD900 !important;
+            background-color: #232222 !important;
+        }
+
+            .nav-tabs-custom > .nav-tabs > li.active a {
+                background-color: #232222 !important;
+            }
+
+        .nav-tabs-custom {
+            background: #232222 !important;
+            /*margin-bottom: 20px;
+                background: #fff;
+                box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+                border-radius: 3px;*/
+        }
+
+            .nav-tabs-custom > .tab-content {
+                background: #232222 !important;
+                /*background: #fff;
+                padding: 10px;
+                border-bottom-right-radius: 3px;
+                border-bottom-left-radius: 3px;*/
+            }
+
+            .nav-tabs-custom > .nav-tabs {
+                border-bottom-color: #3F3E3D !important;
+                /*margin: 0;
+                border-bottom-color: #f4f4f4;*/
+                border-top-right-radius: 3px;
+                border-top-left-radius: 3px;
+            }
+
+                .nav-tabs-custom > .nav-tabs > li:first-of-type.active > a {
+                    border-left-color: #3F3E3D !important;
+                }
+
+                .nav-tabs-custom > .nav-tabs > li a {
+                    color: #808080 !important;
+                }
+
+                    .nav-tabs-custom > .nav-tabs > li a:hover {
+                        color: #fff !important;
+                    }
+
+                .nav-tabs-custom > .nav-tabs > li.active > a {
+                    /*border-top-color: #3F3E3D !important;*/
+                    border-left-color: #3F3E3D !important;
+                    border-right-color: #3F3E3D !important;
+                    color: #fff !important;
+                }
+
+                    .nav-tabs-custom > .nav-tabs > li.active > a:hover {
+                        /*border-top-color: #3F3E3D !important;*/
+                        border-left-color: #3F3E3D !important;
+                        border-right-color: #3F3E3D !important;
+                        color: #808080 !important;
+                    }
+
+        label.control-label {
+            color: #808080 !important;
+        }
+
+        input, textarea {
+            background-color: #3F3E3D !important;
+            border: 0px none !important;
+        }
+
+        .checkbox-style {
+            background-color: #3F3E3D !important;
+            /*border: 0px none !important;*/
+        }
+
+        .btn-feedback {
+            color: #000000 !important;
+            background-color: #FCD900 !important;
+            border-color: #e9c906 !important;
+        }
+
+    </style>
 </head>
-<body>
-    FRENCH
+<body class="hold-transition skin-yellow sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#feedback" data-toggle="tab">Feedback</a></li>
+                            <li class=""><a href="#timeline" data-toggle="tab">Timeline</a></li>
+                            <li class=""><a href="#journey" data-toggle="tab">Journey</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="feedback">
+                                    <div name="message" class="col-md-offset-1 col-md-10 alert">
+                                        <h4></h4>
+                                        <span></span>
+                                    </div>
+                                <form class="form-horizontal form-feedback">
+                                    <div class="form-group no-pad-top">
+                                        <!--<label for="inputFullName" class="col-md-1 control-label">Full Name</label>-->
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <input type="text" class="form-control" id="inputFullName" name="fullname" placeholder="Full Name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<label for="inputEmail" class="col-md-1 control-label">E-Mail</label>-->
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <input type="email" class="form-control" id="inputEmail" name="useremail" placeholder="E-Mail" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<label for="inputExperience" class="col-md-1 control-label">Experience</label>-->
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <textarea class="form-control" style="min-height:80px; max-height:120px;" id="inputExperience" name="experience" placeholder="Experience"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<label for="inputComments" class="col-md-1 control-label">Comments</label>-->
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <textarea class="form-control" style="min-height:80px; max-height:120px;" id="inputComments" name="comments" placeholder="Comments"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<label for="inputFile" class="col-md-1 control-label">Attachment</label>-->
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <input type="file" class="form-control" id="inputFile" onchange="ValidateSingleInput(this);" placeholder="Attachment" />
+                                            <input type="hidden" class="hidden" name="attchedfile" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-1 col-md-10">
+                                            <div class="checkbox">
+                                                <label class="control-label">
+                                                    <input type="checkbox" name="allowaccess" class="checkbox-style"> I allow to access my profile to find problem
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-1 col-md-10">
+                                            <button type="submit" class="btn btn-danger btn-feedback">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div><!-- /.tab-pane -->
+                            <div class="tab-pane" id="timeline">
+                                <!-- The timeline -->
+                                <label class="control-label">
+                                    Timeline is coming shortly
+                                </label>
+                            </div><!-- /.tab-pane -->
+
+                            <div class="tab-pane" id="journey">
+                                <!-- Journey/Posts -->
+                                <label class="control-label">
+                                    Journey content will be here shortly
+                                </label>
+                            </div><!-- /.tab-pane -->
+                            <input type="hidden" class="hidden" name="token" />
+                            <div class="loading-results hidden">
+                                <img src="../../view/images/ajax-loader.gif" />
+                            </div>
+                        </div><!-- /.tab-content -->
+                    </div><!-- /.nav-tabs-custom -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+
+        </section><!-- /.content -->
+        <!-- Control Sidebar -->
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.1.4 -->
+    <script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../plugins/fastclick/fastclick.min.js"></script>
+    <script src="../../dist/js/app.min.js"></script>
+    <script src="../more.min.js?v=1.0.2"></script>
 </body>
 </html>
