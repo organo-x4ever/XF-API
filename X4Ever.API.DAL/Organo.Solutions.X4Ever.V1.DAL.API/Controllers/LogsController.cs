@@ -193,6 +193,19 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             }
         }
 
+        [GET("getdata")]
+        [Route("getdata")]
+        public string GetData(string text)
+        {
+            try {
+                    text = text.Clean();
+                }
+                catch {
+                    //
+                }
+            return text;
+        }
+
         [POST("feedback")]
         [Route("feedback")]
         public async Task<IHttpActionResult> PostFeedback(UserFeedback userFeedback)

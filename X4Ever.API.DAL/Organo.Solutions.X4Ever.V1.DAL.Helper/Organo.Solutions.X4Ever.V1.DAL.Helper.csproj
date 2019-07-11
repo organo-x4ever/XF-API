@@ -54,6 +54,7 @@
     <Compile Include="CommonConstants.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="CryptoEngine.cs" />
+    <Compile Include="DataCleaning.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="IHelper.cs" />
     <Compile Include="PhoneNumber.cs" />

@@ -1,4 +1,5 @@
-﻿using Organo.Solutions.X4Ever.V1.DAL.Model;
+﻿using Organo.Solutions.X4Ever.V1.DAL.Helper;
+using Organo.Solutions.X4Ever.V1.DAL.Model;
 using Organo.Solutions.X4Ever.V1.DAL.Repository;
 using System;
 using System.Collections.Generic;
@@ -104,49 +105,133 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         public IEnumerable<UserTracker> Get(Expression<Func<UserTracker, bool>> filter = null,
             Func<IQueryable<UserTracker>, IOrderedQueryable<UserTracker>> orderBy = null, string includeProperties = "")
         {
-            return _unitOfWork.UserTrackerRepository.GetMany(filter, orderBy, includeProperties);
+            var tracker= _unitOfWork.UserTrackerRepository.GetMany(filter, orderBy, includeProperties);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public IEnumerable<UserTracker> Get(string token)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            return Get(tokenDetail?.UserID ?? 0);
+            var tracker= Get(tokenDetail?.UserID ?? 0);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
         
         public IEnumerable<UserTracker> Get(long userId)
         {
-            return _unitOfWork.UserTrackerRepository.GetMany(u => u.UserID == userId);
+            var tracker= _unitOfWork.UserTrackerRepository.GetMany(u => u.UserID == userId);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
         
         public async Task<IEnumerable<UserTracker>> GetAsync(string token)
         {
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
-            return await GetAsync(tokenDetail?.UserID ?? 0);
+            var tracker= await GetAsync(tokenDetail?.UserID ?? 0);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public async Task<IEnumerable<UserTracker>> GetAsync(long userId)
         {
-            return await _unitOfWork.UserTrackerRepository.GetManyAsync(u => u.UserID == userId);
+            var tracker= await _unitOfWork.UserTrackerRepository.GetManyAsync(u => u.UserID == userId);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public IEnumerable<UserTracker> GetByAndAttribute(string token, string attributeName)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            return _unitOfWork.UserTrackerRepository
+            var tracker= _unitOfWork.UserTrackerRepository
                 .GetMany(u => u.UserID == (tokenDetail?.UserID ?? 0) && u.AttributeName == attributeName)
                 .OrderBy(u => u.ModifyDate).ToList();
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
 
         public IEnumerable<UserTracker> GetLatest(string token)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            return GetLatest(tokenDetail?.UserID ?? 0);
+            var tracker= GetLatest(tokenDetail?.UserID ?? 0);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
         
         public IEnumerable<UserTracker> GetLatest(long userId)
         {
-            return _unitOfWork.UserTrackerRepository.GetMany(u => u.UserID == userId
+            var tracker= _unitOfWork.UserTrackerRepository.GetMany(u => u.UserID == userId
                                                                   && _unitOfWork.UserTrackerRepository
                                                                       .GetMany(ut => ut.UserID == u.UserID)
                                                                       .OrderByDescending(ut => ut.ID)
@@ -154,17 +239,41 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                                                           ut.RevisionNumber ==
                                                                           u.RevisionNumber))
                 .OrderBy(u => u.ModifyDate).ToList();
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public async Task<IEnumerable<UserTracker>> GetLatestAsync(string token)
         {
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
-            return await GetLatestAsync(tokenDetail?.UserID ?? 0);
+            var tracker= await GetLatestAsync(tokenDetail?.UserID ?? 0);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public async Task<IEnumerable<UserTracker>> GetLatestAsync(long userId)
         {
-            return (await _unitOfWork.UserTrackerRepository.GetManyAsync(u => u.UserID == userId
+            var tracker= (await _unitOfWork.UserTrackerRepository.GetManyAsync(u => u.UserID == userId
                                                                               && _unitOfWork.UserTrackerRepository
                                                                                   .GetMany(ut => ut.UserID == u.UserID)
                                                                                   .OrderByDescending(ut => ut.ID)
@@ -172,6 +281,18 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                                                                       ut.RevisionNumber ==
                                                                                       u.RevisionNumber)))
                 .OrderBy(u => u.ModifyDate).ToList();
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
 
@@ -180,6 +301,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             dynamic[] obj = {entity, false, true, false};
             if (Validate(ref validationErrors, obj))
             {
+                    entity.AttributeValue = entity.AttributeValue.Clean();
                 _unitOfWork.UserTrackerRepository.Insert(entity);
                 return _unitOfWork.Commit();
             }
@@ -195,6 +317,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 dynamic[] obj = {tracker, false, true, false};
                 if (Validate(ref validationErrors, obj))
                 {
+                    tracker.AttributeValue = tracker.AttributeValue.Clean();
                     _unitOfWork.UserTrackerRepository.Insert(tracker);
                 }
 
@@ -241,6 +364,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 record.RevisionNumber = revisionNumber.ToString();
                 record.UserID = userId;
                 record.ModifyDate = DateTime.Now;
+                    record.AttributeValue = record.AttributeValue.Clean();
                 dynamic[] obj = {record, false, true, false};
                 if (Validate(ref validationErrors, obj))
                 {
@@ -273,6 +397,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             dynamic[] obj = {entity, false, true, false};
             if (Validate(ref validationErrors, obj))
             {
+                    entity.AttributeValue = entity.AttributeValue.Clean();
                 _unitOfWork.UserTrackerRepository.Insert(entity);
                 return _unitOfWork.Commit();
             }
@@ -285,6 +410,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             dynamic[] obj = {entity, false, true, false};
             if (Validate(ref validationErrors, obj))
             {
+                    entity.AttributeValue = entity.AttributeValue.Clean();
                 _unitOfWork.UserTrackerRepository.Update(entity);
                 return _unitOfWork.Commit();
             }
@@ -299,6 +425,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             {
                 foreach (var tracker in entity)
                 {
+                    tracker.AttributeValue = tracker.AttributeValue.Clean();
                     _unitOfWork.UserTrackerRepository.Update(tracker);
                 }
 
@@ -340,7 +467,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     .OrderBy(u => u.UserID).ThenBy(u => u.ID)
                 select new UserTrackerMedia()
                 {
-                    AttributeValue = u.AttributeValue
+                    AttributeValue = u.AttributeValue.Clean()
                 }).Distinct();
         }
 
@@ -354,7 +481,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     .OrderBy(u => u.UserID).ThenBy(u => u.ID)
                 select new UserTrackerMedia()
                 {
-                    AttributeValue = t.AttributeValue
+                    AttributeValue = t.AttributeValue.Clean()
                 }).Distinct();
         }
 
@@ -369,22 +496,35 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     .OrderBy(u => u.UserID).ThenBy(u => u.ID)
                 select new UserTrackerMedia()
                 {
-                    AttributeValue = t.AttributeValue
+                    AttributeValue = t.AttributeValue.Clean()
                 }).Distinct();
         }
 
         public async Task<IEnumerable<UserTrackerPivot>> GetUserRowAsync(long userId)
         {
-            return await Task.Factory.StartNew(() =>
-                _unitOfWork.UserTrackerPivotRepository.SqlQuery(
+            return await Task.Factory.StartNew(() =>{
+               var tracker= _unitOfWork.UserTrackerPivotRepository.SqlQuery(
                     "x4ever.x4_user_tracker_select_by_userid @user_id",
-                    new SqlParameter("user_id", SqlDbType.BigInt) {Value = userId}
-                ));
+                    new SqlParameter("user_id", SqlDbType.BigInt) {Value = userId});
+                return from t in tracker
+                    select new UserTrackerPivot()
+                    {
+                        user_id=t.user_id,
+                        rev_number=t.rev_number,
+                        ID=t.ID,
+                    ModifyDate = t.ModifyDate,
+                    CurrentWeight =t.CurrentWeight,
+                    ShirtSize = t.ShirtSize,
+                    FrontImage =t.FrontImage.Clean(),
+                    SideImage = t.SideImage.Clean(),
+                    AboutJourney =t.AboutJourney
+                    };
+               });
         }
 
         public async Task<IEnumerable<UserTrackerMedia>> GetImagesAsync(long userId)
         {
-            return (from u in (await _unitOfWork.UserTrackerRepository.GetManyAsync(u =>
+            var tracker= (from u in (await _unitOfWork.UserTrackerRepository.GetManyAsync(u =>
                         u.UserID == (userId == 0 ? u.UserID : userId) &&
                         u.AttributeName.Contains("frontimage") ||
                         u.AttributeName.Contains("sideimage")))
@@ -393,11 +533,16 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 {
                     AttributeValue = u.AttributeValue
                 }).Distinct();
+            return from t in tracker
+                   select new UserTrackerMedia()
+                   {
+                       AttributeValue=t.AttributeValue.Clean()
+                   };
         }
 
         public async Task<IEnumerable<UserTrackerMedia>> GetSpecificImagesAsync(long userId)
         {
-            return (from t in (await _unitOfWork.UserTrackerRepository.GetManyAsync(t =>
+            var tracker= (from t in (await _unitOfWork.UserTrackerRepository.GetManyAsync(t =>
                         (t.MediaLink == null || t.MediaLink != "inactive")
                         && t.UserID == (userId == 0 ? t.UserID : userId)
                         && t.AttributeName.Contains("frontimage") ||
@@ -407,6 +552,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 {
                     AttributeValue = t.AttributeValue
                 }).Distinct();
+            return from t in tracker
+                   select new UserTrackerMedia()
+                   {
+                       AttributeValue=t.AttributeValue.Clean()
+                   };
         }
 
         public async Task<IEnumerable<UserTrackerMedia>> GetSpecificImagesAsync(string key)
@@ -420,19 +570,31 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     .OrderBy(u => u.UserID).ThenBy(u => u.ID)
                 select new UserTrackerMedia()
                 {
-                    AttributeValue = t.AttributeValue
+                    AttributeValue = t.AttributeValue.Clean()
                 }).Distinct();
         }
 
         public async Task<IEnumerable<UserTracker>> GetFirstAndLastAsync(string token)
         {
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
-            return await GetFirstAndLastAsync(tokenDetail?.UserID ?? 0);
+            var tracker= await GetFirstAndLastAsync(tokenDetail?.UserID ?? 0);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
         
         public async Task<IEnumerable<UserTracker>> GetFirstAndLastAsync(long userId)
         {
-            var trackers = (await _unitOfWork.UserTrackerRepository.GetManyAsync(u =>
+            var tracker = (await _unitOfWork.UserTrackerRepository.GetManyAsync(u =>
                     u.UserID == userId
                     && (_unitOfWork.UserTrackerRepository
                         .GetMany(ut => ut.UserID == u.UserID)
@@ -447,13 +609,36 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                             ut.RevisionNumber ==
                             u.RevisionNumber)))
                 .OrderBy(u => u.ModifyDate).ToList();
-            return trackers;
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };;
         }
         
         public IEnumerable<UserTracker> GetFirstAndLast(string token)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            return GetFirstAndLast(tokenDetail?.UserID ?? 0);
+            var tracker= GetFirstAndLast(tokenDetail?.UserID ?? 0);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public IEnumerable<UserTracker> GetFirstAndLast(long userId)
@@ -472,59 +657,166 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                                                                   ut.RevisionNumber ==
                                                                                   u.RevisionNumber))
                 .OrderBy(u => u.ModifyDate).ToList();
-            return trackers;
+            return from t in trackers
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
         
         public IEnumerable<UserTracker> GetByAttribute(string token, string attributeName)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            return GetByAttribute(tokenDetail?.UserID ?? 0, attributeName);
+            var tracker= GetByAttribute(tokenDetail?.UserID ?? 0, attributeName);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public IEnumerable<UserTracker> GetByAttribute(long userId, string attributeName)
         {
-            return _unitOfWork.UserTrackerRepository
+            var tracker= _unitOfWork.UserTrackerRepository
                 .GetMany(u => u.UserID == userId && u.AttributeName == attributeName)
                 .OrderBy(u => u.ModifyDate).ToList();
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public async Task<IEnumerable<UserTracker>> GetByAttributeAsync(string token, string attributeName)
         {
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
-            return await GetByAttributeAsync(tokenDetail?.UserID ?? 0, attributeName);
+            var tracker= await GetByAttributeAsync(tokenDetail?.UserID ?? 0, attributeName);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
         
         public async Task<IEnumerable<UserTracker>> GetByAttributeAsync(long userId, string attributeName)
         {
-            return (await _unitOfWork.UserTrackerRepository
+            var tracker= (await _unitOfWork.UserTrackerRepository
                     .GetManyAsync(u => u.UserID == userId && u.AttributeName == attributeName))
                 .OrderBy(u => u.ModifyDate).ToList();
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public async Task<IEnumerable<UserTracker>> GetByAttributeLabelAsync(string token, string attributeLabel)
         {
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
-            return await GetByAttributeLabelAsync(tokenDetail?.UserID ?? 0, attributeLabel);
+            var tracker= await GetByAttributeLabelAsync(tokenDetail?.UserID ?? 0, attributeLabel);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public async Task<IEnumerable<UserTracker>> GetByAttributeLabelAsync(long userId, string attributeLabel)
         {
-            return (await _unitOfWork.UserTrackerRepository
+            var tracker= (await _unitOfWork.UserTrackerRepository
                     .GetManyAsync(u => u.UserID == userId && u.AttributeLabel == attributeLabel))
                 .OrderBy(u => u.ModifyDate).ToList();
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public IEnumerable<UserTracker> GetByAttributeLabel(string token, string attributeLabel)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            return GetByAttributeLabel(tokenDetail?.UserID ?? 0, attributeLabel);
+            var tracker= GetByAttributeLabel(tokenDetail?.UserID ?? 0, attributeLabel);
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public IEnumerable<UserTracker> GetByAttributeLabel(long userId, string attributeLabel)
         {
-            return _unitOfWork.UserTrackerRepository
+            var tracker= _unitOfWork.UserTrackerRepository
                 .GetMany(u => u.UserID == userId && u.AttributeLabel == attributeLabel)
                 .OrderBy(u => u.ModifyDate).ToList();
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public Task<IEnumerable<UserTracker>> GetAsync()
@@ -588,7 +880,20 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                     u.AttributeName.ToLower() == "aboutjourney")
                                 ?.FirstOrDefault()?.AttributeValue ?? ""
                     });
-            return tracker;
+            return from t in tracker
+                    select new TrackerPivot()
+                    {
+                        UserId=t.UserId,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    WeightVolumeType =t.WeightVolumeType,
+                    CurrentWeight =t.CurrentWeight,
+                    CurrentWeightUI =t.CurrentWeightUI,
+                    ShirtSize = t.ShirtSize,
+                    FrontImage =t.FrontImage.Clean(),
+                    SideImage = t.SideImage.Clean(),
+                    AboutJourney =t.AboutJourney
+                    };
         }
 
         public async Task<IEnumerable<TrackerPivot>> GetAsPivotAsync(string token)
@@ -634,7 +939,19 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                 u.AttributeName.ToLower() == "aboutjourney")
                             ?.FirstOrDefault()?.AttributeValue ?? ""
                 });
-            return tracker;
+            return from t in tracker
+                    select new TrackerPivot(){
+                        UserId=t.UserId,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    WeightVolumeType =t.WeightVolumeType,
+                    CurrentWeight =t.CurrentWeight,
+                    CurrentWeightUI =t.CurrentWeightUI,
+                    ShirtSize = t.ShirtSize,
+                    FrontImage =t.FrontImage.Clean(),
+                    SideImage = t.SideImage.Clean(),
+                    AboutJourney =t.AboutJourney
+                    };
         }
 
         

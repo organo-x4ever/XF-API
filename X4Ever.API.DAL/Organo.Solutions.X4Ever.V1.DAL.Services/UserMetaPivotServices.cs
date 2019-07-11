@@ -46,7 +46,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             var tokenDetail = _tokensServices.GetDetailByToken(token);
             if (tokenDetail == null)
                 return null;
-            return GetMeta(tokenDetail.UserID);
+            return GetMeta(tokenDetail?.UserID??0);
         }
         
         public MetaPivot GetMeta(long ID)
@@ -92,7 +92,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 Country = meta.Country,
                 Gender = meta.Gender,
                 PostalCode = meta.PostalCode,
-                ProfilePhoto = meta.ProfilePhoto,
+                ProfilePhoto = meta.ProfilePhoto?.Clean(),
                 WeightLossGoal = meta.WeightLossGoalUI.Trim().Length == 0
                                 ? (!weightVolumeType.Contains("lb") ?
                                 meta.WeightLossGoal : _converter.ConvertKilogramToPound(meta.WeightLossGoal))
@@ -107,7 +107,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
             if (tokenDetail == null)
                 return null;
-            return await GetMetaAsync(tokenDetail.UserID);
+            return await GetMetaAsync(tokenDetail?.UserID??0);
         }
         
         public async Task<MetaPivot> GetMetaAsync(long userId)
@@ -154,7 +154,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 Country = meta.Country,
                 Gender = meta.Gender,
                 PostalCode = meta.PostalCode,
-                ProfilePhoto = meta.ProfilePhoto,
+                ProfilePhoto = meta.ProfilePhoto.Clean(),
                 WeightLossGoal = meta.WeightLossGoalUI.Trim().Length == 0
                                 ? (!weightVolumeType.Contains("lb") ?
                                 meta.WeightLossGoal : _converter.ConvertKilogramToPound(meta.WeightLossGoal))
@@ -207,7 +207,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 Country = meta.Country,
                 Gender = meta.Gender,
                 PostalCode = meta.PostalCode,
-                ProfilePhoto = meta.ProfilePhoto,
+                ProfilePhoto = meta.ProfilePhoto.Clean(),
                 WeightLossGoal = meta.WeightLossGoalUI.Trim().Length == 0
                                 ? (!weightVolumeType.Contains("lb") ?
                                 meta.WeightLossGoal : _converter.ConvertKilogramToPound(meta.WeightLossGoal))
@@ -224,10 +224,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             dynamic[] obj = {entity};
             if (this.Validate(ref validationErrors, obj))
             {
-                var record = _unitOfWork.UserMetaRepository
-                    .GetMany(m =>
-                        m.UserID == entity.UserID && m.MetaKey.Trim().ToLower() == entity.MetaKey.Trim().ToLower())
-                    .LastOrDefault();
+                entity.MetaValue = entity.MetaValue.Clean();
+                var record = _unitOfWork.UserMetaRepository.GetMany(m => m.UserID == entity.UserID && m.MetaKey.Trim().ToLower() == entity.MetaKey.Trim().ToLower()).LastOrDefault();
                 if (record != null)
                 {
                     record.MetaDescription = entity.MetaDescription;
@@ -267,6 +265,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 dynamic[] obj = {record};
                 if (this.Validate(ref validationErrors, obj))
                 {
+                    record.MetaValue = record.MetaValue.Clean();
                     var result = _unitOfWork.UserMetaRepository.GetMany(m =>
                             m.UserID == record.UserID && m.MetaKey.Trim().ToLower() == record.MetaKey.Trim().ToLower())
                         .LastOrDefault();
@@ -299,9 +298,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         public bool Insert(ref ValidationErrors validationErrors, string token, ICollection<UserMeta> entity)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            if (tokenDetail != null)
+            if (tokenDetail != null){
                 return Insert(ref validationErrors, tokenDetail.UserID, entity);
-
+            }
             return validationErrors.Count() == 0;
         }
 
@@ -315,7 +314,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     MetaKey = userMeta.MetaKey,
                     MetaLabel = userMeta.MetaLabel,
                     MetaType = userMeta.MetaType,
-                    MetaValue = userMeta.MetaValue,
+                    MetaValue = userMeta.MetaValue.Clean(),
                     ModifyDate = userMeta.ModifyDate,
                     UserID = userMeta.UserID
                 };

@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using Organo.Solutions.X4Ever.V1.DAL.Model.Statics;
+using Organo.Solutions.X4Ever.V1.DAL.Helper;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.Services
 {
@@ -31,11 +32,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                         Country = t.Country,
                         EmailAddress = t.EmailAddress,
                         FirstName = t.FirstName,
-                        FrontPhoto = t.FrontPhoto,
+                        FrontPhoto = t.FrontPhoto?.Clean(),
                         Gender = t.Gender,
                         LastName = t.LastName,
                         PostalCode = t.PostalCode,
-                        SidePhoto = t.SidePhoto,
+                        SidePhoto = t.SidePhoto?.Clean(),
                         StartWeight = t.StartWeight,
                         State = t.State,
                         TShirtSize = t.TShirtSize,
@@ -62,11 +63,11 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                         Country = t.Country,
                         EmailAddress = t.EmailAddress,
                         FirstName = t.FirstName,
-                        FrontPhoto = t.FrontPhoto,
+                        FrontPhoto = t.FrontPhoto?.Clean(),
                         Gender = t.Gender,
                         LastName = t.LastName,
                         PostalCode = t.PostalCode,
-                        SidePhoto = t.SidePhoto,
+                        SidePhoto = t.SidePhoto?.Clean(),
                         StartWeight = t.StartWeight,
                         State = t.State,
                         TShirtSize = t.TShirtSize,
@@ -111,7 +112,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                             {
                                 AttributeLabel = r.AttributeLabel,
                                 AttributeName = r.AttributeName,
-                                AttributeValue = r.AttributeValue,
+                                AttributeValue = r.AttributeValue?.Clean(),
                                 MediaLink = r.MediaLink,
                                 ModifyDate = r.ModifyDate,
                             }).Distinct().ToList()
@@ -146,12 +147,12 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 var frontImage =
                     trackers.FirstOrDefault(u => u.AttributeName.ToLower().Contains(TrackerConstants.FRONT_IMAGE));
                 if (frontImage != null)
-                    userTracker.FrontImage = frontImage.AttributeValue;
+                    userTracker.FrontImage = frontImage.AttributeValue?.Clean();
 
                 var sideImage =
                     trackers.FirstOrDefault(u => u.AttributeName.ToLower().Contains(TrackerConstants.SIDE_IMAGE));
                 if (sideImage != null)
-                    userTracker.SideImage = sideImage.AttributeValue;
+                    userTracker.SideImage = sideImage.AttributeValue?.Clean();
 
                 if (revision == null || revision.Trim().Length == 0)
                 {
@@ -177,7 +178,33 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         public async Task<IEnumerable<UserTrackerDetailReportV2>> GetTrackerDetailAsync(
             Func<IQueryable<UserTrackerDetailReportV2>, IOrderedQueryable<UserTrackerDetailReportV2>> orderBy = null)
         {
-            return await _unitOfWork.UserTrackerDetailReportV2ReporRepository.GetManyAsync(null, orderBy);
+            return (from t in await _unitOfWork.UserTrackerDetailReportV2ReporRepository.GetManyAsync(null, orderBy)
+                    select new UserTrackerDetailReportV2()
+                    {
+                        Address=t.Address,
+                        State=t.State,
+                        PostalCode=t.PostalCode,
+                        Gender=t.Gender,
+                        Country=t.Country,
+                        City=t.City,
+                        ApplicationName=t.ApplicationName,
+                        CreateDate=t.CreateDate,
+                        EmailAddress=t.EmailAddress,
+                        FirstName=t.FirstName,
+                        FrontPhoto=t.FrontPhoto.Clean(),
+                        ID=t.ID,
+                        LastName=t.LastName,
+                        SidePhoto=t.SidePhoto.Clean(),
+                        StartWeight=t.StartWeight,
+                        Testimonials=t.Testimonials,
+                        TrackerCreateDate=t.TrackerCreateDate,
+                        TShirtSize=t.TShirtSize,
+                         UserID=t.UserID,
+                         WeeklyWeightLost=t.WeeklyWeightLost,
+                         WeightGoalReached=t.WeightGoalReached,
+                         WeightToLose=t.WeightToLose,
+                         WeightVolumeType=t.WeightVolumeType
+                    });
         }
 
         public async Task<IEnumerable<UserTrackerDetailReportV2>> GetTrackerDetailPeriodAsync(DateTime fromDate,
@@ -185,9 +212,34 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             Func<IQueryable<UserTrackerDetailReportV2>, IOrderedQueryable<UserTrackerDetailReportV2>> orderBy = null)
         {
             toDate = toDate.AddDays(1);
-            return (await _unitOfWork.UserTrackerDetailReportV2ReporRepository.GetManyAsync(t =>
+            return (from t in (await _unitOfWork.UserTrackerDetailReportV2ReporRepository.GetManyAsync(t =>
                     t.TrackerCreateDate >= fromDate && t.TrackerCreateDate <= toDate, orderBy))
-                .OrderByDescending(t => t.TrackerCreateDate);
+                    select new UserTrackerDetailReportV2()
+                    {
+                        Address=t.Address,
+                        State=t.State,
+                        PostalCode=t.PostalCode,
+                        Gender=t.Gender,
+                        Country=t.Country,
+                        City=t.City,
+                        ApplicationName=t.ApplicationName,
+                        CreateDate=t.CreateDate,
+                        EmailAddress=t.EmailAddress,
+                        FirstName=t.FirstName,
+                        FrontPhoto=t.FrontPhoto.Clean(),
+                        ID=t.ID,
+                        LastName=t.LastName,
+                        SidePhoto=t.SidePhoto.Clean(),
+                        StartWeight=t.StartWeight,
+                        Testimonials=t.Testimonials,
+                        TrackerCreateDate=t.TrackerCreateDate,
+                        TShirtSize=t.TShirtSize,
+                         UserID=t.UserID,
+                         WeeklyWeightLost=t.WeeklyWeightLost,
+                         WeightGoalReached=t.WeightGoalReached,
+                         WeightToLose=t.WeightToLose,
+                         WeightVolumeType=t.WeightVolumeType
+                    }).OrderByDescending(t => t.TrackerCreateDate);
         }
     }
 }

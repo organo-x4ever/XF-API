@@ -4,15 +4,12 @@
     data.hideLoader();
     data.alertClear();
     $(".btn-feedback").click(function (e) {
-        data.displayInfo("btn-feedback", "click");
         e.preventDefault();
         data.alertClear();
         if (data.validate()) {
-            data.displayInfo("validate()", "CHECK:TRUE");
             data.upload(data.post);
         }
         else {
-            data.displayInfo("validate()", "CHECK:FALSE");
             data.alertError("Please provide some information to submit");
             data.hideLoader();
         }
@@ -54,7 +51,6 @@ var data = {
     inputToken: $("input[name=token]"),
     fileExists: false,
     post: function () {
-        data.displayInfo("posting...", "data");
         let userFeedback = {
             FullName: $(data.fullName).val(),
             Email: $(data.userEmail).val(),
@@ -64,11 +60,8 @@ var data = {
             AllowAccess: $(data.allowAccess).val(),
             Token: $(data.inputToken).val()
         };
-        data.displayInfo("userFeedback:",userFeedback);
         let jsonData = JSON.stringify(userFeedback);
-        data.displayInfo("baseUrl:",data.baseUrl);
         let url = data.baseUrl + "api/logs/feedback";
-        data.displayInfo("url:",url);
         jQuery.support.cors = true;
         $.ajax({
             url: url,
@@ -77,13 +70,10 @@ var data = {
             contentType: 'application/json',
             data: jsonData,
             success: function (response) {
-                data.displayInfo('response:', response);
                 if (response.indexOf("Success") > -1) {
-                    data.displayInfo("RESULT:", "Posted");
                     data.alertSuccess("Thank you for your valuable feedback");
                     data.clearInput();
                 } else {
-                    data.displayInfo("RESULT:", "Not Posted");
                     data.alertWarning("Your feedbacks are valuable for us. Try again later");
                 }
                 data.hideLoader();
@@ -97,61 +87,56 @@ var data = {
     },
     upload: function (callback) {
         data.showLoader();
-        if (data.fileExists) {
-            //var myID = 3; //uncomment this to make sure the ajax URL works
-            if (data.inputAttachedFile.length > 0) {
-                if (window.FormData !== undefined) {
-                    var formData = new FormData();
-                    formData.append("file", $(data.inputAttachedFile)[0].files[0] /*$('#inputFile')[0].files[0]*/);
-                    let url = data.baseUrl + "api/files/upload/web?postedFileName=" + data.getDateAsString();
-                    $.ajax({
-                        url: url,
-                        type: "POST",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        headers: {
-                            "Token": $(data.inputToken).val()
-                        },
-                        success: function (result) {
-                            data.displayInfo("RESULT:", result);
-                            if (result === "MessageFileUploadFailed") {
-                                data.alertError("File upload failed");
-                            } else if (result.indexOf("MessageErrorOccurred") > -1) {
-                                data.alertError(result.replace("MessageErrorOccurred#", ""));
-                            } else if (result.indexOf("MAIN") > -1) {
-                                data.alertError(result.replace("MAIN#", ""));
-                            } else if (result.indexOf("Success#") > -1) {
-                                $(data.attachedFile).val(result.replace("Success#", ""));
-                                callback();
-                                return;
-                            }
-                            data.hideLoader();
-                        },
-                        error: function (xhr, status, p3, p4) {
-                            data.displayInfo("Error:", xhr, status, p3, p4);
-                            var err = "Error " + " " + status + " " + p3 + " " + p4;
-                            if (xhr.responseText && xhr.responseText[0] === "{")
-                                err = JSON.parse(xhr.responseText).Message;
-                            data.displayInfo("Error:", err);
-                        },
-                        complete: function () {
-                            //on complete event
-                        },
-                        progress: function (evt) {
-                            //progress event
-                        },
-                        ///Ajax events
-                        beforeSend: function (e) {
-                            //before event
+        if (data.fileExists && data.inputAttachedFile.length > 0) {
+            if (window.FormData !== undefined) {
+                var formData = new FormData();
+                formData.append("file", $(data.inputAttachedFile)[0].files[0] /*$('#inputFile')[0].files[0]*/);
+                let url = data.baseUrl + "api/files/upload/web?postedFileName=" + data.getDateAsString();
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    headers: {
+                        "Token": $(data.inputToken).val()
+                    },
+                    success: function (result) {
+                        data.displayInfo("RESULT:", result);
+                        if (result === "MessageFileUploadFailed") {
+                            data.alertError("File upload failed");
+                        } else if (result.indexOf("MessageErrorOccurred") > -1) {
+                            data.alertError(result.replace("MessageErrorOccurred#", ""));
+                        } else if (result.indexOf("MAIN") > -1) {
+                            data.alertError(result.replace("MAIN#", ""));
+                        } else if (result.indexOf("Success#") > -1) {
+                            $(data.attachedFile).val(result.replace("Success#", ""));
+                            callback();
+                            return;
                         }
-                    });
-                } else {
-                    data.alertWarning("This browser doesn't support HTML5 file uploads!");
-                    callback();
-                }
+                        data.hideLoader();
+                    },
+                    error: function (xhr, status, p3, p4) {
+                        data.displayInfo("Error:", xhr, status, p3, p4);
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] === "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                        data.displayInfo("Error:", err);
+                    },
+                    complete: function () {
+                        //on complete event
+                    },
+                    progress: function (evt) {
+                        //progress event
+                    },
+                    ///Ajax events
+                    beforeSend: function (e) {
+                        //before event
+                    }
+                });
             } else {
+                data.alertWarning("This browser doesn't support HTML5 file uploads!");
                 callback();
             }
         } else {
@@ -237,27 +222,21 @@ var data = {
     },
 
     fileValidate: function (oInput) {
-        data.displayInfo("fileValidate()", "INSIDE");
         if (oInput.type === "file") {
             let sFileName = oInput.value;
             if (sFileName.length > 0) {
-                data.displayInfo("fileValidate()", "VALID");
                 return true;
             }
         }
-        data.displayInfo("fileValidate()", "INVALID");
         return false;
     },
     validate: function () {
-        data.displayInfo("validate()", "INSIDE");
         if (data.isNotNull(data.experience) || data.isNotNull(data.comments) || data.fileExists /*data.isNotNull(data.fullName) || data.isNotNull(data.userEmail)*/) {
-            data.displayInfo("validate()", "VALID");
             $(data.experience).parent("div").removeClass("has-error");
             $(data.comments).parent("div").removeClass("has-error");
             $(data.inputAttachedFile).parent("div").removeClass("has-error");
             return true;
         }
-        data.displayInfo("validate()", "INVALID");
         $(data.experience).parent("div").addClass("has-error");
         $(data.comments).parent("div").addClass("has-error");
         $(data.inputAttachedFile).parent("div").addClass("has-error");
@@ -267,7 +246,7 @@ var data = {
     getDateAsString: function () {
         var date = new Date();
         return data.addZero(date.getFullYear()) + "" +
-            data.addZero(date.getMonth()) + "" +
+            data.addZero(data.setMonth(date.getMonth())) + "" +
             data.addZero(date.getDate()) + "" +
             data.addZero(date.getHours()) + "" +
             data.addZero(date.getMinutes()) + "" +
@@ -275,31 +254,29 @@ var data = {
             data.addZero(date.getMilliseconds());
     },
 
+    setMonth: function (month) {
+        month = Number(month);
+        return month === 12 ? 1 : month + 1;
+    },
+
     addZero: function (text) {
-        if (Number(text) < 10)
+        if (Number(text) < 10) {
             return "0" + text;
+        }
         return text;
     },
 
     isNotNull: function (text) {
-        data.displayInfo("DATA:", $(text));
-        data.displayInfo("DATA.VALUE:", $(text).val());
-        data.displayInfo("isNotNull()", "INSIDE");
         if ($(text).val() !== undefined && $(text).val() !== null && data.isExist(text)) {
-            data.displayInfo("isNotNull()", "VALID");
             return true;
         }
-        data.displayInfo("isNotNull()", "INVALID");
         return false;
     },
 
     isExist: function (data) {
-        this.displayInfo("isExist()", "INSIDE");
         if (String($(data).val()).trim().length > 0) {
-            this.displayInfo("isExist()", "VALID");
             return true;
         }
-        this.displayInfo("isExist()", "INVALID");
         return false;
     }
 };

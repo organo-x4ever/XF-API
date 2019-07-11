@@ -162,8 +162,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                 : t.CurrentWeightUI,
                         CurrentWeightUI = t.CurrentWeightUI,
                         ShirtSize = t.ShirtSize,
-                        FrontImage = t.FrontImage,
-                        SideImage = t.SideImage,
+                        FrontImage = t.FrontImage.Clean(),
+                        SideImage = t.SideImage.Clean(),
                         AboutJourney = t.AboutJourney
                     };
         }
@@ -292,8 +292,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                 : t.CurrentWeightUI,
                         CurrentWeightUI = t.CurrentWeightUI,
                         ShirtSize = t.ShirtSize,
-                        FrontImage = t.FrontImage,
-                        SideImage = t.SideImage,
+                        FrontImage = t.FrontImage.Clean(),
+                        SideImage = t.SideImage.Clean(),
                         AboutJourney = t.AboutJourney
                     };
         }
@@ -420,8 +420,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                 : t.CurrentWeightUI,
                         CurrentWeightUI = t.CurrentWeightUI,
                         ShirtSize = t.ShirtSize,
-                        FrontImage = t.FrontImage,
-                        SideImage = t.SideImage,
+                        FrontImage = t.FrontImage.Clean(),
+                        SideImage = t.SideImage.Clean(),
                         AboutJourney = t.AboutJourney
                     });
         }
@@ -548,8 +548,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                 : t.CurrentWeightUI,
                             CurrentWeightUI = t.CurrentWeightUI,
                             ShirtSize = t.ShirtSize,
-                            FrontImage = t.FrontImage,
-                            SideImage = t.SideImage,
+                            FrontImage = t.FrontImage.Clean(),
+                            SideImage = t.SideImage.Clean(),
                             AboutJourney = t.AboutJourney
                         });
 
@@ -679,8 +679,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                 : t.CurrentWeightUI,
                         CurrentWeightUI = t.CurrentWeightUI,
                         ShirtSize = t.ShirtSize,
-                        FrontImage = t.FrontImage,
-                        SideImage = t.SideImage,
+                        FrontImage = t.FrontImage.Clean(),
+                        SideImage = t.SideImage.Clean(),
                         AboutJourney = t.AboutJourney
                     });
 
@@ -764,8 +764,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                                 : t.CurrentWeightUI,
                         CurrentWeightUI = t.CurrentWeightUI,
                         ShirtSize = t.ShirtSize,
-                        FrontImage = t.FrontImage,
-                        SideImage = t.SideImage,
+                        FrontImage = t.FrontImage.Clean(),
+                        SideImage = t.SideImage.Clean(),
                         AboutJourney = t.AboutJourney
                     });
 
@@ -798,9 +798,21 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
         public async Task<IEnumerable<UserTracker>> GetByAttributeAsync(long userId, string attributeName)
         {
-            return (await _unitOfWork.UserTrackerRepository
+            var tracker= (await _unitOfWork.UserTrackerRepository
                     .GetManyAsync(u => u.UserID == userId && u.AttributeName == attributeName))
                 .OrderBy(u => u.ModifyDate).ToList();
+            return from t in tracker
+                    select new UserTracker()
+                    {
+                        UserID=t.UserID,
+                    RevisionNumber = t.RevisionNumber,
+                    ModifyDate = t.ModifyDate,
+                    AttributeLabel=t.AttributeLabel,
+                    ID=t.ID,
+                    AttributeValue=t.AttributeValue.Clean(),
+                    AttributeName=t.AttributeName,
+                    MediaLink=t.MediaLink
+                    };
         }
 
         public bool Insert(ref ValidationErrors validationErrors, string token, ICollection<UserTracker> entity)
@@ -841,6 +853,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 record.RevisionNumber = revisionNumber.ToString();
                 record.UserID = userId;
                 record.ModifyDate = DateTime.Now;
+                    record.AttributeValue = record.AttributeValue.Clean();
                 dynamic[] obj = {record, false, true, false};
                 if (Validate(ref validationErrors, obj))
                 {

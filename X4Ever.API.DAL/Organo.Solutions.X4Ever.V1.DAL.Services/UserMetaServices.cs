@@ -1,4 +1,5 @@
-﻿using Organo.Solutions.X4Ever.V1.DAL.Model;
+﻿using Organo.Solutions.X4Ever.V1.DAL.Helper;
+using Organo.Solutions.X4Ever.V1.DAL.Model;
 using Organo.Solutions.X4Ever.V1.DAL.Repository;
 using System;
 using System.Collections.Generic;
@@ -40,112 +41,312 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
         public IEnumerable<UserMeta> Get()
         {
-            return _unitOfWork.UserMetaRepository.GetAll();
+            var meta = _unitOfWork.UserMetaRepository.GetAll();
+            return from m in meta         
+            select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            };
         }
 
         public async Task<IEnumerable<UserMeta>> GetAsync()
         {
-            return await _unitOfWork.UserMetaRepository.GetAllAsync();
+            var meta = await _unitOfWork.UserMetaRepository.GetAllAsync();
+            return from m in meta         
+            select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            };
         }
 
         public IEnumerable<UserMeta> Get(Expression<Func<UserMeta, bool>> filter = null,
             Func<IQueryable<UserMeta>, IOrderedQueryable<UserMeta>> orderBy = null, string includeProperties = "")
         {
-            return _unitOfWork.UserMetaRepository.GetMany(filter, orderBy, includeProperties);
+            var meta = _unitOfWork.UserMetaRepository.GetMany(filter, orderBy, includeProperties);
+            return from m in meta         
+            select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            };
         }
 
         public async Task<IEnumerable<UserMeta>> GetAsync(Expression<Func<UserMeta, bool>> filter = null,
             Func<IQueryable<UserMeta>, IOrderedQueryable<UserMeta>> orderBy = null, string includeProperties = "")
         {
-            return await _unitOfWork.UserMetaRepository.GetManyAsync(filter, orderBy, includeProperties);
+            var meta = await _unitOfWork.UserMetaRepository.GetManyAsync(filter, orderBy, includeProperties);
+            return from m in meta         
+            select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            };
         }
 
         public UserMeta Get(string ID)
         {
-            return _unitOfWork.UserMetaRepository.GetByID(ID);
+            var m = _unitOfWork.UserMetaRepository.GetByID(ID);
+            return new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            };
         }
 
         public async Task<UserMeta> GetAsync(string ID)
         {
-            return await _unitOfWork.UserMetaRepository.GetByIDAsync(ID);
+            var m = await _unitOfWork.UserMetaRepository.GetByIDAsync(ID);
+            return new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            };
         }
 
         public UserMeta GetByUser(string token, string metaKey)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            return GetByUser(tokenDetail?.UserID ?? 0, metaKey);
+            var m = GetByUser(tokenDetail?.UserID ?? 0, metaKey);
+            return new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            };
         }
 
         public UserMeta GetByUser(long userId, string metaKey)
         {
-            return _unitOfWork.UserMetaRepository.Get(m =>
-                m.UserID == userId && m.MetaKey == metaKey);
+            var m = _unitOfWork.UserMetaRepository.Get(mt =>
+                mt.UserID == userId && mt.MetaKey == metaKey);
+            return new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            };
         }
 
         public async Task<UserMeta> GetByUserAsync(string token, string metaKey)
         {
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
-            return await GetByUserAsync(tokenDetail?.UserID ?? 0, metaKey);
+            var m = await GetByUserAsync(tokenDetail?.UserID ?? 0, metaKey);
+            return new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            };
         }
 
         public async Task<UserMeta> GetByUserAsync(long userId, string metaKey)
         {
-            return await _unitOfWork.UserMetaRepository.GetAsync(m =>
-                m.UserID == userId && m.MetaKey == metaKey);
+            var m = await _unitOfWork.UserMetaRepository.GetAsync(mt =>
+                mt.UserID == userId && mt.MetaKey == metaKey);
+            return new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            };
         }
 
         public List<UserMeta> GetByUser(string token)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            return _unitOfWork.UserMetaRepository.GetMany(m => m.UserID == (tokenDetail?.UserID ?? 0)).ToList();
+            var meta = _unitOfWork.UserMetaRepository.GetMany(m => m.UserID == (tokenDetail?.UserID ?? 0)).ToList();
+            return (from m in meta
+                select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            }).ToList();
         }
 
         public async Task<List<UserMeta>> GetByUserAsync(string token)
         {
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
-            return (await _unitOfWork.UserMetaRepository.GetManyAsync(m => m.UserID == (tokenDetail?.UserID ?? 0)))
-                .ToList();
+            return (from m in (await _unitOfWork.UserMetaRepository.GetManyAsync(mt => mt.UserID == (tokenDetail?.UserID ?? 0)))
+                select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            }).ToList();
         }
 
         public List<UserMeta> GetByUser(string token, string[] keys)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            return GetByUser(tokenDetail?.UserID ?? 0, keys);
+            return (from m in GetByUser(tokenDetail?.UserID ?? 0, keys)
+                    select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            }).ToList();
         }
 
         public List<UserMeta> GetByUser(long userId, string[] keys)
         {
-            return _unitOfWork.UserMetaRepository.GetMany(m => m.UserID == userId && keys.Any(k => k == m.MetaKey))
-                .ToList();
+            return (from m in _unitOfWork.UserMetaRepository.GetMany(m => m.UserID == userId && keys.Any(k => k == m.MetaKey))
+                select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            }).ToList();
         }
 
         public async Task<List<UserMeta>> GetByUserAsync(string token, string[] keys)
         {
             var tokenDetail = await _tokensServices.GetDetailByTokenAsync(token);
-            return await GetByUserAsync(tokenDetail?.UserID ?? 0, keys);
+            return (from m in (await GetByUserAsync(tokenDetail?.UserID ?? 0, keys))
+                    select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            }).ToList();
         }
 
         public async Task<List<UserMeta>> GetByUserAsync(long userId, string[] keys)
         {
-            return (await _unitOfWork.UserMetaRepository.GetManyAsync(m =>
-                m.UserID == userId && keys.Any(k => k == m.MetaKey))).ToList();
+            return (from m in (await _unitOfWork.UserMetaRepository.GetManyAsync(mt => mt.UserID == userId && keys.Any(k => k == mt.MetaKey)))
+                select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            }).ToList();
         }
 
         public List<UserMeta> GetByUser(long userId)
         {
-            return _unitOfWork.UserMetaRepository.GetMany(m => m.UserID == userId).ToList();
+            return (from m in _unitOfWork.UserMetaRepository.GetMany(mt => mt.UserID == userId)
+                    select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            }).ToList();
         }
         
         public async Task<List<UserMeta>> GetByUserAsync(long userId)
         {
-            return (await _unitOfWork.UserMetaRepository.GetManyAsync(m => m.UserID == userId)).ToList();
+            return (from m in (await _unitOfWork.UserMetaRepository.GetManyAsync(mt => mt.UserID == userId))
+                    select new UserMeta()
+            {
+                UserID = m.UserID,
+                ID=m.ID,
+                MetaDescription=m.MetaDescription,
+                MetaKey=m.MetaKey,
+                MetaLabel=m.MetaLabel,
+                MetaType=m.MetaType,
+                MetaValue = m.MetaValue.Clean(),
+                ModifyDate = m.ModifyDate
+            }).ToList();
         }
 
         public string GetByMetaKey(long userId, string metaKey)
         {
             var meta = _unitOfWork.UserMetaRepository.Get(m => m.UserID == userId && m.MetaKey == metaKey);
             if (meta != null)
-                return meta.MetaValue;
+                return meta.MetaValue.Clean();
             return "";
         }
 
@@ -154,26 +355,20 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             var meta = (await _unitOfWork.UserMetaRepository.GetAsync(m =>
                 m.UserID == userId && m.MetaKey == metaKey));
             if (meta != null)
-                return meta.MetaValue;
+                return meta.MetaValue.Clean();
             return "";
         }
 
         public string GetByMetaKey(string token, string metaKey)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            var meta = _unitOfWork.UserMetaRepository.Get(m => m.UserID == (tokenDetail?.UserID ?? 0));
-            if (meta != null)
-                return meta.MetaValue;
-            return "";
+            return GetByMetaKey(tokenDetail?.UserID??0,metaKey);
         }
 
         public async Task<string> GetByMetaKeyAsync(string token, string metaKey)
         {
             var tokenDetail = _tokensServices.GetDetailByToken(token);
-            var meta = await _unitOfWork.UserMetaRepository.GetAsync(m => m.UserID == (tokenDetail?.UserID ?? 0));
-            if (meta != null)
-                return meta.MetaValue;
-            return "";
+            return await GetByMetaKeyAsync(tokenDetail?.UserID??0, metaKey);
         }
 
         public bool Insert(ref ValidationErrors validationErrors, UserMeta entity)
@@ -181,6 +376,14 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             dynamic[] obj = {entity};
             if (this.Validate(ref validationErrors, obj))
             {
+                try {
+                    entity.MetaValue=entity.MetaValue.Replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">","");
+                    entity.MetaValue=entity.MetaValue.Replace("<string xmlns=http://schemas.microsoft.com/2003/10/Serialization/>","");
+                    entity.MetaValue=entity.MetaValue.Replace("</string>","");
+                }
+                catch {
+                    //
+                }
                 if (Exists(entity.UserID, entity.MetaKey))
                     _unitOfWork.UserMetaRepository.Update(entity);
                 else
@@ -212,6 +415,14 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             dynamic[] obj = {entity};
             if (this.Validate(ref validationErrors, obj))
             {
+                try {
+                    entity.MetaValue=entity.MetaValue.Replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">","");
+                    entity.MetaValue=entity.MetaValue.Replace("<string xmlns=http://schemas.microsoft.com/2003/10/Serialization/>","");
+                    entity.MetaValue=entity.MetaValue.Replace("</string>","");
+                }
+                catch {
+                    //
+                }
                 var record = _unitOfWork.UserMetaRepository
                     .GetMany(m =>
                         m.UserID == entity.UserID && m.MetaKey.Trim().ToLower() == entity.MetaKey.Trim().ToLower())
@@ -253,6 +464,14 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                 dynamic[] obj = {record};
                 if (this.Validate(ref validationErrors, obj))
                 {
+                    try {
+                    record.MetaValue=record.MetaValue.Replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">","");
+                    record.MetaValue=record.MetaValue.Replace("<string xmlns=http://schemas.microsoft.com/2003/10/Serialization/>","");
+                    record.MetaValue=record.MetaValue.Replace("</string>","");
+                }
+                catch {
+                    //
+                }
                     var result = _unitOfWork.UserMetaRepository.GetMany(m =>
                             m.UserID == record.UserID && m.MetaKey.Trim().ToLower() == record.MetaKey.Trim().ToLower())
                         .LastOrDefault();
@@ -287,6 +506,14 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             dynamic[] obj = {entity};
             if (this.Validate(ref validationErrors, obj))
             {
+                try {
+                    entity.MetaValue=entity.MetaValue.Replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">","");
+                    entity.MetaValue=entity.MetaValue.Replace("<string xmlns=http://schemas.microsoft.com/2003/10/Serialization/>","");
+                    entity.MetaValue=entity.MetaValue.Replace("</string>","");
+                }
+                catch {
+                    //
+                }
                 _unitOfWork.UserMetaRepository.Update(entity);
                 var result = _unitOfWork.Commit();
                 if (result)
@@ -351,10 +578,25 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
 
         public async Task<UserMetaPivot> GetUserRowByIdAsync(long userId)
         {
-            return (await _unitOfWork.UserMetaPivotRepository.SqlQueryAsync(
+            var m = (await _unitOfWork.UserMetaPivotRepository.SqlQueryAsync(
                 "x4ever.x4_user_meta_select_by_userid @user_id",
                 new SqlParameter("user_id", SqlDbType.BigInt) {Value = userId}
             ))?.FirstOrDefault();
+            return new UserMetaPivot()
+            {
+                user_id = m.user_id,
+                ID=m.ID,
+                Address=m.Address,
+                Age=m.Age,
+                City=m.City,
+                Country=m.Country,
+                Gender=m.Gender,
+                PostalCode=m.PostalCode,
+                ProfilePhoto=m.ProfilePhoto.Clean(),
+                State=m.State,
+                WeightLossGoal=m.WeightLossGoal,
+                ModifyDate = m.ModifyDate
+            };
         }
     }
 }

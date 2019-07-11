@@ -3,4 +3,3 @@ C:\XF-API\X4Ever.API.DAL\PushSharp.Core\bin\Release\PushSharp.Core.pdb
 C:\XF-API\X4Ever.API.DAL\PushSharp.Core\obj\Release\PushSharp.Core.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\PushSharp.Core\obj\Release\PushSharp.Core.dll
 C:\XF-API\X4Ever.API.DAL\PushSharp.Core\obj\Release\PushSharp.Core.pdb
-C:\XF-API\X4Ever.API.DAL\PushSharp.Core\obj\Release\PushSharp.Core.csprojAssemblyReference.cache
