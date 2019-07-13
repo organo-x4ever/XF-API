@@ -23,5 +23,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         bool Insert(ref ValidationErrors validationErrors, string token, ICollection<UserTracker> entity);
         bool Insert(ref ValidationErrors validationErrors, long userId, ICollection<UserTracker> entity);
         bool Validate(ref ValidationErrors validationErrors, dynamic[] objValue);
+
+        Task<List<string[]>> GetAllAttributeValues(string[] attrs);
     }
 }

@@ -20,10 +20,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("blogs")]
         public string GetBlogsLink(string region, string lang) => _helper.GetAppSetting(region.Contains("1a9633fb-83b5-46b7-8669-1e9ad9f02fd3") ? ((lang ?? "en").ToLower().Contains("es") ? CommonConstants.X4EverBlogsSPA : CommonConstants.X4EverBlogs) : CommonConstants.X4EverEMEABlogs);
 
-
         [GET("more_links_path/{Application:string}/{Language=string}/{Version=string}/{Platform=string}")]
         [Route("more_links_path")]
         public string GetMoreLinksPath(string Application, string Language, string Version, string Platform) =>
             string.Format(_helper.GetAppSetting(CommonConstants.X4EverWebMore), (Language ?? "en").ToLower());
+
+        [GET("weightlosewarningpercentile")]
+        [Route("weightlosewarningpercentile")]
+        public string GetWeightLoseWarningPercentage() => _helper.GetAppSetting(CommonConstants.TrackerWeightLoseWarning);
     }
 }

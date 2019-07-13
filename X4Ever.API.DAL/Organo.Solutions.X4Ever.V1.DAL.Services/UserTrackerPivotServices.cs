@@ -940,5 +940,14 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             return _unitOfWork.Commit();
         }
 
+        public async Task<List<string[]>> GetAllAttributeValues(string[] attrs)
+        {
+           var list = (from t in (await _unitOfWork.UserTrackerRepository.GetManyAsync(tt=>attrs.Contains(tt.AttributeName)))
+                       select new string[]
+                       {
+                           t.AttributeValue
+                       }).ToList();
+            return list;
+        }
     }
 }

@@ -18,6 +18,7 @@ using Organo.Solutions.X4Ever.V1.DAL.Model;
 using Organo.Solutions.X4Ever.V1.DAL.Services;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Repository;
+using System.Collections.Generic;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -356,6 +357,15 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
                 return validationErrors;
             });
+        }
+
+        [GET("all_photos")]
+        [Route("all_photos")]
+        public async Task<HttpResponseMessage> GetAllPhotos()
+        {
+            List<string[]> trackers = await _userTrackerPivotServices.GetAllAttributeValues(new string[] {"frontimage","sideimage" });
+            var response = Request.CreateResponse(HttpStatusCode.OK,trackers);
+            return response;
         }
     }
 }

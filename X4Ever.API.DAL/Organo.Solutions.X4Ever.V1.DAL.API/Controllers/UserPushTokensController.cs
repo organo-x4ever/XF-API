@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Http.Cors;
+﻿
 using AttributeRouting.Web.Http;
 using Organo.Solutions.X4Ever.V1.DAL.API.Security.ActionFilters;
-using Organo.Solutions.X4Ever.V1.DAL.API.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Model;
 using Organo.Solutions.X4Ever.V1.DAL.Services;
+using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -27,7 +22,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             _userPushTokenServices = userPushTokenServices;
         }
 
-        // GET: api/news
+        // GET: api/pushnotifications
         [GET("get")]
         [Route("get")]
         public async Task<IHttpActionResult> GetAsync()
@@ -38,17 +33,20 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             return Ok(pushToken);
         }
 
-        // GET: api/news
+        // GET: api/pushnotifications
         [POST("post")]
         [Route("post")]
         public async Task<IHttpActionResult> Post(UserPushToken userPushToken)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid Request");
-            return await Task.Factory.StartNew(() => {
+            return await Task.Factory.StartNew(() =>
+            {
                 var validationErrors = new ValidationErrors();
-                userPushToken.DeviceApplication = ApplicationKey;
-                userPushToken.DevicePlatform = Platform.ToString();
+                if (string.IsNullOrEmpty(userPushToken.DeviceApplication) && !string.IsNullOrEmpty(ApplicationKey))
+                    userPushToken.DeviceApplication = ApplicationKey;
+                if (string.IsNullOrEmpty(userPushToken.DevicePlatform) && !string.IsNullOrEmpty(Platform.ToString()))
+                    userPushToken.DevicePlatform = Platform.ToString();
                 var response = _userPushTokenServices.Insert(ref validationErrors, base.UserID, userPushToken);
                 if (response)
                     return Ok(HttpConstants.SUCCESS);
@@ -56,16 +54,19 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             });
         }
 
-        // GET: api/news
+        // GET: api/pushnotifications
         [POST("posttokenasync")]
         [Route("posttokenasync")]
         public async Task<IHttpActionResult> PostTokenAsync(UserPushTokenRegister userPushToken)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid Request");
-            return await Task.Factory.StartNew(() => {
-                userPushToken.DeviceApplication = ApplicationKey;
-                userPushToken.DevicePlatform = Platform.ToString();
+            return await Task.Factory.StartNew(() =>
+            {
+                if (string.IsNullOrEmpty(userPushToken.DeviceApplication) && !string.IsNullOrEmpty(ApplicationKey))
+                    userPushToken.DeviceApplication = ApplicationKey;
+                if (string.IsNullOrEmpty(userPushToken.DevicePlatform) && !string.IsNullOrEmpty(Platform.ToString()))
+                    userPushToken.DevicePlatform = Platform.ToString();
                 var validationErrors = new ValidationErrors();
                 var response = _userPushTokenServices.Insert(ref validationErrors, base.UserID, userPushToken);
                 if (response)

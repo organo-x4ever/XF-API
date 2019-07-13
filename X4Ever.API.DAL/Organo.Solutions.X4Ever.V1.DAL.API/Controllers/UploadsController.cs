@@ -43,7 +43,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                         foreach (string file in httpRequest.Files)
                         {
                             var postedFile = httpRequest.Files[file];
-                            var fileName = postedFile.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault();
+                            var fileName = postedFile.FileName.Clean().Split('\\').LastOrDefault().Split('/').LastOrDefault();
                             var filePath = HttpContext.Current.Server.MapPath("~/" + FileUploadPath + "/" + fileName);
                             postedFile.SaveAs(filePath);
                             return HttpConstants.SUCCESS + "#" + FileUploadPath + "/" + fileName;
@@ -108,7 +108,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                             var postedFile = httpRequest.Files[file];
                             if (postedFile != null)
                             {
-                                var fileName = postedFile.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault();
+                                var fileName = postedFile.FileName.Clean().Split('\\').LastOrDefault().Split('/').LastOrDefault();
                                 var filePath = HttpContext.Current.Server.MapPath("~/" + FileUploadPath + "/" + fileName);
                                 postedFile.SaveAs(filePath);
                                 return Request.CreateResponse(HttpStatusCode.OK, FileUploadPath + "/" + fileName);
