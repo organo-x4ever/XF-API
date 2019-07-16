@@ -1,4 +1,5 @@
-﻿using AttributeRouting.Web.Http;
+﻿
+using AttributeRouting.Web.Http;
 using Organo.Solutions.X4Ever.V1.DAL.API.Models;
 using Organo.Solutions.X4Ever.V1.DAL.API.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Helper;
@@ -29,22 +30,18 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private ValidationErrors validationErrors = new ValidationErrors();
         private IHelper _helper;
         private ICountryServices _countryServices;
-        private readonly IYoutubeVideoServices _youtubeVideoServices = new YoutubeVideoServices();
         private readonly IUserPushTokenServices _userPushTokenServices;
         private readonly IUserNotificationSettingServices _userNotificationSettingServices;
-        private readonly IOpenNotificationUserServices _openNotificationUserServices;
 
         public UserActionsController(UserServices userServices, CountryServices countryServices,
             UserSettingServices userSettingServices,UserPushTokenServices userPushTokenServices,
-            UserNotificationSettingServices userNotificationSettingServices,
-            OpenNotificationUserServices openNotificationUserServices)
+            UserNotificationSettingServices userNotificationSettingServices)
         {
             _userPushTokenServices = userPushTokenServices;
             _userServices = userServices;
             _countryServices = countryServices;
             _userSettingServices = userSettingServices;
             _userNotificationSettingServices=userNotificationSettingServices;
-            _openNotificationUserServices = openNotificationUserServices;
             _helper = new Helper.Helper();
         }
 
@@ -241,12 +238,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             }
             return BadRequest(validationErrors.Show());
         }
-        
-        public void EmailSend_Complete(List<string> logs)
-        {
-            new LogsController().WriteEmailLog(logs);
-        }
-
+     
         [POST("updatepassword")]
         [Route("updatepassword")]
         public IHttpActionResult PostForgotPasswordUpdate([FromBody] Models.PasswordDetail detail)
@@ -280,13 +272,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
         [GET("checkconnection")]
         [Route("checkconnection")]
-        public async Task<HttpResponseMessage> GetConnection()
-        {
-            //var users = await _openNotificationUserServices.GetWeeklyAsync();
-
-            var userPivot = new UserPivot();
-            return Request.CreateResponse(HttpStatusCode.OK, "Connected");
-        }
+        public HttpResponseMessage GetConnection() => Request.CreateResponse(HttpStatusCode.OK, "Connected");
 
         [GET("AA332BE3FFE848E7A387B15DB6956462")]
         [Route("AA332BE3FFE848E7A387B15DB6956462")]
@@ -295,7 +281,6 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             return Ok(await _countryServices.GetAsync());
         }
     
-        
         private PlatformType GetPlatform()
         {
             var request = Request;

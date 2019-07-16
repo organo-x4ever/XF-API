@@ -10,7 +10,7 @@
     {
         private readonly IUnitOfWork _unitOfWork;
         private Helper.IHelper _helper;
-
+        private string GuidToken => Guid.NewGuid().ToString().ToLower();
         public UserTokensServices(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -27,7 +27,8 @@
         /// </returns>
         public UserToken GenerateToken(long userId)
         {
-            var token = Guid.NewGuid().ToString().ToLower();
+            var pattern = userId % 2 == 0 ? "{0}.{1}-{2}" : "{0}-{1}.{2}";
+            var token = string.Format(pattern, GuidToken, GuidToken, GuidToken);
             DateTime issuedOn = DateTime.Now;
             DateTime expiredOn = this.TokenSessionTime();
             var tokendomain = new UserToken
@@ -39,18 +40,9 @@
                 LastActiveOn = issuedOn
             };
 
-            //if (_unitOfWork.UserTokenRepository.Get(t =>
-            //        t.AuthToken == tokendomain.AuthToken && t.UserID == tokendomain.UserID) == null)
-            //{
             _unitOfWork.UserTokenRepository.Insert(tokendomain);
             _unitOfWork.Commit();
-            //}
-            //else
-            //{
-            //    _unitOfWork.UserTokenRepository.Update(tokendomain);
-            //    _unitOfWork.Commit();
-            //}
-
+            
             return tokendomain;
         }
         

@@ -40,7 +40,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private INotification _notification;
         private readonly IHelper _helper;
         private readonly IUserNotificationSettingsViewServices _userNotificationSettingsViewServices;
-        
+
         public FrontendController(UserPivotServices userPivotServices, OpenNotificationUserServices openNotificationUserServices,
             UserNotificationServices notificationServices, UserTrackerRealtimeServices userTrackerRealtimeServices,
             UserMetaPivotServices userMetaPivotServices, UserTrackerPivotServices userTrackerPivotServices,

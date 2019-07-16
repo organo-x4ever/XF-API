@@ -45,11 +45,13 @@
   <ItemGroup>
     <Compile Include="ApplicationServices.cs" />
     <Compile Include="ApplicationSettingServices.cs" />
+    <Compile Include="BaseServices.cs" />
     <Compile Include="CountryServices.cs" />
     <Compile Include="DependencyResolver.cs" />
     <Compile Include="IApplicationCountryServices.cs" />
     <Compile Include="IApplicationServices.cs" />
     <Compile Include="IApplicationSettingServices.cs" />
+    <Compile Include="IBaseServices.cs" />
     <Compile Include="ICountryServices.cs" />
     <Compile Include="IDefaultServices.cs" />
     <Compile Include="ILanguageServices.cs" />
