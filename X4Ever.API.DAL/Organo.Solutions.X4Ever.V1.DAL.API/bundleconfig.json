@@ -88,5 +88,17 @@
     "inputFiles": [
       "App_Web/more.js"
     ]
+  },
+  {
+    "outputFileName": "view/users_ax_photos.min.js",
+    "inputFiles": [
+      "view/users_ax_photos.js"
+    ]
+  },
+  {
+    "outputFileName": "view/users_ax_photos_single.min.js",
+    "inputFiles": [
+      "view/users_ax_photos_single.js"
+    ]
   }
 ]

@@ -207,7 +207,6 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\Newtonsoft.Json.
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\System.ValueTuple.xml
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Apple.pdb
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\bin\PushSharp.Core.pdb
-C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csprojAssemblyReference.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CoreCompileInputs.cache
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.API\obj\Release\Organo.Solutions.X4Ever.V1.DAL.API.dll

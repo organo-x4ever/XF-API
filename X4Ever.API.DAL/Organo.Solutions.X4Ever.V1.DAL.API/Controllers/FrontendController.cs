@@ -19,6 +19,10 @@ using Organo.Solutions.X4Ever.V1.DAL.Services;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Repository;
 using System.Collections.Generic;
+using System.IO;
+using Organo.Solutions.X4Ever.V1.DAL.API.Extensions;
+using Organo.Solutions.X4Ever.V1.DAL.API.Models;
+using Newtonsoft.Json;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -40,6 +44,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private INotification _notification;
         private readonly IHelper _helper;
         private readonly IUserNotificationSettingsViewServices _userNotificationSettingsViewServices;
+        private readonly string baseUrl;
 
         public FrontendController(UserPivotServices userPivotServices, OpenNotificationUserServices openNotificationUserServices,
             UserNotificationServices notificationServices, UserTrackerRealtimeServices userTrackerRealtimeServices,
@@ -62,6 +67,12 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             _notification = new AppleNotification(
                 HttpContext.Current.Server.MapPath(_helper.GetAppSetting(NotificationConstant.CertificatePathDev)),
                 _helper.GetAppSetting(NotificationConstant.CertificatePassDev), false);
+
+#if DEBUG
+            baseUrl = "http://localhost:55155/Uploads/";
+#else
+            baseUrl = "https://mapp.oghq.ca/Uploads/";
+#endif
         }
 
         [GET("getusers")]
@@ -77,25 +88,24 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             return response;
         }
 
-        [GET("gettrackerdetailasync")]
-        [Route("gettrackerdetailasync")]
-        public async Task<HttpResponseMessage> GetTrackerDetailAsync()
-        {
-            var watch = Stopwatch.StartNew();
-            var userTrackers = await _trackerReportServices.GetTrackerDetailAsync();
-            var response = Request.CreateResponse(HttpStatusCode.OK, userTrackers);
-            watch.Stop();
-            response.Headers.Add(HttpConstants.EXECUTION_TIME, watch.ElapsedMilliseconds.ToString());
-            return response;
-        }
+        //[GET("gettrackerdetailasync")]
+        //[Route("gettrackerdetailasync")]
+        //public async Task<HttpResponseMessage> GetTrackerDetailAsync()
+        //{
+        //    var watch = Stopwatch.StartNew();
+        //    var userTrackers = await _trackerReportServices.GetTrackerDetailAsync();
+        //    var response = Request.CreateResponse(HttpStatusCode.OK, userTrackers);
+        //    watch.Stop();
+        //    response.Headers.Add(HttpConstants.EXECUTION_TIME, watch.ElapsedMilliseconds.ToString());
+        //    return response;
+        //}
 
         [GET("gettrackerdetailasync")]
         [Route("gettrackerdetailasync")]
         public async Task<HttpResponseMessage> GetTrackerDetailLatestAsync(DateTime fromDate, DateTime toDate)
         {
             var watch = Stopwatch.StartNew();
-            var userTrackers =
-                await _trackerReportServices.GetTrackerDetailPeriodAsync(fromDate, toDate);
+            var userTrackers = await _trackerReportServices.GetTrackerDetailPeriodAsync(fromDate, toDate);
             var response = Request.CreateResponse(HttpStatusCode.OK, userTrackers);
             watch.Stop();
             response.Headers.Add(HttpConstants.EXECUTION_TIME, watch.ElapsedMilliseconds.ToString());
@@ -297,7 +307,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                         validationErrors = await AddValidation(validationErrors,
                             await _notificationServices.Insert(user.UserID, user.DeviceToken, DateTime.Now,
                                 notificationTitle, notificationBody,
-                                !string.IsNullOrEmpty(response) ? response : "No response returned",$"Frontend Custom Message [AUTH_CODE: {authCode}],[USER_TOKEN: {Token}]", true, false, user.DevicePlatform.ToLower()));
+                                !string.IsNullOrEmpty(response) ? response : "No response returned", $"Frontend Custom Message [AUTH_CODE: {authCode}],[USER_TOKEN: {Token}]", true, false, user.DevicePlatform.ToLower()));
                     }
 
                     if (sendEmail ?? false)
@@ -306,7 +316,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                         try
                         {
                             var content = "";
-                            if (attachFooter){
+                            if (attachFooter)
+                            {
                                 content = _emailContent.FooterContent(user.LanguageCode);
                             }
                             new Message().SendMail(ref message, user.UserEmail, "", "", emailSubject, emailBody + (attachFooter ? content ?? "" : ""), true);
@@ -358,14 +369,74 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 return validationErrors;
             });
         }
-
-        [GET("all_photos")]
-        [Route("all_photos")]
-        public async Task<HttpResponseMessage> GetAllPhotos()
+        
+        [GET("all_photos_model_single")]
+        [Route("all_photos_model_single")]
+        public async Task<HttpResponseMessage> GetAllPhotoModelSingle(int page = 0, int size = 100)
         {
-            List<string[]> trackers = await _userTrackerPivotServices.GetAllAttributeValues(new string[] {"frontimage","sideimage" });
-            var response = Request.CreateResponse(HttpStatusCode.OK,trackers);
+            page = page > 0 ? page - 1 : 0;
+            var _filePath = HttpContext.Current.Request.MapPath("~/Uploads");
+            var directories = Directory.GetFiles(_filePath);
+            if(directories.Count() <= (page * size))
+                page = (directories.Count() / size) - (directories.Count() % size == 0 ? 1 : 0);
+            var list = directories.Skip(page * size).Take(size);                
+            var response = Request.CreateResponse(HttpStatusCode.OK, GetModelAllFiles(list.ToArray()));
+            response.Headers.Add("count", directories.Count().ToString());
+            response.Headers.Add("previous", page > 0 ? "1" : "0");
+            response.Headers.Add("next", directories.Count() <= ((page+1) * size) ? "0" : "1");
             return response;
+        }
+
+        private List<PhotoModel> GetModelAllFiles(string[] directories)
+        {
+            var photoModels = new List<PhotoModel>();
+            int index = 1;
+            var photoModel = new PhotoModel();
+            foreach (var file in directories)
+            {
+                if (index > 10)
+                {
+                    photoModels.Add(photoModel);
+                    photoModel = new PhotoModel();
+                    index = 1;
+                }
+                switch (index)
+                {
+                    case 1:
+                        photoModel.COL_1 = baseUrl + file.GetFileName();
+                        break;
+                    case 2:
+                        photoModel.COL_2 = baseUrl + file.GetFileName();
+                        break;
+                    case 3:
+                        photoModel.COL_3 = baseUrl + file.GetFileName();
+                        break;
+                    case 4:
+                        photoModel.COL_4 = baseUrl + file.GetFileName();
+                        break;
+                    case 5:
+                        photoModel.COL_5 = baseUrl + file.GetFileName();
+                        break;
+                    case 6:
+                        photoModel.COL_6 = baseUrl + file.GetFileName();
+                        break;
+                    case 7:
+                        photoModel.COL_7 = baseUrl + file.GetFileName();
+                        break;
+                    case 8:
+                        photoModel.COL_8 = baseUrl + file.GetFileName();
+                        break;
+                    case 9:
+                        photoModel.COL_9 = baseUrl + file.GetFileName();
+                        break;
+                    case 10:
+                        photoModel.COL_10 = baseUrl + file.GetFileName();
+                        break;
+                }
+                index++;
+            }
+            photoModels.Add(photoModel);
+            return photoModels;
         }
     }
 }

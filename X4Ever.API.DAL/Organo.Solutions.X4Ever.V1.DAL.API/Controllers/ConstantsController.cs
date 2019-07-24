@@ -28,5 +28,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [GET("weightlosewarningpercentile")]
         [Route("weightlosewarningpercentile")]
         public string GetWeightLoseWarningPercentage() => _helper.GetAppSetting(CommonConstants.TrackerWeightLoseWarning);
+
+        [GET("trackerskipphotoonsteps")]
+        [Route("trackerskipphotoonsteps")]
+        public string GetTrackerSkipPhotoOnSteps() => _helper.GetAppSetting(CommonConstants.TrackerSkipPhotoOnSteps);
     }
 }

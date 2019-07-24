@@ -26,6 +26,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         public static string TrackerViewAllowed => "tracker:IsViewAllowed";
         public static string TrackerDownloadAllowed => "tracker:IsDownloadAllowed";
         public static string TrackerWeightLoseWarning => "tracker:WeightLoseWarningPercent";
+        public static string TrackerSkipPhotoOnSteps=>"tracker:SkipPhotoOnSteps";
+        public static string RestOfTheLogs => "log:Rest";
 
         public static string X4EverBlogs => "weblink:x4ever_blogs";
         public static string X4EverBlogsSPA => "weblink:x4ever_blogs_es";

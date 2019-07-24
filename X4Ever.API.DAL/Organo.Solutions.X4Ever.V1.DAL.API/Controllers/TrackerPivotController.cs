@@ -14,6 +14,13 @@ using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Organo.Solutions.X4Ever.V1.DAL.Helper.Statics;
 using Organo.Solutions.X4Ever.V1.DAL.Repository;
+using System.Text;
+using Organo.Solutions.X4Ever.V1.DAL.API.Models;
+using System.IO;
+using Organo.Solutions.X4Ever.V1.DAL.Helper;
+using System.Web;
+using Newtonsoft.Json;
+using System.Globalization;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -25,6 +32,9 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private readonly IUserTrackerPivotServices _userTrackerPivotServices;
         private IEmailContent _emailContent;
         private IUserServices _userServices;
+        private Helper.IHelper _helper;
+        private readonly string _restLogFilePath;
+        private const string _skipPhotoFileName="skip_photo_log.json";
 
         public TrackerPivotController(UserTrackerPivotServices userTrackerPivotServices, UserServices userServices,
             EmailContent emailContent)
@@ -32,6 +42,57 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             _userTrackerPivotServices = userTrackerPivotServices;
             _userServices = userServices;
             _emailContent = emailContent;
+            _helper = new Helper.Helper();
+            _restLogFilePath = HttpContext.Current.Request.MapPath("~/" + _helper.GetAppSetting(CommonConstants.RestOfTheLogs) + "/" +  _skipPhotoFileName);
+        }
+
+        [POST("posttrackerskipphotos")]
+        [Route("posttrackerskipphotos")]
+        public async Task<string[]> PostTrackerSkipPhotos(string options)
+        {
+            if (!string.IsNullOrEmpty(options))
+            {
+                var optionList = Encoding.Default.GetString(Convert.FromBase64String(options));
+                var list = optionList.Split(':');
+                if (list.Count() == 2)
+                {
+                    var photoSkipLogs = new List<TrackerPhotoSkipLog>();
+                    if (File.Exists(_restLogFilePath))
+                    {
+                        using (StreamReader reader = new StreamReader(_restLogFilePath))
+                        {
+                            var data = await reader.ReadToEndAsync();
+                            var photoSkipLogData = JsonConvert.DeserializeObject<List<TrackerPhotoSkipLog>>(data);
+                            if (photoSkipLogData is List<TrackerPhotoSkipLog>)
+                            {
+                                photoSkipLogs = photoSkipLogData;
+                            }
+                        }
+                    }
+
+                    SaveFile(photoSkipLogs, list, _restLogFilePath);
+                }
+                return list;
+            }
+            return new string[] { };
+        }
+
+        private void SaveFile(List<TrackerPhotoSkipLog> photoSkipLogs, string[] list, string filePath)
+        {
+            var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+            bool.TryParse(list?[1] ?? "0", out bool skip);
+
+            var trackerPhotoLog = new TrackerPhotoSkipLog()
+            {
+                user_id = UserID,
+                user_email = list[0],
+                skip_photo = skip,
+                user_token = Token,
+                modify_date = dateString
+            };
+            photoSkipLogs.Add(trackerPhotoLog);
+            var data = JsonConvert.SerializeObject(photoSkipLogs);
+            File.WriteAllText(filePath, data);
         }
 
         // GET: api/UserTrackersPivot

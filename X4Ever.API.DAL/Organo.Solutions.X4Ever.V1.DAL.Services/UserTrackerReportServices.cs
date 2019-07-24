@@ -23,62 +23,62 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
         {
             return await GetConvertedAsync(
                 (from t in _unitOfWork.UserTrackerReportV1Repository.GetMany()
-                    select new UserTrackerReportV1Map()
-                    {
-                        ID = t.ID,
-                        UserID = t.UserID,
-                        Address = t.Address,
-                        City = t.City,
-                        Country = t.Country,
-                        EmailAddress = t.EmailAddress,
-                        FirstName = t.FirstName,
-                        FrontPhoto = t.FrontPhoto?.Clean(),
-                        Gender = t.Gender,
-                        LastName = t.LastName,
-                        PostalCode = t.PostalCode,
-                        SidePhoto = t.SidePhoto?.Clean(),
-                        StartWeight = t.StartWeight,
-                        State = t.State,
-                        TShirtSize = t.TShirtSize,
-                        Testimonials = t.Testimonials,
-                        WeeklyWeightLost = t.WeeklyWeightLost,
-                        WeightGoalReached = t.WeightGoalReached,
-                        WeightToLose = t.WeightToLose,
-                        ApplicationName = t.ApplicationName,
-                        CreateDate = t.CreateDate,
-                        WeightVolumeType = t.WeightVolumeType
-                    }).ToList());
+                 select new UserTrackerReportV1Map()
+                 {
+                     ID = t.ID,
+                     UserID = t.UserID,
+                     Address = t.Address,
+                     City = t.City,
+                     Country = t.Country,
+                     EmailAddress = t.EmailAddress,
+                     FirstName = t.FirstName,
+                     FrontPhoto = t.FrontPhoto?.Clean(),
+                     Gender = t.Gender,
+                     LastName = t.LastName,
+                     PostalCode = t.PostalCode,
+                     SidePhoto = t.SidePhoto?.Clean(),
+                     StartWeight = t.StartWeight,
+                     State = t.State,
+                     TShirtSize = t.TShirtSize,
+                     Testimonials = t.Testimonials,
+                     WeeklyWeightLost = t.WeeklyWeightLost,
+                     WeightGoalReached = t.WeightGoalReached,
+                     WeightToLose = t.WeightToLose,
+                     ApplicationName = t.ApplicationName,
+                     CreateDate = t.CreateDate,
+                     WeightVolumeType = t.WeightVolumeType
+                 }).ToList());
         }
 
         public async Task<IEnumerable<UserTrackerReportV1Map>> GetLatestAsync()
         {
             return await GetConvertedAsync(
                 (from t in _unitOfWork.UserTrackerReportV1Repository.GetMany()
-                    select new UserTrackerReportV1Map()
-                    {
-                        ID = t.ID,
-                        UserID = t.UserID,
-                        Address = t.Address,
-                        City = t.City,
-                        Country = t.Country,
-                        EmailAddress = t.EmailAddress,
-                        FirstName = t.FirstName,
-                        FrontPhoto = t.FrontPhoto?.Clean(),
-                        Gender = t.Gender,
-                        LastName = t.LastName,
-                        PostalCode = t.PostalCode,
-                        SidePhoto = t.SidePhoto?.Clean(),
-                        StartWeight = t.StartWeight,
-                        State = t.State,
-                        TShirtSize = t.TShirtSize,
-                        Testimonials = t.Testimonials,
-                        WeeklyWeightLost = t.WeeklyWeightLost,
-                        WeightGoalReached = t.WeightGoalReached,
-                        WeightToLose = t.WeightToLose,
-                        ApplicationName = t.ApplicationName,
-                        CreateDate = t.CreateDate,
-                        WeightVolumeType = t.WeightVolumeType
-                    }).ToList());
+                 select new UserTrackerReportV1Map()
+                 {
+                     ID = t.ID,
+                     UserID = t.UserID,
+                     Address = t.Address,
+                     City = t.City,
+                     Country = t.Country,
+                     EmailAddress = t.EmailAddress,
+                     FirstName = t.FirstName,
+                     FrontPhoto = t.FrontPhoto?.Clean(),
+                     Gender = t.Gender,
+                     LastName = t.LastName,
+                     PostalCode = t.PostalCode,
+                     SidePhoto = t.SidePhoto?.Clean(),
+                     StartWeight = t.StartWeight,
+                     State = t.State,
+                     TShirtSize = t.TShirtSize,
+                     Testimonials = t.Testimonials,
+                     WeeklyWeightLost = t.WeeklyWeightLost,
+                     WeightGoalReached = t.WeightGoalReached,
+                     WeightToLose = t.WeightToLose,
+                     ApplicationName = t.ApplicationName,
+                     CreateDate = t.CreateDate,
+                     WeightVolumeType = t.WeightVolumeType
+                 }).ToList());
         }
 
         private async Task<IEnumerable<UserTrackerReportV1Map>> GetConvertedAsync(
@@ -101,22 +101,22 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             if (trackers != null && trackers.Count > 0)
             {
                 var trackerList = (from t in trackers
-                    group t by new {t.RevisionNumber}
+                                   group t by new { t.RevisionNumber }
                     into rn
-                    orderby rn.Key.RevisionNumber ascending
-                    select new
-                    {
-                        rn.Key.RevisionNumber,
-                        List = (from r in rn.ToList()
-                            select new UserTracker()
-                            {
-                                AttributeLabel = r.AttributeLabel,
-                                AttributeName = r.AttributeName,
-                                AttributeValue = r.AttributeValue?.Clean(),
-                                MediaLink = r.MediaLink,
-                                ModifyDate = r.ModifyDate,
-                            }).Distinct().ToList()
-                    }).ToList();
+                                   orderby rn.Key.RevisionNumber ascending
+                                   select new
+                                   {
+                                       rn.Key.RevisionNumber,
+                                       List = (from r in rn.ToList()
+                                               select new UserTracker()
+                                               {
+                                                   AttributeLabel = r.AttributeLabel,
+                                                   AttributeName = r.AttributeName,
+                                                   AttributeValue = r.AttributeValue?.Clean(),
+                                                   MediaLink = r.MediaLink,
+                                                   ModifyDate = r.ModifyDate,
+                                               }).Distinct().ToList()
+                                   }).ToList();
                 foreach (var tracker in trackerList)
                 {
                     userTrackers.Add(await this.Convert(tracker.List, tracker.RevisionNumber));
@@ -181,29 +181,29 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
             return (from t in await _unitOfWork.UserTrackerDetailReportV2ReporRepository.GetManyAsync(null, orderBy)
                     select new UserTrackerDetailReportV2()
                     {
-                        Address=t.Address,
-                        State=t.State,
-                        PostalCode=t.PostalCode,
-                        Gender=t.Gender,
-                        Country=t.Country,
-                        City=t.City,
-                        ApplicationName=t.ApplicationName,
-                        CreateDate=t.CreateDate,
-                        EmailAddress=t.EmailAddress,
-                        FirstName=t.FirstName,
-                        FrontPhoto=t.FrontPhoto.Clean(),
-                        ID=t.ID,
-                        LastName=t.LastName,
-                        SidePhoto=t.SidePhoto.Clean(),
-                        StartWeight=t.StartWeight,
-                        Testimonials=t.Testimonials,
-                        TrackerCreateDate=t.TrackerCreateDate,
-                        TShirtSize=t.TShirtSize,
-                         UserID=t.UserID,
-                         WeeklyWeightLost=t.WeeklyWeightLost,
-                         WeightGoalReached=t.WeightGoalReached,
-                         WeightToLose=t.WeightToLose,
-                         WeightVolumeType=t.WeightVolumeType
+                        Address = t.Address,
+                        State = t.State,
+                        PostalCode = t.PostalCode,
+                        Gender = t.Gender,
+                        Country = t.Country,
+                        City = t.City,
+                        ApplicationName = t.ApplicationName,
+                        CreateDate = t.CreateDate,
+                        EmailAddress = t.EmailAddress,
+                        FirstName = t.FirstName,
+                        FrontPhoto = t.FrontPhoto.Clean(),
+                        ID = t.ID,
+                        LastName = t.LastName,
+                        SidePhoto = t.SidePhoto.Clean(),
+                        StartWeight = t.StartWeight,
+                        Testimonials = t.Testimonials,
+                        TrackerCreateDate = t.TrackerCreateDate,
+                        TShirtSize = t.TShirtSize,
+                        UserID = t.UserID,
+                        WeeklyWeightLost = t.WeeklyWeightLost,
+                        WeightGoalReached = t.WeightGoalReached,
+                        WeightToLose = t.WeightToLose,
+                        WeightVolumeType = t.WeightVolumeType
                     });
         }
 
@@ -216,29 +216,29 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Services
                     t.TrackerCreateDate >= fromDate && t.TrackerCreateDate <= toDate, orderBy))
                     select new UserTrackerDetailReportV2()
                     {
-                        Address=t.Address,
-                        State=t.State,
-                        PostalCode=t.PostalCode,
-                        Gender=t.Gender,
-                        Country=t.Country,
-                        City=t.City,
-                        ApplicationName=t.ApplicationName,
-                        CreateDate=t.CreateDate,
-                        EmailAddress=t.EmailAddress,
-                        FirstName=t.FirstName,
-                        FrontPhoto=t.FrontPhoto.Clean(),
-                        ID=t.ID,
-                        LastName=t.LastName,
-                        SidePhoto=t.SidePhoto.Clean(),
-                        StartWeight=t.StartWeight,
-                        Testimonials=t.Testimonials,
-                        TrackerCreateDate=t.TrackerCreateDate,
-                        TShirtSize=t.TShirtSize,
-                         UserID=t.UserID,
-                         WeeklyWeightLost=t.WeeklyWeightLost,
-                         WeightGoalReached=t.WeightGoalReached,
-                         WeightToLose=t.WeightToLose,
-                         WeightVolumeType=t.WeightVolumeType
+                        Address = t.Address,
+                        State = t.State,
+                        PostalCode = t.PostalCode,
+                        Gender = t.Gender,
+                        Country = t.Country,
+                        City = t.City,
+                        ApplicationName = t.ApplicationName,
+                        CreateDate = t.CreateDate,
+                        EmailAddress = t.EmailAddress,
+                        FirstName = t.FirstName,
+                        FrontPhoto = t.FrontPhoto.Clean(),
+                        ID = t.ID,
+                        LastName = t.LastName,
+                        SidePhoto = t.SidePhoto.Clean(),
+                        StartWeight = t.StartWeight,
+                        Testimonials = t.Testimonials,
+                        TrackerCreateDate = t.TrackerCreateDate,
+                        TShirtSize = t.TShirtSize,
+                        UserID = t.UserID,
+                        WeeklyWeightLost = t.WeeklyWeightLost,
+                        WeightGoalReached = t.WeightGoalReached,
+                        WeightToLose = t.WeightToLose,
+                        WeightVolumeType = t.WeightVolumeType
                     }).OrderByDescending(t => t.TrackerCreateDate);
         }
     }

@@ -205,22 +205,18 @@
     <Content Include="App_Files\app.js" />
     <Content Include="App_Web\en-US\more.html" />
     <Content Include="App_Web\es-US\more.html" />
-    <Content Include="App_Web\form-post.html" />
-    <Content Include="App_Web\form-post.js" />
     <Content Include="App_Web\fr-CA\more.html" />
     <Content Include="App_Web\it-IT\more.html" />
     <Content Include="App_Web\more.js" />
     <Content Include="App_Web\more.min.js">
       <DependentUpon>more.js</DependentUpon>
     </Content>
-    <Content Include="App_Web\_backup\.12.html" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\npm.js" />
-    <Content Include="data.html" />
     <Content Include="dist\css\AdminLTE.css" />
     <Content Include="dist\css\AdminLTE.min.css" />
     <Content Include="dist\css\skins\skin-black-light.css" />
@@ -1091,11 +1087,16 @@
     <Content Include="view\tracker_report_daterange.min.js">
       <DependentUpon>tracker_report_daterange.js</DependentUpon>
     </Content>
+    <Content Include="view\users_ax_photos_single.html" />
+    <Content Include="view\users_ax_photos_single.js" />
     <Content Include="view\users.html" />
     <Content Include="view\users.js" />
     <Content Include="view\index.js" />
     <Content Include="view\users.min.js">
       <DependentUpon>users.js</DependentUpon>
+    </Content>
+    <Content Include="view\users_ax_photos_single.min.js">
+      <DependentUpon>users_ax_photos_single.js</DependentUpon>
     </Content>
     <Content Include="view\vendor\animate\animate.css" />
     <Content Include="view\vendor\bootstrap\css\bootstrap-grid.css" />
@@ -1189,6 +1190,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\Extension.cs" />
     <Compile Include="Models\AppInfoModel.cs" />
     <Compile Include="Models\EmailDetail.cs" />
     <Compile Include="Models\ForgotPassword.cs" />
@@ -1198,9 +1200,11 @@
     <Compile Include="Models\Meta.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\NotificationSetting.cs" />
+    <Compile Include="Models\PhotoModel.cs" />
     <Compile Include="Models\PushMessageModel.cs" />
     <Compile Include="Models\TempEncrypt.cs" />
     <Compile Include="Models\Tracker.cs" />
+    <Compile Include="Models\TrackerPhotoSkipLog.cs" />
     <Compile Include="Models\UserFeedback.cs" />
     <Compile Include="Models\UserForApp.cs" />
     <Compile Include="Models\UserRegister.cs" />
@@ -1425,6 +1429,7 @@
     <Folder Include="ErrorLog\emailFailedLogs\" />
     <Folder Include="ErrorLog\feedback\" />
     <Folder Include="ErrorLog\grErrorLogs\" />
+    <Folder Include="ErrorLog\RestOfTheLogs\" />
     <Folder Include="uowErrorLogs\" />
     <Folder Include="Userimage\" />
   </ItemGroup>
@@ -1476,11 +1481,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55150</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55150/</IISUrl>
+          <IISUrl>http://localhost:55155/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

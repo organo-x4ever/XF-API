@@ -23,7 +23,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
     public class LogsController : ApiController
     {
         private Helper.IHelper _helper;
-
+        private const string _feedbackFileNameExtension = ".json";
         public LogsController()
         {
             _helper = new Helper.Helper();
@@ -211,30 +211,29 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         public async Task<IHttpActionResult> PostFeedback(UserFeedback userFeedback)
         {
             // Today's file name
-            var fileName = $"{DateTime.Now:yyyy-MM-dd}-feedback.log";
+            var fileName = $"{DateTime.Now:yyyy-MM-dd}-feedback" + _feedbackFileNameExtension;
 
             // File's full path
-            var path = HttpContext.Current.Request.MapPath("~/" + FeedbackFilePath + "/" + fileName);
+            var _feedbackFilePath = HttpContext.Current.Request.MapPath("~/" + FeedbackFilePath + "/" + fileName);
             try
             {
+                var userFeedbacks = new List<UserFeedback>();
                 // This text is added only once to the file.
-                if (!File.Exists(path))
+                if (File.Exists(_feedbackFilePath))
                 {
-                    // Create a file to write to.
-                    using (StreamWriter sw = File.CreateText(path))
+                    using (StreamReader reader = new StreamReader(_feedbackFilePath))
                     {
-                        await WriteText(sw, userFeedback);
+                        var data = await reader.ReadToEndAsync();
+                        var photoSkipLogData = JsonConvert.DeserializeObject<List<UserFeedback>>(data);
+                        if (photoSkipLogData is List<UserFeedback>)
+                        {
+                            userFeedbacks = photoSkipLogData;
+                        }
                     }
                 }
-                else
-                {
-                    // This text is always added, making the file longer over time
-                    // if it is not deleted.
-                    using (StreamWriter sw = File.AppendText(path))
-                    {
-                        await WriteText(sw, userFeedback);
-                    }
-                }
+
+                // Create/Append text to json file.
+                SaveFile(userFeedbacks, userFeedback, _feedbackFilePath);
             }
             catch (Exception exception)
             {
@@ -244,11 +243,12 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             return Ok("Success");
         }
 
-        private async Task WriteText(StreamWriter sw, UserFeedback userFeedback)
+        private void SaveFile(List<UserFeedback> userFeedbacks, UserFeedback userFeedback, string filePath)
         {
-            var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-            userFeedback.Date = dateString;
-            await sw.WriteLineAsync(JsonConvert.SerializeObject(userFeedback));
+            userFeedback.Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+            userFeedbacks.Add(userFeedback);
+            var data = JsonConvert.SerializeObject(userFeedbacks);
+            File.WriteAllText(filePath, data);
         }
 
         string LogFilePath => _helper.GetAppSetting("errorLogs");
