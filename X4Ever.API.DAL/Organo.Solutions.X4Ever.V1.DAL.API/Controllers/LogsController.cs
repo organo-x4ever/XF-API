@@ -1,20 +1,16 @@
-﻿using System;
+﻿
+using AttributeRouting.Web.Http;
+using Organo.Solutions.X4Ever.V1.DAL.API.Models;
+using Organo.Solutions.X4Ever.V1.DAL.API.Statics;
+using Organo.Solutions.X4Ever.V1.DAL.Model;
+using Organo.Solutions.X4Ever.V1.DAL.Services;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using AttributeRouting.Web.Http;
-using Newtonsoft.Json;
-using Organo.Solutions.X4Ever.V1.DAL.API.Models;
-using Organo.Solutions.X4Ever.V1.DAL;
-using System.Threading.Tasks;
-using System.Web;
-using Organo.Solutions.X4Ever.V1.DAL.Helper;
 
 namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 {
@@ -22,22 +18,18 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LogsController : ApiController
     {
-        private Helper.IHelper _helper;
-        private const string _feedbackFileNameExtension = ".json";
+        private readonly IFeedbackServices _feedbackServices;
         public LogsController()
         {
-            _helper = new Helper.Helper();
+            _feedbackServices = new FeedbackServices();
         }
 
         [POST("post")]
         [Route("post")]
         public async Task<IHttpActionResult> Post(List<Log> logs)
         {
-            // Today's file name
-            var fileName = $"{DateTime.Now:yyyy-MM-dd}-exception.log";
-
             // File's full path
-            var path = HttpContext.Current.Request.MapPath("~/" + LogFilePath + "/" + fileName);
+            var path = FileLocator.ERROR_LOG_PATH;
             try
             {
                 // This text is added only once to the file.
@@ -65,33 +57,33 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             }
 
             return Ok("Success");
-        }
 
-        private async Task WriteText(StreamWriter sw, List<Log> logs)
-        {
-            try
+            async Task WriteText(StreamWriter sw, List<Log> logList)
             {
-                foreach (var log in logs)
+                try
                 {
-                    var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-                    await sw.WriteLineAsync(dateString + " | EXCEPTION | LOG");
-                    await sw.WriteLineAsync("Application: " + log.Application);
-                    await sw.WriteLineAsync("Device: " + log.Device);
-                    await sw.WriteLineAsync("Platform: " + log.Platform);
-                    await sw.WriteLineAsync("Idiom: " + log.Idiom);
-                    await sw.WriteLineAsync("Identity: " + log.Identity);
-                    await sw.WriteLineAsync("IPAddress: " + log.IPAddress);
-                    await sw.WriteLineAsync("RequestUri: " + log.RequestUri?.AbsoluteUri);
-                    await sw.WriteLineAsync("Token: " + log.Token);
-                    await sw.WriteLineAsync("Message: " + log.Title);
-                    await sw.WriteLineAsync("Detail: " + log.Message);
-                    await sw.WriteLineAsync("Date: " + log.Date);
-                    await sw.WriteLineAsync(Environment.NewLine);
+                    foreach (var log in logList)
+                    {
+                        var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                        await sw.WriteLineAsync(dateString + " | EXCEPTION | LOG");
+                        await sw.WriteLineAsync("Application: " + log.Application);
+                        await sw.WriteLineAsync("Device: " + log.Device);
+                        await sw.WriteLineAsync("Platform: " + log.Platform);
+                        await sw.WriteLineAsync("Idiom: " + log.Idiom);
+                        await sw.WriteLineAsync("Identity: " + log.Identity);
+                        await sw.WriteLineAsync("IPAddress: " + log.IPAddress);
+                        await sw.WriteLineAsync("RequestUri: " + log.RequestUri?.AbsoluteUri);
+                        await sw.WriteLineAsync("Token: " + log.Token);
+                        await sw.WriteLineAsync("Message: " + log.Title);
+                        await sw.WriteLineAsync("Detail: " + log.Message);
+                        await sw.WriteLineAsync("Date: " + log.Date);
+                        await sw.WriteLineAsync(Environment.NewLine);
+                    }
                 }
-            }
-            catch
-            {
-                //
+                catch
+                {
+                    //
+                }
             }
         }
 
@@ -99,11 +91,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         [Route("postdebuglog")]
         public async Task<IHttpActionResult> PostDebugLog(string debugLogstring)
         {
-            // Today's file name
-            var fileName = $"{DateTime.Now:yyyy-MM-dd}-debug.log";
-
             // File's full path
-            var path = HttpContext.Current.Request.MapPath("~/" + DebugLogFilePath + "/" + fileName);
+            var path = FileLocator.DEBUG_LOG_PATH;
             try
             {
                 // This text is added only once to the file.
@@ -131,21 +120,18 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             }
 
             return Ok("Success");
-        }
 
-        private async Task WriteText(StreamWriter sw, string logs)
-        {
-            var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-            await sw.WriteLineAsync(dateString + ":: " + logs);
+            async Task WriteText(StreamWriter sw, string logs)
+            {
+                var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                await sw.WriteLineAsync(dateString + ":: " + logs);
+            }
         }
 
         public IHttpActionResult WriteEmailLog(List<string> emailLogStrings)
         {
-            // Today's file name
-            var fileName = $"{DateTime.Now:yyyy-MM-dd}-debug.log";
-
             // File's full path
-            var path = HttpContext.Current.Request.MapPath("~/" + EmailLogFilePath + "/" + fileName);
+            var path = FileLocator.EMAIL_LOG_PATH;
             try
             {
                 // This text is added only once to the file.
@@ -173,67 +159,39 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             }
 
             return Ok("Success");
-        }
 
-        void WriteEmailLogText(StreamWriter sw, List<string> logs)
-        {
-            try
+            void WriteEmailLogText(StreamWriter sw, List<string> logs)
             {
-                var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-                sw.WriteLine(dateString + " | EMAIL | LOG");
-                foreach (var log in logs)
+                try
                 {
-                    sw.WriteLine(log);
+                    var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                    sw.WriteLine(dateString + " | EMAIL | LOG");
+                    foreach (var log in logs)
+                    {
+                        sw.WriteLine(log);
+                    }
+                    sw.WriteLine(Environment.NewLine);
                 }
-                sw.WriteLine(Environment.NewLine);
-            }
-            catch
-            {
-                //
-            }
-        }
-
-        [GET("getdata")]
-        [Route("getdata")]
-        public string GetData(string text)
-        {
-            try {
-                    text = text.Clean();
-                }
-                catch {
+                catch
+                {
                     //
                 }
-            return text;
+            }
         }
 
         [POST("feedback")]
         [Route("feedback")]
         public async Task<IHttpActionResult> PostFeedback(UserFeedback userFeedback)
         {
-            // Today's file name
-            var fileName = $"{DateTime.Now:yyyy-MM-dd}-feedback" + _feedbackFileNameExtension;
-
             // File's full path
-            var _feedbackFilePath = HttpContext.Current.Request.MapPath("~/" + FeedbackFilePath + "/" + fileName);
+            var _feedbackFilePath = FileLocator.FEEDBACK_FILE_PATH;
             try
             {
-                var userFeedbacks = new List<UserFeedback>();
-                // This text is added only once to the file.
-                if (File.Exists(_feedbackFilePath))
+                var result = await _feedbackServices.SaveAsync(_feedbackFilePath, userFeedback);
+                if (!result)
                 {
-                    using (StreamReader reader = new StreamReader(_feedbackFilePath))
-                    {
-                        var data = await reader.ReadToEndAsync();
-                        var photoSkipLogData = JsonConvert.DeserializeObject<List<UserFeedback>>(data);
-                        if (photoSkipLogData is List<UserFeedback>)
-                        {
-                            userFeedbacks = photoSkipLogData;
-                        }
-                    }
+                    return BadRequest(_feedbackServices.ValidationErrors.Show());
                 }
-
-                // Create/Append text to json file.
-                SaveFile(userFeedbacks, userFeedback, _feedbackFilePath);
             }
             catch (Exception exception)
             {
@@ -242,18 +200,5 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
 
             return Ok("Success");
         }
-
-        private void SaveFile(List<UserFeedback> userFeedbacks, UserFeedback userFeedback, string filePath)
-        {
-            userFeedback.Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-            userFeedbacks.Add(userFeedback);
-            var data = JsonConvert.SerializeObject(userFeedbacks);
-            File.WriteAllText(filePath, data);
-        }
-
-        string LogFilePath => _helper.GetAppSetting("errorLogs");
-        string DebugLogFilePath => _helper.GetAppSetting("debugLogs");
-        string EmailLogFilePath => _helper.GetAppSetting("emailError");
-        string FeedbackFilePath => _helper.GetAppSetting(CommonConstants.FEEDBACK_DIR_PATH);
     }
 }

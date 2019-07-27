@@ -1,4 +1,5 @@
-﻿using CryptSharp;
+﻿
+using CryptSharp;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
@@ -323,7 +324,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
 
         public PhoneNumber PhoneNumber { get; set; }
 
-        private string GetExceptionDetail(Exception exception)
+        public string GetExceptionDetail(Exception exception)
         {
             var stringBuilder = new StringBuilder();
             while (exception != null)

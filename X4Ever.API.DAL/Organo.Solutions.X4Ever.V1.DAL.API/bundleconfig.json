@@ -100,5 +100,11 @@
     "inputFiles": [
       "view/users_ax_photos_single.js"
     ]
+  },
+  {
+    "outputFileName": "view/user_feedbacks.min.js",
+    "inputFiles": [
+      "view/user_feedbacks.js"
+    ]
   }
 ]

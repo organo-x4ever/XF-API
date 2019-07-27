@@ -26,8 +26,13 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         public static string TrackerViewAllowed => "tracker:IsViewAllowed";
         public static string TrackerDownloadAllowed => "tracker:IsDownloadAllowed";
         public static string TrackerWeightLoseWarning => "tracker:WeightLoseWarningPercent";
-        public static string TrackerSkipPhotoOnSteps=>"tracker:SkipPhotoOnSteps";
+        public static string TrackerSkipPhotoOnSteps => "tracker:SkipPhotoOnSteps";
+        public static string TRACKER_SKIP_PHOTO_FILE_NAME => "app:skip_photo_file_name";
         public static string RestOfTheLogs => "log:Rest";
+
+        public static string EMAIL_ERROR_LOG=>"emailError"; 
+        public static string DEBUG_LOG=>"debugLogs";
+        public static string ERROR_LOG=>"errorLogs";
 
         public static string X4EverBlogs => "weblink:x4ever_blogs";
         public static string X4EverBlogsSPA => "weblink:x4ever_blogs_es";
@@ -36,6 +41,7 @@ namespace Organo.Solutions.X4Ever.V1.DAL.Helper
         public static string X4EverWebMore => "weblink:x4ever_more";
 
         public static string FEEDBACK_DIR_PATH => "app_web:feedback";
+        public static string FEEDBACK_FILE_NAME=>"app:feedback_file_name";
 
         public static string AllowedUsersKey => "frontend:AllowedUsers";
 

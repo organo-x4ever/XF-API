@@ -40,6 +40,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
         private readonly IUserNotificationServices _userNotificationServices;
         private readonly IUserTrackerReportServices _trackerReportServices;
         private readonly IUserPivotServices _userPivotServices;
+        private readonly ITrackerPhotoSkipServices _trackerPhotoSkipServices;
+        private readonly IFeedbackServices _feedbackServices;
         private IEmailContent _emailContent;
         private INotification _notification;
         private readonly IHelper _helper;
@@ -50,7 +52,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             UserNotificationServices notificationServices, UserTrackerRealtimeServices userTrackerRealtimeServices,
             UserMetaPivotServices userMetaPivotServices, UserTrackerPivotServices userTrackerPivotServices,
             WebUserMetaRealtimeServices webUserMetaRealtimeServices, UserNotificationSettingsViewServices userNotificationSettingsViewServices,
-            UserNotificationServices userNotificationServices, UserTrackerReportServices trackerReportServices)
+            UserNotificationServices userNotificationServices, UserTrackerReportServices trackerReportServices,
+            TrackerPhotoSkipServices trackerPhotoSkipServices, FeedbackServices feedbackServices)
         {
             _userPivotServices = userPivotServices;
             _userMetaPivotServices = userMetaPivotServices;
@@ -63,6 +66,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             _userNotificationServices = userNotificationServices;
             _trackerReportServices = trackerReportServices;
             _userNotificationSettingsViewServices = userNotificationSettingsViewServices;
+            _trackerPhotoSkipServices = trackerPhotoSkipServices;
+            _feedbackServices = feedbackServices;
             _helper = new Helper.Helper();
             _notification = new AppleNotification(
                 HttpContext.Current.Server.MapPath(_helper.GetAppSetting(NotificationConstant.CertificatePathDev)),
@@ -369,7 +374,38 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
                 return validationErrors;
             });
         }
-        
+
+        [GET("listOfSkippedPhotos")]
+        [Route("listOfSkippedPhotos")]
+        public async Task<HttpResponseMessage> GetSkippedPhotos()
+        {
+           return Request.CreateResponse(HttpStatusCode.OK, await _trackerPhotoSkipServices.GetJsonAsync(FileLocator.TRACKER_PHOTO_SKIP_JSON_PATH));
+        }
+
+        [GET("listOfFeedbacks")]
+        [Route("listOfFeedbacks")]
+        public async Task<HttpResponseMessage> GetFeedbacks()
+        {
+           return Request.CreateResponse(HttpStatusCode.OK, await _feedbackServices.GetJsonAsync(FileLocator.FEEDBACK_FILE_PATH));
+        }
+
+        [POST("deleteFeedback")]
+        [Route("deleteFeedback")]
+        public async Task<HttpResponseMessage> PostFeedbackRemoval(string id)
+        {
+            bool isUserAllowed = false;
+            var userId = UserID;
+            if (userId != 0)
+            {
+                var allowedUserSetting = _helper.GetAppSetting(CommonConstants.AllowedUsersKey);
+                var allowedUsers = allowedUserSetting.Split(';');
+                isUserAllowed = allowedUsers.Any(a => userId.ToString().Equals(a));
+            }
+            if (!isUserAllowed) return Request.CreateResponse(HttpStatusCode.Unauthorized, HttpConstants.UNAUTHORIZED);
+            var response = await _feedbackServices.DeleteAsync(FileLocator.FEEDBACK_FILE_PATH, id);
+            return response ? Request.CreateResponse(HttpStatusCode.OK, HttpConstants.SUCCESS) : Request.CreateResponse(HttpStatusCode.BadRequest, HttpConstants.INVALID);
+        }
+
         [GET("all_photos_model_single")]
         [Route("all_photos_model_single")]
         public async Task<HttpResponseMessage> GetAllPhotoModelSingle(int page = 0, int size = 100)

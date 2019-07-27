@@ -1098,6 +1098,11 @@
     <Content Include="view\users_ax_photos_single.min.js">
       <DependentUpon>users_ax_photos_single.js</DependentUpon>
     </Content>
+    <Content Include="view\user_feedbacks.html" />
+    <Content Include="view\user_feedbacks.js" />
+    <Content Include="view\user_feedbacks.min.js">
+      <DependentUpon>user_feedbacks.js</DependentUpon>
+    </Content>
     <Content Include="view\vendor\animate\animate.css" />
     <Content Include="view\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="view\vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -1204,8 +1209,6 @@
     <Compile Include="Models\PushMessageModel.cs" />
     <Compile Include="Models\TempEncrypt.cs" />
     <Compile Include="Models\Tracker.cs" />
-    <Compile Include="Models\TrackerPhotoSkipLog.cs" />
-    <Compile Include="Models\UserFeedback.cs" />
     <Compile Include="Models\UserForApp.cs" />
     <Compile Include="Models\UserRegister.cs" />
     <Compile Include="Models\UserRegisterNew.cs" />
@@ -1217,6 +1220,7 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Statics\EmailContents.cs" />
+    <Compile Include="Statics\FileLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="APNSCertificate\ApplePushDevelopmentiOSServices_Development.p12" />

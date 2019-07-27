@@ -83,3 +83,4 @@ C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Org
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.csproj.CopyComplete
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.dll
 C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\obj\Release\Organo.Solutions.X4Ever.V1.DAL.Services.pdb
+C:\XF-API\X4Ever.API.DAL\Organo.Solutions.X4Ever.V1.DAL.Services\bin\Release\Newtonsoft.Json.dll

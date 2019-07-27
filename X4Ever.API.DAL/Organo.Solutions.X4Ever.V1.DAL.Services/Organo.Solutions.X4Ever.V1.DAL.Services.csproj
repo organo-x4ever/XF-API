@@ -32,6 +32,7 @@
     <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -48,12 +49,14 @@
     <Compile Include="BaseServices.cs" />
     <Compile Include="CountryServices.cs" />
     <Compile Include="DependencyResolver.cs" />
+    <Compile Include="FeedbackServices.cs" />
     <Compile Include="IApplicationCountryServices.cs" />
     <Compile Include="IApplicationServices.cs" />
     <Compile Include="IApplicationSettingServices.cs" />
     <Compile Include="IBaseServices.cs" />
     <Compile Include="ICountryServices.cs" />
     <Compile Include="IDefaultServices.cs" />
+    <Compile Include="IFeedbackServices.cs" />
     <Compile Include="ILanguageServices.cs" />
     <Compile Include="IMealPlanServices.cs" />
     <Compile Include="IMediaCategoryServices.cs" />
@@ -68,6 +71,7 @@
     <Compile Include="IProvinceServices.cs" />
     <Compile Include="IStatisticServices.cs" />
     <Compile Include="ITestimonialServices.cs" />
+    <Compile Include="ITrackerPhotoSkipServices.cs" />
     <Compile Include="IUserMetaPivotServices.cs" />
     <Compile Include="IUserMetaServices.cs" />
     <Compile Include="IPasswordRequestServices.cs" />
@@ -102,6 +106,7 @@
     <Compile Include="ProvinceServices.cs" />
     <Compile Include="StatisticServices.cs" />
     <Compile Include="TestimonialServices.cs" />
+    <Compile Include="TrackerPhotoSkipServices.cs" />
     <Compile Include="UserMetaPivotServices.cs" />
     <Compile Include="UserMetaServices.cs" />
     <Compile Include="PasswordRequestServices.cs" />

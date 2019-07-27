@@ -30,69 +30,36 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
     public class TrackerPivotController : ApiControllerOverride
     {
         private readonly IUserTrackerPivotServices _userTrackerPivotServices;
+        private readonly ITrackerPhotoSkipServices _trackerPhotoSkipServices;
         private IEmailContent _emailContent;
         private IUserServices _userServices;
-        private Helper.IHelper _helper;
-        private readonly string _restLogFilePath;
-        private const string _skipPhotoFileName="skip_photo_log.json";
-
         public TrackerPivotController(UserTrackerPivotServices userTrackerPivotServices, UserServices userServices,
-            EmailContent emailContent)
+            EmailContent emailContent, TrackerPhotoSkipServices trackerPhotoSkipServices)
         {
             _userTrackerPivotServices = userTrackerPivotServices;
+            _trackerPhotoSkipServices = trackerPhotoSkipServices;
             _userServices = userServices;
             _emailContent = emailContent;
-            _helper = new Helper.Helper();
-            _restLogFilePath = HttpContext.Current.Request.MapPath("~/" + _helper.GetAppSetting(CommonConstants.RestOfTheLogs) + "/" +  _skipPhotoFileName);
         }
 
         [POST("posttrackerskipphotos")]
         [Route("posttrackerskipphotos")]
-        public async Task<string[]> PostTrackerSkipPhotos(string options)
+        public async Task<IHttpActionResult> PostTrackerSkipPhotos(string options)
         {
-            if (!string.IsNullOrEmpty(options))
+            try
             {
-                var optionList = Encoding.Default.GetString(Convert.FromBase64String(options));
-                var list = optionList.Split(':');
-                if (list.Count() == 2)
+                var result = await _trackerPhotoSkipServices.SaveAsync(FileLocator.TRACKER_PHOTO_SKIP_JSON_PATH, UserID, Token, options);
+                if (!result)
                 {
-                    var photoSkipLogs = new List<TrackerPhotoSkipLog>();
-                    if (File.Exists(_restLogFilePath))
-                    {
-                        using (StreamReader reader = new StreamReader(_restLogFilePath))
-                        {
-                            var data = await reader.ReadToEndAsync();
-                            var photoSkipLogData = JsonConvert.DeserializeObject<List<TrackerPhotoSkipLog>>(data);
-                            if (photoSkipLogData is List<TrackerPhotoSkipLog>)
-                            {
-                                photoSkipLogs = photoSkipLogData;
-                            }
-                        }
-                    }
-
-                    SaveFile(photoSkipLogs, list, _restLogFilePath);
+                    return BadRequest(_trackerPhotoSkipServices.ValidationErrors.Show());
                 }
-                return list;
             }
-            return new string[] { };
-        }
-
-        private void SaveFile(List<TrackerPhotoSkipLog> photoSkipLogs, string[] list, string filePath)
-        {
-            var dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-            bool.TryParse(list?[1] ?? "0", out bool skip);
-
-            var trackerPhotoLog = new TrackerPhotoSkipLog()
+            catch (Exception exception)
             {
-                user_id = UserID,
-                user_email = list[0],
-                skip_photo = skip,
-                user_token = Token,
-                modify_date = dateString
-            };
-            photoSkipLogs.Add(trackerPhotoLog);
-            var data = JsonConvert.SerializeObject(photoSkipLogs);
-            File.WriteAllText(filePath, data);
+                return BadRequest(exception.Message);
+            }
+
+            return Ok("Success");
         }
 
         // GET: api/UserTrackersPivot
@@ -137,7 +104,8 @@ namespace Organo.Solutions.X4Ever.V1.DAL.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            return await Task.Factory.StartNew(() => {
+            return await Task.Factory.StartNew(() =>
+            {
                 ValidationErrors validationErrors = new ValidationErrors();
                 if (validationErrors.Count() == 0)
                 {

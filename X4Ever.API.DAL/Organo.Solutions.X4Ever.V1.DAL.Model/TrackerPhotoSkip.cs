@@ -1,11 +1,9 @@
 ﻿
-using System;
-
-namespace Organo.Solutions.X4Ever.V1.DAL.API.Models
+namespace Organo.Solutions.X4Ever.V1.DAL.Model
 {
-    public class TrackerPhotoSkipLog
+    public class TrackerPhotoSkip
     {
-        public Int64 user_id { get; set; }
+        public long user_id { get; set; }
         public string user_email { get; set; }
         public bool skip_photo { get; set; }
         public string user_token { get; set; }

@@ -84,8 +84,10 @@
     <Compile Include="Statics\TrackerConstants.cs" />
     <Compile Include="Statistic.cs" />
     <Compile Include="Testimonial.cs" />
+    <Compile Include="TrackerPhotoSkip.cs" />
     <Compile Include="TrackerPivot.cs" />
     <Compile Include="UserAuthentication.cs" />
+    <Compile Include="UserFeedback.cs" />
     <Compile Include="UserGlobal.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserMetaHistory.cs" />

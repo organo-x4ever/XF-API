@@ -114,7 +114,6 @@ $(function() {
                     $('.hideForEmptyRecords').removeClass('hidden');
 
                 $('button[type=button].btn-show-meta').click(function() {
-                    console.log('meta');
                     if ($(this).hasClass("disabled") === true) {
                         return;
                     }
@@ -130,7 +129,6 @@ $(function() {
                 });
 
                 $('button[type=button].btn-show-tracker').click(function() {
-                    console.log('tracker');
                     if ($(this).hasClass("disabled") === true) {
                         return;
                     }
@@ -196,7 +194,6 @@ $(function() {
                 'Token': token
             },
             success: function (userMeta) {
-                console.log('Meta',userMeta);
                 if (userMeta.ProfilePhoto !== null && userMeta.ProfilePhoto !== 'undefined' && userMeta.ProfilePhoto.trim().length > 0) {
                     $('div.meta-profile-photo').html('<a href=\'' +
                         baseUrl +
@@ -244,7 +241,6 @@ $(function() {
                 'Token': token
             },
             success: function(userTrackers) {
-                console.log('Trackers',userTrackers);
                 var data = '';
                 var count = 1;
                 $.each(userTrackers,
